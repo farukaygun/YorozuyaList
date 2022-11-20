@@ -3,6 +3,7 @@ package com.farukaygun.yorozuyalist.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -31,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.buttonLogin.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             openInCustomTabs(viewModelLogin.loginUrl)
         }
 
