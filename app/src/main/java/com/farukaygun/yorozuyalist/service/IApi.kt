@@ -1,9 +1,15 @@
 package com.farukaygun.yorozuyalist.service
 
+import com.farukaygun.yorozuyalist.model.AccessToken
+import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface IApi {
     @FormUrlEncoded
@@ -12,6 +18,17 @@ interface IApi {
         @Field("client_id") clientId: String,
         @Field("code") code: String,
         @Field("code_verifier") codeVerifier: String,
-        @Field("grant_type") grantType: String = "authorization_code"
-    ) : Response<Any>
+        @Field("grant_type") grantType: String
+    ) : Response<AccessToken>
+
+    @GET("anime/season/{year}/{season}")
+    suspend fun getSeasonalAnime(
+        @Header("AUTHORIZATION") header: String,
+        @Path("year") year: Int,
+        @Path("season") season: String,
+        @Query("sort") sort: String,
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int,
+        @Query("fields") fields: String,
+    ) : Response<SeasonalAnime>
 }

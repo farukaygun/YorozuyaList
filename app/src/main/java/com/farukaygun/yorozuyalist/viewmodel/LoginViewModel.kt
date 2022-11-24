@@ -1,44 +1,47 @@
 package com.farukaygun.yorozuyalist.viewmodel
 
+import android.app.Application
+import android.content.Context
 import android.content.Intent
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.net.Uri
+import androidx.browser.customtabs.CustomTabsIntent
 import com.farukaygun.yorozuyalist.model.AccessToken
 import com.farukaygun.yorozuyalist.private.Constants.CLIENT_ID
 import com.farukaygun.yorozuyalist.service.Api
+import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.util.CodeVerifier
-import com.farukaygun.yorozuyalist.util.Constants
 import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.Constants.RESPONSE_TYPE
 import com.farukaygun.yorozuyalist.util.Constants.STATE
-import kotlinx.coroutines.*
+import com.farukaygun.yorozuyalist.util.Constants.YOROZUYA_PAGELINK
+import com.farukaygun.yorozuyalist.viewmodel.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import okhttp3.ResponseBody
+import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(application: Application) : BaseViewModel(application) {
     private val api = Api()
-    private var job : Job? = null
 
-    private val codeChallenge = CodeVerifier().generateCodeChallenge(64)
+    private val codeChallenge = CodeVerifier.generateCodeChallenge(64)
     val loginUrl = "${OAUTH2_URL}authorize?response_type=${RESPONSE_TYPE}&client_id=${CLIENT_ID}&code_challenge=${codeChallenge}&state=${STATE}"
 
-    private val accessTokenFlow = MutableStateFlow<AccessToken?>(null)
+    private val accessTokenFlow = MutableStateFlow<ResponseHandler<AccessToken>?>(null)
     val accessToken = accessTokenFlow
 
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        Log.e("LoginViewModel exceptionHandler", ": ${throwable.localizedMessage}")
+
+    fun openInCustomTabs(context: Context, url: String) {
+        CustomTabsIntent.Builder()
+            .build().apply {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                launchUrl(context, Uri.parse(url))
+            }
     }
 
-
     fun parseIntentData(intent: Intent?) {
-        if (intent?.data?.toString()?.startsWith(Constants.YOROZUYA_PAGELINK) == true) {
+        if (intent?.data?.toString()?.startsWith(YOROZUYA_PAGELINK) == true) {
             intent.data?.let {
                 val code = it.getQueryParameter("code")
-                val receivedState = it.getQueryParameter("state")
+                // val receivedState = it.getQueryParameter("state")
 
-                // TODO: Get token here
                 if (code != null) {
                     getAccessToken(code)
                 }
@@ -47,19 +50,16 @@ class LoginViewModel : ViewModel() {
     }
 
     private fun getAccessToken(code: String) {
-        job = viewModelScope.launch(Dispatchers.IO + exceptionHandler)  {
+        launch {
+            accessTokenFlow.emit(ResponseHandler.Loading())
             api.getAccessToken(
                 clientId = CLIENT_ID,
                 code = code,
-                codeVerifier = codeChallenge
+                codeVerifier = codeChallenge,
+                grantType = "authorization_code"
             ).let {
-                accessTokenFlow.value = it
+                accessTokenFlow.emit(it)
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        job?.cancel()
     }
 }

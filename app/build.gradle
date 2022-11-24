@@ -56,10 +56,11 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     //implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
 
     // glide
     implementation "com.github.bumptech.glide:glide:4.14.2"
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     // room
     implementation "androidx.room:room-runtime:$room_version"

@@ -13,4 +13,12 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="semiRoundedButton">
+        <item name="cornerRadius">7dp</item>
+    </style>
+
+    <style name="roundedImageView">
+        <item name="cornerSize">7%</item>
+    </style>
 </resources>
