@@ -6,11 +6,9 @@
     <item
         android:id="@+id/settings"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_settings_36"
         android:title="@string/settings" />
     <item
         android:id="@+id/about"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_info_36"
         android:title="@string/about" />
 </menu>
