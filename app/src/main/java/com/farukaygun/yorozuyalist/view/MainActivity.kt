@@ -9,7 +9,6 @@ import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
 class MainActivity : AppCompatActivity() {
     private lateinit var sharedPrefsHelper: SharedPrefsHelper
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
