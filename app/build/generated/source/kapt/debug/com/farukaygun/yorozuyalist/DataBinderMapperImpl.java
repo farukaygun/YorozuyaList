@@ -7,6 +7,7 @@ import androidx.databinding.DataBinderMapper;
 import androidx.databinding.DataBindingComponent;
 import androidx.databinding.ViewDataBinding;
 import com.farukaygun.yorozuyalist.databinding.ItemSeasonalAnimeRecyclerBindingImpl;
+import com.farukaygun.yorozuyalist.databinding.ItemSuggestedAnimeRecyclerBindingImpl;
 import java.lang.IllegalArgumentException;
 import java.lang.Integer;
 import java.lang.Object;
@@ -20,10 +21,13 @@ import java.util.List;
 public class DataBinderMapperImpl extends DataBinderMapper {
   private static final int LAYOUT_ITEMSEASONALANIMERECYCLER = 1;
 
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(1);
+  private static final int LAYOUT_ITEMSUGGESTEDANIMERECYCLER = 2;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(2);
 
   static {
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.farukaygun.yorozuyalist.R.layout.item_seasonal_anime_recycler, LAYOUT_ITEMSEASONALANIMERECYCLER);
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.farukaygun.yorozuyalist.R.layout.item_suggested_anime_recycler, LAYOUT_ITEMSUGGESTEDANIMERECYCLER);
   }
 
   @Override
@@ -40,6 +44,12 @@ public class DataBinderMapperImpl extends DataBinderMapper {
             return new ItemSeasonalAnimeRecyclerBindingImpl(component, view);
           }
           throw new IllegalArgumentException("The tag for item_seasonal_anime_recycler is invalid. Received: " + tag);
+        }
+        case  LAYOUT_ITEMSUGGESTEDANIMERECYCLER: {
+          if ("layout/item_suggested_anime_recycler_0".equals(tag)) {
+            return new ItemSuggestedAnimeRecyclerBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for item_suggested_anime_recycler is invalid. Received: " + tag);
         }
       }
     }
@@ -86,20 +96,22 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerBrLookup {
-    static final SparseArray<String> sKeys = new SparseArray<String>(3);
+    static final SparseArray<String> sKeys = new SparseArray<String>(4);
 
     static {
       sKeys.put(0, "_all");
       sKeys.put(1, "listener");
       sKeys.put(2, "seasonalAnimeData");
+      sKeys.put(3, "suggestedAnimeData");
     }
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(1);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(2);
 
     static {
       sKeys.put("layout/item_seasonal_anime_recycler_0", com.farukaygun.yorozuyalist.R.layout.item_seasonal_anime_recycler);
+      sKeys.put("layout/item_suggested_anime_recycler_0", com.farukaygun.yorozuyalist.R.layout.item_suggested_anime_recycler);
     }
   }
 }

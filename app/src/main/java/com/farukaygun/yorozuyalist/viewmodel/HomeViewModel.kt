@@ -3,6 +3,7 @@ package com.farukaygun.yorozuyalist.viewmodel
 import android.app.Application
 import android.icu.util.Calendar
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
+import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.service.Api
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.viewmodel.base.BaseViewModel
@@ -16,6 +17,9 @@ class HomeViewModel(application: Application): BaseViewModel(application) {
 
     private val seasonalAnimeListFlow = MutableStateFlow<ResponseHandler<SeasonalAnime>?>(null)
     val seasonalAnimeList = seasonalAnimeListFlow
+
+    private val suggestedAnimeListFlow = MutableStateFlow<ResponseHandler<SuggestedAnime>?>(null)
+    val suggestedAnimeList = suggestedAnimeListFlow
 
     fun getSeasonalAnime() {
         val year: Int
@@ -35,6 +39,15 @@ class HomeViewModel(application: Application): BaseViewModel(application) {
             seasonalAnimeListFlow.emit(ResponseHandler.Loading())
             api.getSeasonalAnime(year, season.value).let {
                 seasonalAnimeListFlow.emit(it)
+            }
+        }
+    }
+
+    fun getSuggestedAnime() {
+        launch {
+            suggestedAnimeListFlow.emit(ResponseHandler.Loading())
+            api.getSuggestedAnime().let {
+                suggestedAnimeListFlow.emit(it)
             }
         }
     }

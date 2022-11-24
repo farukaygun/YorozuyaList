@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.view.View;
 @SuppressWarnings("unchecked")
-public class ItemSeasonalAnimeRecyclerBindingImpl extends ItemSeasonalAnimeRecyclerBinding implements com.farukaygun.yorozuyalist.generated.callback.OnClickListener.Listener {
+public class ItemSuggestedAnimeRecyclerBindingImpl extends ItemSuggestedAnimeRecyclerBinding implements com.farukaygun.yorozuyalist.generated.callback.OnClickListener.Listener {
 
     @Nullable
     private static final androidx.databinding.ViewDataBinding.IncludedLayouts sIncludes;
@@ -20,15 +20,15 @@ public class ItemSeasonalAnimeRecyclerBindingImpl extends ItemSeasonalAnimeRecyc
     private final com.google.android.material.card.MaterialCardView mboundView0;
     // variables
     @Nullable
-    private final android.view.View.OnClickListener mCallback1;
+    private final android.view.View.OnClickListener mCallback2;
     // values
     // listeners
     // Inverse Binding Event Handlers
 
-    public ItemSeasonalAnimeRecyclerBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
+    public ItemSuggestedAnimeRecyclerBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
         this(bindingComponent, root, mapBindings(bindingComponent, root, 3, sIncludes, sViewsWithIds));
     }
-    private ItemSeasonalAnimeRecyclerBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
+    private ItemSuggestedAnimeRecyclerBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (com.google.android.material.imageview.ShapeableImageView) bindings[1]
             , (android.widget.TextView) bindings[2]
@@ -39,7 +39,7 @@ public class ItemSeasonalAnimeRecyclerBindingImpl extends ItemSeasonalAnimeRecyc
         this.textViewName.setTag(null);
         setRootTag(root);
         // listeners
-        mCallback1 = new com.farukaygun.yorozuyalist.generated.callback.OnClickListener(this, 1);
+        mCallback2 = new com.farukaygun.yorozuyalist.generated.callback.OnClickListener(this, 1);
         invalidateAll();
     }
 
@@ -64,11 +64,11 @@ public class ItemSeasonalAnimeRecyclerBindingImpl extends ItemSeasonalAnimeRecyc
     @Override
     public boolean setVariable(int variableId, @Nullable Object variable)  {
         boolean variableSet = true;
-        if (BR.seasonalAnimeData == variableId) {
-            setSeasonalAnimeData((com.farukaygun.yorozuyalist.model.anime.AnimeNode) variable);
+        if (BR.listener == variableId) {
+            setListener((com.farukaygun.yorozuyalist.adapter.ISuggestedAnimeClickListener) variable);
         }
-        else if (BR.listener == variableId) {
-            setListener((com.farukaygun.yorozuyalist.adapter.ISeasonalAnimeClickListener) variable);
+        else if (BR.suggestedAnimeData == variableId) {
+            setSuggestedAnimeData((com.farukaygun.yorozuyalist.model.anime.AnimeNode) variable);
         }
         else {
             variableSet = false;
@@ -76,20 +76,20 @@ public class ItemSeasonalAnimeRecyclerBindingImpl extends ItemSeasonalAnimeRecyc
             return variableSet;
     }
 
-    public void setSeasonalAnimeData(@Nullable com.farukaygun.yorozuyalist.model.anime.AnimeNode SeasonalAnimeData) {
-        this.mSeasonalAnimeData = SeasonalAnimeData;
+    public void setListener(@Nullable com.farukaygun.yorozuyalist.adapter.ISuggestedAnimeClickListener Listener) {
+        this.mListener = Listener;
         synchronized(this) {
             mDirtyFlags |= 0x1L;
         }
-        notifyPropertyChanged(BR.seasonalAnimeData);
+        notifyPropertyChanged(BR.listener);
         super.requestRebind();
     }
-    public void setListener(@Nullable com.farukaygun.yorozuyalist.adapter.ISeasonalAnimeClickListener Listener) {
-        this.mListener = Listener;
+    public void setSuggestedAnimeData(@Nullable com.farukaygun.yorozuyalist.model.anime.AnimeNode SuggestedAnimeData) {
+        this.mSuggestedAnimeData = SuggestedAnimeData;
         synchronized(this) {
             mDirtyFlags |= 0x2L;
         }
-        notifyPropertyChanged(BR.listener);
+        notifyPropertyChanged(BR.suggestedAnimeData);
         super.requestRebind();
     }
 
@@ -107,52 +107,52 @@ public class ItemSeasonalAnimeRecyclerBindingImpl extends ItemSeasonalAnimeRecyc
             dirtyFlags = mDirtyFlags;
             mDirtyFlags = 0;
         }
-        com.farukaygun.yorozuyalist.model.anime.AnimeNode seasonalAnimeData = mSeasonalAnimeData;
-        com.farukaygun.yorozuyalist.model.anime.MainPicture seasonalAnimeDataMainPicture = null;
-        java.lang.String seasonalAnimeDataMainPictureMedium = null;
-        com.farukaygun.yorozuyalist.adapter.ISeasonalAnimeClickListener listener = mListener;
-        java.lang.String seasonalAnimeDataTitle = null;
+        java.lang.String suggestedAnimeDataTitle = null;
+        java.lang.String suggestedAnimeDataMainPictureMedium = null;
+        com.farukaygun.yorozuyalist.model.anime.MainPicture suggestedAnimeDataMainPicture = null;
+        com.farukaygun.yorozuyalist.adapter.ISuggestedAnimeClickListener listener = mListener;
+        com.farukaygun.yorozuyalist.model.anime.AnimeNode suggestedAnimeData = mSuggestedAnimeData;
 
-        if ((dirtyFlags & 0x5L) != 0) {
+        if ((dirtyFlags & 0x6L) != 0) {
 
 
 
-                if (seasonalAnimeData != null) {
-                    // read seasonalAnimeData.mainPicture
-                    seasonalAnimeDataMainPicture = seasonalAnimeData.getMainPicture();
-                    // read seasonalAnimeData.title
-                    seasonalAnimeDataTitle = seasonalAnimeData.getTitle();
+                if (suggestedAnimeData != null) {
+                    // read suggestedAnimeData.title
+                    suggestedAnimeDataTitle = suggestedAnimeData.getTitle();
+                    // read suggestedAnimeData.mainPicture
+                    suggestedAnimeDataMainPicture = suggestedAnimeData.getMainPicture();
                 }
 
 
-                if (seasonalAnimeDataMainPicture != null) {
-                    // read seasonalAnimeData.mainPicture.medium
-                    seasonalAnimeDataMainPictureMedium = seasonalAnimeDataMainPicture.getMedium();
+                if (suggestedAnimeDataMainPicture != null) {
+                    // read suggestedAnimeData.mainPicture.medium
+                    suggestedAnimeDataMainPictureMedium = suggestedAnimeDataMainPicture.getMedium();
                 }
         }
         // batch finished
-        if ((dirtyFlags & 0x5L) != 0) {
+        if ((dirtyFlags & 0x6L) != 0) {
             // api target 1
 
-            com.farukaygun.yorozuyalist.util.UtilKt.downloadImage(this.imageViewPicture, seasonalAnimeDataMainPictureMedium);
-            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.textViewName, seasonalAnimeDataTitle);
+            com.farukaygun.yorozuyalist.util.UtilKt.downloadImage(this.imageViewPicture, suggestedAnimeDataMainPictureMedium);
+            androidx.databinding.adapters.TextViewBindingAdapter.setText(this.textViewName, suggestedAnimeDataTitle);
         }
         if ((dirtyFlags & 0x4L) != 0) {
             // api target 1
 
-            this.mboundView0.setOnClickListener(mCallback1);
+            this.mboundView0.setOnClickListener(mCallback2);
         }
     }
     // Listener Stub Implementations
     // callback impls
     public final void _internalCallbackOnClick(int sourceId , android.view.View callbackArg_0) {
         // localize variables for thread safety
-        // seasonalAnimeData
-        com.farukaygun.yorozuyalist.model.anime.AnimeNode seasonalAnimeData = mSeasonalAnimeData;
         // listener != null
         boolean listenerJavaLangObjectNull = false;
         // listener
-        com.farukaygun.yorozuyalist.adapter.ISeasonalAnimeClickListener listener = mListener;
+        com.farukaygun.yorozuyalist.adapter.ISuggestedAnimeClickListener listener = mListener;
+        // suggestedAnimeData
+        com.farukaygun.yorozuyalist.model.anime.AnimeNode suggestedAnimeData = mSuggestedAnimeData;
 
 
 
@@ -162,14 +162,14 @@ public class ItemSeasonalAnimeRecyclerBindingImpl extends ItemSeasonalAnimeRecyc
 
 
 
-            listener.onSeasonalAnimeClicked(callbackArg_0, seasonalAnimeData);
+            listener.onSuggestedAnimeClicked(callbackArg_0, suggestedAnimeData);
         }
     }
     // dirty flag
     private  long mDirtyFlags = 0xffffffffffffffffL;
     /* flag mapping
-        flag 0 (0x1L): seasonalAnimeData
-        flag 1 (0x2L): listener
+        flag 0 (0x1L): listener
+        flag 1 (0x2L): suggestedAnimeData
         flag 2 (0x3L): null
     flag mapping end*/
     //end
