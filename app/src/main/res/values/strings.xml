@@ -14,4 +14,5 @@
     <string name="anime_picture">Anime picture</string>
     <string name="anime_ranking">Anime Ranking</string>
     <string name="manga_ranking">Manga Ranking</string>
+    <string name="suggested_anime">Suggested Anime</string>
 </resources>

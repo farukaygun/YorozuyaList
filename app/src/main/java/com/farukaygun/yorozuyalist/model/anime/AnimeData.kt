@@ -2,7 +2,7 @@ package com.farukaygun.yorozuyalist.model.anime
 
 import com.google.gson.annotations.SerializedName
 
-data class SeasonalData(
+data class AnimeData(
     @SerializedName("node")
-    val node: SeasonalNode
+    val node: AnimeNode
 )

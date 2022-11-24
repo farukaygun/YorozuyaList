@@ -8,10 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ItemSeasonalAnimeRecyclerBinding
-import com.farukaygun.yorozuyalist.model.anime.SeasonalData
-import com.farukaygun.yorozuyalist.model.anime.SeasonalNode
+import com.farukaygun.yorozuyalist.model.anime.AnimeData
+import com.farukaygun.yorozuyalist.model.anime.AnimeNode
 
-class SeasonalAnimeAdapter(private var seasonalAnimeList: List<SeasonalData>)
+class SeasonalAnimeAdapter(private var seasonalAnimeList: List<AnimeData>)
     : RecyclerView.Adapter<SeasonalAnimeAdapter.ViewHolder>(), ISeasonalAnimeClickListener {
 
     class ViewHolder(val binding: ItemSeasonalAnimeRecyclerBinding)
@@ -31,7 +31,7 @@ class SeasonalAnimeAdapter(private var seasonalAnimeList: List<SeasonalData>)
         return seasonalAnimeList.size
     }
 
-    override fun onSeasonalAnimeClicked(view: View, seasonalAnimeData: SeasonalNode) {
+    override fun onSeasonalAnimeClicked(view: View, seasonalAnimeData: AnimeNode) {
         Toast.makeText(view.context, "${seasonalAnimeData.title} ", Toast.LENGTH_SHORT).show()
     }
 }

@@ -90,7 +90,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <RelativeLayout
-        android:id="@+id/linearLayoutSeasonal"
+        android:id="@+id/relativeLayoutSeasonal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -127,6 +127,52 @@
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progressBarSeasonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:indeterminate="true"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/linearLayoutSuggested"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:minHeight="235dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayoutSeasonal"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textViewSuggested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/suggested_anime"
+            android:gravity="center_vertical"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:minHeight="48dp"
+            app:drawableEndCompat="@drawable/ic_round_arrow_forward_24" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSuggestedAnime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/textViewSuggested"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_suggested_anime_recycler" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressBarSuggested"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"

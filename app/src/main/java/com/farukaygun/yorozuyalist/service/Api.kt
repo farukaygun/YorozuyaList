@@ -2,6 +2,7 @@ package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
+import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.util.Constants.BASE_API_URL
 import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
@@ -48,5 +49,14 @@ class Api : BaseResponseHandler() {
             offset = 0,
             fields = ""
         )  }
+    }
+
+    suspend fun getSuggestedAnime(): ResponseHandler<SuggestedAnime> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getSuggestedAnime(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            limit = 10,
+            offset = 0,
+            fields = ""
+        ) }
     }
 }

@@ -2,6 +2,7 @@ package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
+import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -31,4 +32,12 @@ interface IApi {
         @Query("offset") offset: Int,
         @Query("fields") fields: String,
     ) : Response<SeasonalAnime>
+
+    @GET("anime/suggestions")
+    suspend fun getSuggestedAnime(
+        @Header("AUTHORIZATION") header: String,
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int,
+        @Query("fields") fields: String,
+    ) : Response<SuggestedAnime>
 }
