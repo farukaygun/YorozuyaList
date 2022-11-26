@@ -15,4 +15,5 @@
     <string name="anime_ranking">Anime Ranking</string>
     <string name="manga_ranking">Manga Ranking</string>
     <string name="suggested_anime">Suggested Anime</string>
+    <string name="today">Today</string>
 </resources>
