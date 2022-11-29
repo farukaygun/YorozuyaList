@@ -1,4 +1,4 @@
-package com.farukaygun.yorozuyalist.view
+package com.farukaygun.yorozuyalist.view.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.farukaygun.yorozuyalist.databinding.ActivityLoginBinding
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
-import com.farukaygun.yorozuyalist.viewmodel.LoginViewModel
+import com.farukaygun.yorozuyalist.view.main.MainActivity
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
 

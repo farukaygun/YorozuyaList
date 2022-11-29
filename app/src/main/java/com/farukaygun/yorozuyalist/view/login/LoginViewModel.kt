@@ -1,4 +1,4 @@
-package com.farukaygun.yorozuyalist.viewmodel
+package com.farukaygun.yorozuyalist.view.login
 
 import android.app.Application
 import android.content.Context
@@ -14,7 +14,7 @@ import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.Constants.RESPONSE_TYPE
 import com.farukaygun.yorozuyalist.util.Constants.STATE
 import com.farukaygun.yorozuyalist.util.Constants.YOROZUYA_PAGELINK
-import com.farukaygun.yorozuyalist.viewmodel.base.BaseViewModel
+import com.farukaygun.yorozuyalist.view.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -50,7 +50,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun getAccessToken(code: String) {
-        launch {
+        viewModelLaunch {
             accessTokenFlow.emit(ResponseHandler.Loading())
             api.getAccessToken(
                 clientId = CLIENT_ID,

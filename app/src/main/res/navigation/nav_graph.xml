@@ -6,7 +6,60 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.farukaygun.yorozuyalist.view.HomeFragment"
+        android:name="com.farukaygun.yorozuyalist.view.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_animeRankingFragment"
+            app:destination="@id/animeRankingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_mangaRankingFragment"
+            app:destination="@id/mangaRankingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animeFragment"
+        android:name="com.farukaygun.yorozuyalist.view.anime.AnimeFragment"
+        android:label="fragment_anime"
+        tools:layout="@layout/fragment_anime" />
+    <fragment
+        android:id="@+id/mangaFragment"
+        android:name="com.farukaygun.yorozuyalist.view.manga.MangaFragment"
+        android:label="MangaFragment"
+        tools:layout="@layout/fragment_manga"/>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.farukaygun.yorozuyalist.view.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/animeRankingFragment"
+        android:name="com.farukaygun.yorozuyalist.view.anime_ranking.AnimeRankingFragment"
+        android:label="fragment_anime_ranking"
+        tools:layout="@layout/fragment_anime_ranking" >
+        <argument
+            android:name="type"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/mangaRankingFragment"
+        android:name="com.farukaygun.yorozuyalist.view.manga_ranking.MangaRankingFragment"
+        android:label="fragment_manga_ranking"
+        tools:layout="@layout/fragment_manga_ranking" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.farukaygun.yorozuyalist.view.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.farukaygun.yorozuyalist.view.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

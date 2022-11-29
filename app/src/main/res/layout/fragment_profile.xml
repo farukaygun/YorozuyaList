@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.ProfileFragment"
+    android:orientation="vertical"
+    android:layout_margin="16dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewPicture"
+            android:layout_width="165dp"
+            android:layout_height="225dp"
+            android:contentDescription="@string/profile_picture"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/textBirthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="8dp"
+                app:drawableStartCompat="@drawable/ic_baseline_cake_24"
+                android:drawablePadding="4dp" />
+
+            <TextView
+                android:id="@+id/textLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="8dp"
+                app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+                android:drawablePadding="4dp" />
+
+            <TextView
+                android:id="@+id/textJoinedDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="32dp"
+                app:drawableStartCompat="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="4dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_in_mal"
+                android:layout_gravity="end"
+                android:layout_margin="16dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="36dp"
+        app:dividerInsetStart="16dp"
+        app:dividerInsetEnd="16dp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <app.futured.donut.DonutProgressView
+            android:id="@+id/donutProgressView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:donut_bgLineColor="#D6D6D6"
+            app:donut_strokeWidth="20dp"
+            app:donut_gapWidth="25"
+            app:donut_gapAngle="90"
+            android:layout_marginStart="32dp"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_below="@id/donutProgressView"
+            android:orientation="vertical"
+            android:weightSum="3"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textWatching"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:text="@string/watching"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                app:drawableTint="#2db039"
+                app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
+                android:drawablePadding="4dp"/>
+
+            <TextView
+                android:id="@+id/textOnHold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:textSize="16sp"
+                android:text="@string/on_hold"
+                android:textColor="@color/black"
+                app:drawableTint="#f9d457"
+                app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
+                android:drawablePadding="4dp"/>
+
+            <TextView
+                android:id="@+id/textDropped"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:textSize="16sp"
+                android:text="@string/dropped"
+                android:textColor="@color/black"
+                app:drawableTint="#a12f31"
+                app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
+                android:drawablePadding="4dp"/>
+
+            <TextView
+                android:id="@+id/textCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:textSize="16sp"
+                android:text="@string/dropped"
+                android:textColor="@color/black"
+                app:drawableTint="#26448f"
+                app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
+                android:drawablePadding="4dp"/>
+
+            <TextView
+                android:id="@+id/textPlanToWatch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:textSize="16sp"
+                android:text="@string/plan_to_watch"
+                android:textColor="@color/black"
+                app:drawableTint="#c3c3c3"
+                app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
+                android:drawablePadding="4dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutOtherStatistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="12dp">
+
+        <TextView
+            android:id="@+id/textDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="Days\n" />
+
+        <TextView
+            android:id="@+id/textEpisodes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="Episodes\n" />
+
+        <TextView
+            android:id="@+id/textMeanScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:text="Mean Score\n" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

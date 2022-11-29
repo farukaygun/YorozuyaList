@@ -1,6 +1,7 @@
 package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
+import com.farukaygun.yorozuyalist.model.User
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import retrofit2.Response
@@ -40,4 +41,10 @@ interface IApi {
         @Query("offset") offset: Int,
         @Query("fields") fields: String,
     ) : Response<SuggestedAnime>
+
+    @GET("users/@me")
+    suspend fun getUser(
+        @Header("AUTHORIZATION") header: String,
+        @Query("fields") fields: String,
+    ) : Response<User>
 }

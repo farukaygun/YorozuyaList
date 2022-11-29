@@ -6,7 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 
 // DATA BINDING
-private fun placeholderProgressBar(context: Context): CircularProgressDrawable {
+fun placeholderProgressBar(context: Context): CircularProgressDrawable {
     return CircularProgressDrawable(context).apply {
         strokeWidth = 8f
         centerRadius = 40f
