@@ -2,17 +2,17 @@ package com.farukaygun.yorozuyalist.view.home
 
 import android.app.Application
 import android.icu.util.Calendar
+import androidx.lifecycle.SavedStateHandle
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.service.Api
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
-import kotlinx.coroutines.*
 import com.farukaygun.yorozuyalist.util.Calendar as CalendarUtil
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.time.LocalDate
 
-class HomeViewModel(application: Application): BaseViewModel(application) {
+class HomeViewModel(application: Application, private val state: SavedStateHandle): BaseViewModel(application) {
     private val api = Api()
 
     private val seasonalAnimeListFlow = MutableStateFlow<ResponseHandler<SeasonalAnime>?>(null)
@@ -36,17 +36,16 @@ class HomeViewModel(application: Application): BaseViewModel(application) {
         }
         val season = CalendarUtil.getSeason(month)
 
-        launch {
+        viewModelLaunch {
             seasonalAnimeListFlow.emit(ResponseHandler.Loading())
             api.getSeasonalAnime(year, season.value).let {
                 seasonalAnimeListFlow.emit(it)
-                println(it.data?.data?.get(0)?.node?.title)
             }
         }
     }
 
     fun getSuggestedAnime() {
-        launch {
+        viewModelLaunch {
             suggestedAnimeListFlow.emit(ResponseHandler.Loading())
             api.getSuggestedAnime().let {
                 suggestedAnimeListFlow.emit(it)

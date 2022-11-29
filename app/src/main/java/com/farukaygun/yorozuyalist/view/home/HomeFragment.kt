@@ -10,7 +10,6 @@ import com.farukaygun.yorozuyalist.adapter.SuggestedAnimeAdapter
 import com.farukaygun.yorozuyalist.databinding.FragmentHomeBinding
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseFragment
-import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collectLatest
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -36,10 +35,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             Navigation.findNavController(it).navigate(action)
         }
 
-        launch {
+        lifecycleLaunch {
             viewModelHome.seasonalAnimeList.collectLatest {
                 when(it) {
-                    is ResponseHandler.Loading -> binding.progressBarSeasonal.visibility = View.VISIBLE
+                    //is ResponseHandler.Loading -> binding.progressBarSeasonal.visibility = View.VISIBLE
                     is ResponseHandler.Success -> {
                         binding.progressBarSeasonal.visibility = View.GONE
                         it.data?.let { seasonalAnime ->
@@ -56,10 +55,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModelHome.getSuggestedAnime()
         binding.recyclerViewSuggestedAnime.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        launch {
+        lifecycleLaunch {
             viewModelHome.suggestedAnimeList.collectLatest {
                 when(it) {
-                    is ResponseHandler.Loading -> binding.progressBarSuggested.visibility = View.VISIBLE
+                    //is ResponseHandler.Loading -> binding.progressBarSuggested.visibility = View.VISIBLE
                     is ResponseHandler.Success -> {
                         binding.progressBarSuggested.visibility = View.GONE
                         it.data?.let { suggestedAnime ->

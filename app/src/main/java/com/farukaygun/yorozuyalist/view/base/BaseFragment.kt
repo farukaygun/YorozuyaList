@@ -5,33 +5,36 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.farukaygun.yorozuyalist.view.main.MainActivity
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseFragment<VBinding: ViewBinding> : Fragment(), CoroutineScope {
+abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
     protected lateinit var binding: VBinding
     private lateinit var activity: MainActivity
-    private val job = Job()
+
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         Log.e("Fragment Exception", ": ${throwable.localizedMessage}")
     }
-
-    override val coroutineContext: CoroutineContext
-        get() = job + Dispatchers.Main + exceptionHandler
 
 
     abstract val isAppbarVisible: Boolean
     abstract fun getViewBinding(): VBinding
     abstract fun start()
 
+    fun lifecycleLaunch(launch: suspend () -> Unit) {
+        viewLifecycleOwner.lifecycleScope.launch(exceptionHandler) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch.invoke()
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,10 +67,5 @@ abstract class BaseFragment<VBinding: ViewBinding> : Fragment(), CoroutineScope 
             activity.supportActionBar?.show()
             activity.isNavViewVisible(View.VISIBLE)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        job.cancel()
     }
 }

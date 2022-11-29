@@ -16,4 +16,13 @@
     <string name="manga_ranking">Manga Ranking</string>
     <string name="suggested_anime">Suggested Anime</string>
     <string name="today">Today</string>
+    <string name="watching">Watching</string>
+    <string name="completed">Completed</string>
+    <string name="on_hold">On Hold</string>
+    <string name="dropped">Dropped</string>
+    <string name="plan_to_watch">Plan to Watch</string>
+    <string name="reading">Reading</string>
+    <string name="plan_to_read">Plan to Read</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="show_in_mal">Show in MAL</string>
 </resources>

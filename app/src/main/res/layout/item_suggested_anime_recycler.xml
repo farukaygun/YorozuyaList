@@ -35,7 +35,6 @@
                 android:layout_width="110dp"
                 android:layout_height="150dp"
                 android:contentDescription="@string/anime_picture"
-                android:src="@drawable/overflow"
                 android:layout_marginBottom="4dp"
                 android:scaleType="center"
                 android:downloadUrl="@{suggestedAnimeData.mainPicture.medium}"

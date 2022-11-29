@@ -50,7 +50,7 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun getAccessToken(code: String) {
-        launch {
+        viewModelLaunch {
             accessTokenFlow.emit(ResponseHandler.Loading())
             api.getAccessToken(
                 clientId = CLIENT_ID,

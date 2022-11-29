@@ -1,24 +1,27 @@
 package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
+import com.farukaygun.yorozuyalist.model.User
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.util.Constants.BASE_API_URL
 import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Api : BaseResponseHandler() {
     private fun createRetrofit(baseUrl: String) : IApi {
-// For logging purpose.
-//         val interceptor = HttpLoggingInterceptor()
-//          interceptor.level = HttpLoggingInterceptor.Level.BODY
-//
-//         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -48,7 +51,7 @@ class Api : BaseResponseHandler() {
             limit = 10,
             offset = 0,
             fields = ""
-        )  }
+        ) }
     }
 
     suspend fun getSuggestedAnime(): ResponseHandler<SuggestedAnime> {
@@ -57,6 +60,13 @@ class Api : BaseResponseHandler() {
             limit = 10,
             offset = 0,
             fields = ""
+        ) }
+    }
+
+    suspend fun getUser(): ResponseHandler<User> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getUser(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            fields = "anime_statistics"
         ) }
     }
 }

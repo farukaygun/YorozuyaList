@@ -41,7 +41,12 @@
         android:id="@+id/animeRankingFragment"
         android:name="com.farukaygun.yorozuyalist.view.anime_ranking.AnimeRankingFragment"
         android:label="fragment_anime_ranking"
-        tools:layout="@layout/fragment_anime_ranking" />
+        tools:layout="@layout/fragment_anime_ranking" >
+        <argument
+            android:name="type"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/mangaRankingFragment"
         android:name="com.farukaygun.yorozuyalist.view.manga_ranking.MangaRankingFragment"
