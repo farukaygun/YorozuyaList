@@ -39,19 +39,24 @@
         tools:layout="@layout/fragment_profile"/>
     <fragment
         android:id="@+id/animeRankingFragment"
-        android:name="com.farukaygun.yorozuyalist.view.anime_ranking.AnimeRankingFragment"
-        android:label="fragment_anime_ranking"
-        tools:layout="@layout/fragment_anime_ranking" >
+        android:name="com.farukaygun.yorozuyalist.view.ranking.BaseRankingFragment"
+        android:label="fragment_base_ranking"
+        tools:layout="@layout/fragment_base_ranking">
         <argument
             android:name="type"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/mangaRankingFragment"
-        android:name="com.farukaygun.yorozuyalist.view.manga_ranking.MangaRankingFragment"
-        android:label="fragment_manga_ranking"
-        tools:layout="@layout/fragment_manga_ranking" />
+        android:name="com.farukaygun.yorozuyalist.view.ranking.BaseRankingFragment"
+        android:label="fragment_base_ranking"
+        tools:layout="@layout/fragment_base_ranking">
+        <argument
+            android:name="type"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.farukaygun.yorozuyalist.view.settings.SettingsFragment"

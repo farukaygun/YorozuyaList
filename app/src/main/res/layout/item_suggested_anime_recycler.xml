@@ -6,7 +6,7 @@
     <data>
         <variable
             name="suggestedAnimeData"
-            type="com.farukaygun.yorozuyalist.model.anime.AnimeNode" />
+            type="com.farukaygun.yorozuyalist.model.anime.Node" />
         <variable
             name="listener"
             type="com.farukaygun.yorozuyalist.adapter.ISuggestedAnimeClickListener" />

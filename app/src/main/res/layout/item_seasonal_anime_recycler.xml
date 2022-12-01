@@ -6,7 +6,7 @@
     <data>
         <variable
             name="seasonalAnimeData"
-            type="com.farukaygun.yorozuyalist.model.anime.AnimeNode" />
+            type="com.farukaygun.yorozuyalist.model.anime.Node" />
         <variable
             name="listener"
             type="com.farukaygun.yorozuyalist.adapter.ISeasonalAnimeClickListener" />
@@ -15,9 +15,9 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:layout_marginEnd="16dp"
         android:outlineProvider="none"
         app:strokeWidth="0dp"
         android:onClick="@{(view) -> listener.onSeasonalAnimeClicked(view, seasonalAnimeData)}">

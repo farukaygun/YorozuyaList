@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ItemSuggestedAnimeRecyclerBinding
 import com.farukaygun.yorozuyalist.model.anime.AnimeData
-import com.farukaygun.yorozuyalist.model.anime.AnimeNode
+import com.farukaygun.yorozuyalist.model.anime.Node
 
 class SuggestedAnimeAdapter(private val suggestedAnimeList: List<AnimeData>)
     : RecyclerView.Adapter<SuggestedAnimeAdapter.ViewHolder>(), ISuggestedAnimeClickListener {
@@ -31,7 +31,7 @@ class SuggestedAnimeAdapter(private val suggestedAnimeList: List<AnimeData>)
         return suggestedAnimeList.size
     }
 
-    override fun onSuggestedAnimeClicked(view: View, suggestedAnimeData: AnimeNode) {
+    override fun onSuggestedAnimeClicked(view: View, suggestedAnimeData: Node) {
         Toast.makeText(view.context, "${suggestedAnimeData.title} ", Toast.LENGTH_SHORT).show()
     }
 }

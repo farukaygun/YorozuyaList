@@ -2,6 +2,7 @@ package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
 import com.farukaygun.yorozuyalist.model.User
+import com.farukaygun.yorozuyalist.model.anime.RankingAnime
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.util.Constants.BASE_API_URL
@@ -21,7 +22,7 @@ class Api : BaseResponseHandler() {
 
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(client)
+            //.client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -67,6 +68,15 @@ class Api : BaseResponseHandler() {
         return safeApiCall { createRetrofit(BASE_API_URL).getUser(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
             fields = "anime_statistics"
+        ) }
+    }
+
+    suspend fun getAnimeRanking(rankingType: String): ResponseHandler<RankingAnime> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getAnimeRanking(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            rankingType = rankingType,
+            limit = 100,
+            fields = "mean,media_type,num_episodes,num_chapters,num_list_users"
         ) }
     }
 }

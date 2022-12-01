@@ -23,15 +23,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun start() {
         viewModelHome.getSeasonalAnime()
-        binding.recyclerViewSeasonalAnime.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         binding.buttonAnimeRanking.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToAnimeRankingFragment()
+            action.arguments.putInt("type", 0)
             Navigation.findNavController(it).navigate(action)
         }
 
         binding.buttonMangaRanking.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToMangaRankingFragment()
+            action.arguments.putInt("type", 1)
             Navigation.findNavController(it).navigate(action)
         }
 
@@ -53,7 +54,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
         viewModelHome.getSuggestedAnime()
-        binding.recyclerViewSuggestedAnime.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         lifecycleLaunch {
             viewModelHome.suggestedAnimeList.collectLatest {

@@ -23,21 +23,21 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 when(it) {
                     //is ResponseHandler.Loading -> binding.progressBarProfile.visibility = View.VISIBLE
                     is ResponseHandler.Success -> {
-                        it.data?.animeStatistics?.let { statistics ->
+                        it.data?.userAnimeStatistics?.let { statistics ->
                             withContext(Dispatchers.Main) {
                                 binding.imageViewPicture.downloadFromUrl(it.data.picture)
                                 binding.textUsername.text = it.data.name
                                 binding.textLocation.text = it.data.location
                                 binding.textBirthday.formatDate(it.data.birthday)
                                 binding.textJoinedDate.formatDate(it.data.joinedAt)
-                                binding.textWatching.append(" (" + it.data.animeStatistics.numItemsWatching.toString() + ")")
-                                binding.textOnHold.append(" (" + it.data.animeStatistics.numItemsOnHold.toString() + ")")
-                                binding.textDropped.append(" (" + it.data.animeStatistics.numItemsDropped.toString() + ")")
-                                binding.textCompleted.append(" (" + it.data.animeStatistics.numItemsCompleted.toString() + ")")
-                                binding.textPlanToWatch.append(" (" + it.data.animeStatistics.numItemsPlanToWatch.toString() + ")")
-                                binding.textDay.append(it.data.animeStatistics.numDays.toString())
-                                binding.textEpisodes.append(it.data.animeStatistics.numEpisodes.toString())
-                                binding.textMeanScore.append(it.data.animeStatistics.meanScore.toString())
+                                binding.textWatching.append(" (" + it.data.userAnimeStatistics.numItemsWatching.toString() + ")")
+                                binding.textOnHold.append(" (" + it.data.userAnimeStatistics.numItemsOnHold.toString() + ")")
+                                binding.textDropped.append(" (" + it.data.userAnimeStatistics.numItemsDropped.toString() + ")")
+                                binding.textCompleted.append(" (" + it.data.userAnimeStatistics.numItemsCompleted.toString() + ")")
+                                binding.textPlanToWatch.append(" (" + it.data.userAnimeStatistics.numItemsPlanToWatch.toString() + ")")
+                                binding.textDay.append(it.data.userAnimeStatistics.numDays.toString())
+                                binding.textEpisodes.append(it.data.userAnimeStatistics.numEpisodes.toString())
+                                binding.textMeanScore.append(it.data.userAnimeStatistics.meanScore.toString())
                             }
                             viewModelProfile.drawChart(binding.donutProgressView, statistics)
                         }
