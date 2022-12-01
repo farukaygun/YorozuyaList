@@ -26,13 +26,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         binding.buttonAnimeRanking.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToAnimeRankingFragment()
-            action.arguments.putInt("type", 0)
             Navigation.findNavController(it).navigate(action)
         }
 
         binding.buttonMangaRanking.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToMangaRankingFragment()
-            action.arguments.putInt("type", 1)
+            println("argument: ${action.arguments.getInt("type")}")
             Navigation.findNavController(it).navigate(action)
         }
 

@@ -4,8 +4,8 @@ import android.app.Application
 import android.graphics.Color
 import app.futured.donut.DonutProgressView
 import app.futured.donut.DonutSection
-import com.farukaygun.yorozuyalist.model.UserAnimeStatistics
-import com.farukaygun.yorozuyalist.model.User
+import com.farukaygun.yorozuyalist.model.user.UserAnimeStatistics
+import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.service.Api
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel

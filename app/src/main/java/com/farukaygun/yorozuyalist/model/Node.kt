@@ -1,5 +1,6 @@
-package com.farukaygun.yorozuyalist.model.anime
+package com.farukaygun.yorozuyalist.model
 
+import com.farukaygun.yorozuyalist.model.anime.MainPicture
 import com.google.gson.annotations.SerializedName
 
 data class Node(

@@ -1,8 +1,10 @@
-package com.farukaygun.yorozuyalist.model.anime
+package com.farukaygun.yorozuyalist.model
 
+import com.farukaygun.yorozuyalist.model.Node
+import com.farukaygun.yorozuyalist.model.Ranking
 import com.google.gson.annotations.SerializedName
 
-data class AnimeData(
+data class Data(
     @SerializedName("node")
     val node: Node,
 
