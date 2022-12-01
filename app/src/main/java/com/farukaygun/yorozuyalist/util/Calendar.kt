@@ -4,10 +4,10 @@ class Calendar {
     companion object {
         fun getSeason(month: Months): Seasons {
             return when(month) {
-                Months.DECEMBER, Months.JANUARY, Months.FEBRUARY -> Seasons.WINTER
-                Months.MARCH, Months.APRIL, Months.MAY -> Seasons.SPRING
-                Months.JUNE, Months.JULY, Months.AUGUST -> Seasons.SUMMER
-                Months.SEPTEMBER, Months.OCTOBER, Months.NOVEMBER -> Seasons.FALL
+                Months.JANUARY, Months.FEBRUARY, Months.MARCH -> Seasons.WINTER
+                Months.APRIL, Months.MAY, Months.JUNE -> Seasons.SPRING
+                Months.JULY, Months.AUGUST, Months.SEPTEMBER -> Seasons.SUMMER
+                Months.OCTOBER, Months.NOVEMBER, Months.DECEMBER -> Seasons.FALL
             }
         }
 
