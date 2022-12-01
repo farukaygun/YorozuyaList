@@ -2,6 +2,7 @@ package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
 import com.farukaygun.yorozuyalist.model.User
+import com.farukaygun.yorozuyalist.model.anime.RankingAnime
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import retrofit2.Response
@@ -47,4 +48,12 @@ interface IApi {
         @Header("AUTHORIZATION") header: String,
         @Query("fields") fields: String,
     ) : Response<User>
+
+    @GET("anime/ranking")
+    suspend fun getAnimeRanking(
+        @Header("AUTHORIZATION") header: String,
+        @Query("ranking_type") rankingType: String,
+        @Query("limit") limit: Int,
+        @Query("fields") fields: String
+    ) : Response<RankingAnime>
 }

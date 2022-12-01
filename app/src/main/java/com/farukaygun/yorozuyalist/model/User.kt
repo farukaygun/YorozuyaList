@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class User(
     @SerializedName("anime_statistics")
-    val animeStatistics: AnimeStatistics,
+    val userAnimeStatistics: UserAnimeStatistics,
     @SerializedName("birthday")
     val birthday: String,
     @SerializedName("id")

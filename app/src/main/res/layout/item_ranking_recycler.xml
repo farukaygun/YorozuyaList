@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="rankingAnimeData"
+            type="com.farukaygun.yorozuyalist.model.anime.Node" />
+        <variable
+            name="listener"
+            type="com.farukaygun.yorozuyalist.adapter.IRankingAnimeClickListener" />
+    </data>
+
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="16dp"
+    android:outlineProvider="none"
+    app:strokeWidth="0dp"
+    android:onClick="@{(view) -> listener.onRankingAnimeClicked(view, rankingAnimeData)}">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="top">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            android:downloadUrl="@{rankingAnimeData.mainPicture.medium}"
+            android:src="@drawable/overflow"
+            android:layout_width="110dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{rankingAnimeData.title}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxWidth="220dp"
+                android:maxLines="1"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/textViewEpisodes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{rankingAnimeData.numEpisodes}"
+                android:textSize="14sp"
+                android:gravity="center"
+                app:drawableLeftCompat="@drawable/ic_round_tv_24"
+                android:drawablePadding="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/textViewPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{rankingAnimeData.mean}"
+                android:textSize="14sp"
+                android:gravity="center"
+                app:drawableLeftCompat="@drawable/ic_round_thumb_up_alt_24"
+                android:drawablePadding="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/textViewPopularity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{rankingAnimeData.numListUsers}"
+                android:textSize="14sp"
+                android:gravity="center"
+                app:drawableLeftCompat="@drawable/ic_round_people_24"
+                android:drawablePadding="4dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</com.google.android.material.card.MaterialCardView>
+</layout>
