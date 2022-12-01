@@ -8,10 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ItemSeasonalAnimeRecyclerBinding
-import com.farukaygun.yorozuyalist.model.anime.AnimeData
-import com.farukaygun.yorozuyalist.model.anime.Node
+import com.farukaygun.yorozuyalist.model.Data
+import com.farukaygun.yorozuyalist.model.Node
 
-class SeasonalAnimeAdapter(private var seasonalAnimeList: List<AnimeData>)
+class SeasonalAnimeAdapter(private var seasonalAnimeList: List<Data>)
     : RecyclerView.Adapter<SeasonalAnimeAdapter.ViewHolder>(), ISeasonalAnimeClickListener {
 
     class ViewHolder(val binding: ItemSeasonalAnimeRecyclerBinding)

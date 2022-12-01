@@ -1,10 +1,11 @@
 package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
-import com.farukaygun.yorozuyalist.model.User
+import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.model.anime.RankingAnime
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
+import com.farukaygun.yorozuyalist.model.manga.RankingManga
 import com.farukaygun.yorozuyalist.util.Constants.BASE_API_URL
 import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
@@ -73,6 +74,15 @@ class Api : BaseResponseHandler() {
 
     suspend fun getAnimeRanking(rankingType: String): ResponseHandler<RankingAnime> {
         return safeApiCall { createRetrofit(BASE_API_URL).getAnimeRanking(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            rankingType = rankingType,
+            limit = 100,
+            fields = "mean,media_type,num_episodes,num_chapters,num_list_users"
+        ) }
+    }
+
+    suspend fun getMangaRanking(rankingType: String): ResponseHandler<RankingManga> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getMangaRanking(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
             rankingType = rankingType,
             limit = 100,

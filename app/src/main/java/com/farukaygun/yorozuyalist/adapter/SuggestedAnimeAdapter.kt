@@ -8,10 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ItemSuggestedAnimeRecyclerBinding
-import com.farukaygun.yorozuyalist.model.anime.AnimeData
-import com.farukaygun.yorozuyalist.model.anime.Node
+import com.farukaygun.yorozuyalist.model.Data
+import com.farukaygun.yorozuyalist.model.Node
 
-class SuggestedAnimeAdapter(private val suggestedAnimeList: List<AnimeData>)
+class SuggestedAnimeAdapter(private val suggestedAnimeList: List<Data>)
     : RecyclerView.Adapter<SuggestedAnimeAdapter.ViewHolder>(), ISuggestedAnimeClickListener {
 
     class ViewHolder(val binding: ItemSuggestedAnimeRecyclerBinding)

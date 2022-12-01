@@ -6,7 +6,7 @@
     <data>
         <variable
             name="seasonalAnimeData"
-            type="com.farukaygun.yorozuyalist.model.anime.Node" />
+            type="com.farukaygun.yorozuyalist.model.Node" />
         <variable
             name="listener"
             type="com.farukaygun.yorozuyalist.adapter.ISeasonalAnimeClickListener" />

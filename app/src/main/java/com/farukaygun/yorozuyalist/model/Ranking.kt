@@ -1,4 +1,4 @@
-package com.farukaygun.yorozuyalist.model.anime
+package com.farukaygun.yorozuyalist.model
 
 import com.google.gson.annotations.SerializedName
 

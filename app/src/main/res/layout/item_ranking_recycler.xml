@@ -4,11 +4,11 @@
 
     <data>
         <variable
-            name="rankingAnimeData"
-            type="com.farukaygun.yorozuyalist.model.anime.Node" />
+            name="rankingData"
+            type="com.farukaygun.yorozuyalist.model.Node" />
         <variable
             name="listener"
-            type="com.farukaygun.yorozuyalist.adapter.IRankingAnimeClickListener" />
+            type="com.farukaygun.yorozuyalist.adapter.IRankingClickListener" />
     </data>
 
 <com.google.android.material.card.MaterialCardView
@@ -21,7 +21,7 @@
     android:layout_marginTop="16dp"
     android:outlineProvider="none"
     app:strokeWidth="0dp"
-    android:onClick="@{(view) -> listener.onRankingAnimeClicked(view, rankingAnimeData)}">
+    android:onClick="@{(view) -> listener.onRankingClicked(view, rankingData)}">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
@@ -33,7 +33,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView"
             app:shapeAppearanceOverlay="@style/roundedImageView"
-            android:downloadUrl="@{rankingAnimeData.mainPicture.medium}"
+            android:downloadUrl="@{rankingData.mainPicture.medium}"
             android:src="@drawable/overflow"
             android:layout_width="110dp"
             android:layout_height="150dp"
@@ -49,7 +49,7 @@
                 android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{rankingAnimeData.title}"
+                android:text="@{rankingData.title}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:ellipsize="end"
@@ -61,7 +61,7 @@
                 android:id="@+id/textViewEpisodes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{rankingAnimeData.numEpisodes}"
+                android:text="@{rankingData.mediaType}"
                 android:textSize="14sp"
                 android:gravity="center"
                 app:drawableLeftCompat="@drawable/ic_round_tv_24"
@@ -72,7 +72,7 @@
                 android:id="@+id/textViewPoint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{rankingAnimeData.mean}"
+                android:text="@{rankingData.mean}"
                 android:textSize="14sp"
                 android:gravity="center"
                 app:drawableLeftCompat="@drawable/ic_round_thumb_up_alt_24"
@@ -83,7 +83,7 @@
                 android:id="@+id/textViewPopularity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{rankingAnimeData.numListUsers}"
+                android:text="@{rankingData.numListUsers}"
                 android:textSize="14sp"
                 android:gravity="center"
                 app:drawableLeftCompat="@drawable/ic_round_people_24"

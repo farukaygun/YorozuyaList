@@ -1,4 +1,4 @@
-package com.farukaygun.yorozuyalist.model
+package com.farukaygun.yorozuyalist.model.user
 
 import com.google.gson.annotations.SerializedName
 
