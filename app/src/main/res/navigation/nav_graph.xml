@@ -24,14 +24,22 @@
     </fragment>
     <fragment
         android:id="@+id/animeFragment"
-        android:name="com.farukaygun.yorozuyalist.view.anime.AnimeFragment"
-        android:label="fragment_anime"
-        tools:layout="@layout/fragment_anime" />
+        android:name="com.farukaygun.yorozuyalist.view.base.BaseUserListFragment"
+        android:label="@layout/fragment_base_user_list">
+        <argument
+            android:name="type"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/mangaFragment"
-        android:name="com.farukaygun.yorozuyalist.view.manga.MangaFragment"
-        android:label="MangaFragment"
-        tools:layout="@layout/fragment_manga"/>
+        android:name="com.farukaygun.yorozuyalist.view.base.BaseUserListFragment"
+        android:label="@layout/fragment_base_user_list">
+        <argument
+            android:name="type"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.farukaygun.yorozuyalist.view.profile.ProfileFragment"
@@ -39,7 +47,7 @@
         tools:layout="@layout/fragment_profile"/>
     <fragment
         android:id="@+id/animeRankingFragment"
-        android:name="com.farukaygun.yorozuyalist.view.ranking.BaseRankingFragment"
+        android:name="com.farukaygun.yorozuyalist.view.base.BaseRankingFragment"
         android:label="fragment_base_ranking"
         tools:layout="@layout/fragment_base_ranking">
         <argument
@@ -49,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/mangaRankingFragment"
-        android:name="com.farukaygun.yorozuyalist.view.ranking.BaseRankingFragment"
+        android:name="com.farukaygun.yorozuyalist.view.base.BaseRankingFragment"
         android:label="fragment_base_ranking"
         tools:layout="@layout/fragment_base_ranking">
         <argument

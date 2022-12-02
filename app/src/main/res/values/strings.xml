@@ -25,4 +25,12 @@
     <string name="plan_to_read">Plan to Read</string>
     <string name="profile_picture">Profile Picture</string>
     <string name="show_in_mal">Show in MAL</string>
+    <string name="tv">TV</string>
+    <string name="movie">Movie</string>
+    <string name="ova">OVA</string>
+    <string name="ona">ONA</string>
+    <string name="light_novel">Light Novel</string>
+    <string name="novel">Novel</string>
+    <string name="episodes">Episodes</string>
+    <string name="chapters">Chapters</string>
 </resources>

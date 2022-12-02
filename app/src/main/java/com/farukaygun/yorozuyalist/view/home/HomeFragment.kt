@@ -31,7 +31,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         binding.buttonMangaRanking.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToMangaRankingFragment()
-            println("argument: ${action.arguments.getInt("type")}")
             Navigation.findNavController(it).navigate(action)
         }
 

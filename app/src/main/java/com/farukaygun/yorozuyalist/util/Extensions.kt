@@ -1,8 +1,10 @@
 package com.farukaygun.yorozuyalist.util
 
+import android.icu.text.DecimalFormat
 import android.icu.text.SimpleDateFormat
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions

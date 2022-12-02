@@ -2,10 +2,9 @@ package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
 import com.farukaygun.yorozuyalist.model.user.User
-import com.farukaygun.yorozuyalist.model.anime.RankingAnime
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
-import com.farukaygun.yorozuyalist.model.manga.RankingManga
+import com.farukaygun.yorozuyalist.model.Response as ResponseApi
 import com.farukaygun.yorozuyalist.util.Constants.BASE_API_URL
 import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
@@ -23,7 +22,7 @@ class Api : BaseResponseHandler() {
 
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
-            //.client(client)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -72,7 +71,7 @@ class Api : BaseResponseHandler() {
         ) }
     }
 
-    suspend fun getAnimeRanking(rankingType: String): ResponseHandler<RankingAnime> {
+    suspend fun getAnimeRanking(rankingType: String): ResponseHandler<ResponseApi> {
         return safeApiCall { createRetrofit(BASE_API_URL).getAnimeRanking(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
             rankingType = rankingType,
@@ -81,12 +80,30 @@ class Api : BaseResponseHandler() {
         ) }
     }
 
-    suspend fun getMangaRanking(rankingType: String): ResponseHandler<RankingManga> {
+    suspend fun getMangaRanking(rankingType: String): ResponseHandler<ResponseApi> {
         return safeApiCall { createRetrofit(BASE_API_URL).getMangaRanking(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
             rankingType = rankingType,
             limit = 100,
             fields = "mean,media_type,num_episodes,num_chapters,num_list_users"
+        ) }
+    }
+
+    suspend fun getUserAnimeList(status: String): ResponseHandler<ResponseApi> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getUserAnimeList(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            status = status,
+            sort = "anime_title",
+            fields = "list_status,num_episodes,media_type,status,num_list_users,mean"
+        ) }
+    }
+
+    suspend fun getUserMangaList(status: String): ResponseHandler<ResponseApi> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getUserMangaList(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            status = status,
+            sort = "manga_title",
+            fields = "list_status,num_chapters,num_volumes,media_type,status,num_list_users,mean"
         ) }
     }
 }

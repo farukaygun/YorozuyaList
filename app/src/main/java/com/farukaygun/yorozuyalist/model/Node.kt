@@ -19,9 +19,12 @@ data class Node(
     @SerializedName("media_type")
     val mediaType: String,
 
-    @SerializedName("num_episodes")
-    val numEpisodes: String,
+    @SerializedName(value = "num_episodes", alternate = ["num_chapters"])
+    val numEpisodes: Int,
 
     @SerializedName("num_list_users")
-    val numListUsers: String
+    val numListUsers: Int,
+
+    @SerializedName("status")
+    val status: String
 )
