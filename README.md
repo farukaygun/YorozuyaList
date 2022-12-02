@@ -2,4 +2,4 @@
 
 ### Under Heavy Development.
 
-Yorozuya List is an android application that an unofficial MyAnimeList client.
+Yorozuya List is an android application that unofficial MyAnimeList client.
