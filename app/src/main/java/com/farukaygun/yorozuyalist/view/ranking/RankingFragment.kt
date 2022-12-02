@@ -20,8 +20,9 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>() {
     // FIXME: Global appbar appears when false, does not appear when true. Working in reverse. May be about BaseRankingFragment.
     override val isAppbarVisible: Boolean = true
 
-    override fun start() {
 
+    override fun start() {
+        val rankingType: String = arguments?.getString("ranking_type") ?: "all"
         when(arguments?.getInt("type")) {
             0 -> getAnimeRanking()
             1 -> getMangaRanking()
@@ -29,15 +30,15 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>() {
     }
 
     private fun getAnimeRanking() {
-        val rankingType = arguments?.getString("ranking_type") ?: "all"
+        val rankingType: String = arguments?.getString("ranking_type") ?: "all"
         viewModelRanking.getAnimeRanking(rankingType)
 
         lifecycleLaunch {
             viewModelRanking.animeRanking.collectLatest {
                 when(it) {
-                    is ResponseHandler.Loading -> binding.circularProgressBarRanking.visibility = View.VISIBLE
+                    is ResponseHandler.Loading -> binding.circularProgressBar.visibility = View.VISIBLE
                     is ResponseHandler.Success -> {
-                        binding.circularProgressBarRanking.visibility = View.GONE
+                        binding.circularProgressBar.visibility = View.GONE
                         it.data?.let { rankingAnime ->
                             val rankingAdapter = RankingAdapter(rankingAnime.data)
                             binding.recyclerViewRanking.adapter = rankingAdapter
@@ -51,15 +52,15 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>() {
     }
 
     private fun getMangaRanking() {
-        val rankingType = arguments?.getString("ranking_type") ?: "all"
+        val rankingType: String = arguments?.getString("ranking_type") ?: "all"
         viewModelRanking.getMangaRanking(rankingType)
 
         lifecycleLaunch {
             viewModelRanking.mangaRanking.collectLatest {
                 when(it) {
-                    is ResponseHandler.Loading -> binding.circularProgressBarRanking.visibility = View.VISIBLE
+                    is ResponseHandler.Loading -> binding.circularProgressBar.visibility = View.VISIBLE
                     is ResponseHandler.Success -> {
-                        binding.circularProgressBarRanking.visibility = View.GONE
+                        binding.circularProgressBar.visibility = View.GONE
                         it.data?.let { rankingManga ->
                             val mangaRankingAdapter = RankingAdapter(rankingManga.data)
                             binding.recyclerViewRanking.adapter = mangaRankingAdapter

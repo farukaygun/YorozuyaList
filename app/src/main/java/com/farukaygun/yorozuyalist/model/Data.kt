@@ -1,7 +1,5 @@
 package com.farukaygun.yorozuyalist.model
 
-import com.farukaygun.yorozuyalist.model.Node
-import com.farukaygun.yorozuyalist.model.Ranking
 import com.google.gson.annotations.SerializedName
 
 data class Data(
@@ -13,4 +11,7 @@ data class Data(
 
     @SerializedName("ranking_type")
     var rankingType: String? = null,
+
+    @SerializedName("list_status")
+    val listStatus: ListStatus
 )

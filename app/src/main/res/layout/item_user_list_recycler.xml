@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="userListData"
+            type="com.farukaygun.yorozuyalist.model.Data" />
+        <variable
+            name="listener"
+            type="com.farukaygun.yorozuyalist.adapter.IUserListClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="16dp"
+        android:outlineProvider="none"
+        app:strokeWidth="0dp"
+        android:onClick="@{(view) -> listener.onUserListClicked(view, userListData)}">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                android:downloadUrl="@{userListData.node.mainPicture.medium}"
+                android:layout_width="110dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{userListData.node.title}"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    android:maxWidth="240dp"
+                    android:maxLines="1"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/textViewPoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{userListData.node.mean}"
+                    android:textSize="14sp"
+                    android:drawablePadding="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/textViewName"
+                    app:drawableLeftCompat="@drawable/ic_round_thumb_up_alt_24"/>
+
+                <TextView
+                    android:id="@+id/textViewPopularity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:formatInt="@{userListData.node.numListUsers}"
+                    android:textSize="14sp"
+                    android:drawablePadding="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/textViewPoint"
+                    app:drawableLeftCompat="@drawable/ic_round_people_24"/>
+
+                <TextView
+                    android:id="@+id/textViewEpisodes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{userListData.listStatus.numEpisodesWatched + `/` + userListData.node.numEpisodes}"
+                    android:textSize="14sp"
+                    android:drawablePadding="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_below="@+id/textViewPopularity"
+                    app:drawableLeftCompat="@drawable/ic_round_tv_24"/>
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPopularity"
+                    android:layout_alignParentBottom="true"
+                    android:max="@{userListData.node.numEpisodes}"
+                    android:progress="@{userListData.listStatus.numEpisodesWatched}"
+                    app:trackCornerRadius="8dp"
+                    app:trackThickness="4dp" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

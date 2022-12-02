@@ -2,10 +2,9 @@ package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
 import com.farukaygun.yorozuyalist.model.user.User
-import com.farukaygun.yorozuyalist.model.anime.RankingAnime
+import com.farukaygun.yorozuyalist.model.Response as ResponseApi
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
-import com.farukaygun.yorozuyalist.model.manga.RankingManga
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -56,7 +55,7 @@ interface IApi {
         @Query("ranking_type") rankingType: String,
         @Query("limit") limit: Int,
         @Query("fields") fields: String
-    ) : Response<RankingAnime>
+    ) : Response<ResponseApi>
 
     @GET("manga/ranking")
     suspend fun getMangaRanking(
@@ -64,5 +63,21 @@ interface IApi {
         @Query("ranking_type") rankingType: String,
         @Query("limit") limit: Int,
         @Query("fields") fields: String
-    ) : Response<RankingManga>
+    ) : Response<ResponseApi>
+
+    @GET("users/@me/animelist")
+    suspend fun getUserAnimeList(
+        @Header("AUTHORIZATION") header: String,
+        @Query("status") status: String,
+        @Query("sort") sort: String,
+        @Query("fields") fields: String
+    ) : Response<ResponseApi>
+
+    @GET("users/@me/mangalist")
+    suspend fun getUserMangaList(
+        @Header("AUTHORIZATION") header: String,
+        @Query("status") status: String,
+        @Query("sort") sort: String,
+        @Query("fields") fields: String
+    ) : Response<ResponseApi>
 }

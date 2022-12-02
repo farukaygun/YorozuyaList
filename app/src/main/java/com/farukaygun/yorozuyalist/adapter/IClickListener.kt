@@ -1,6 +1,7 @@
 package com.farukaygun.yorozuyalist.adapter
 
 import android.view.View
+import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.model.Node
 
 interface ISeasonalAnimeClickListener {
@@ -13,4 +14,8 @@ interface ISuggestedAnimeClickListener {
 
 interface IRankingClickListener {
     fun onRankingClicked(view: View, rankingData: Node)
+}
+
+interface IUserListClickListener {
+    fun onUserListClicked(view: View, userListData: Data)
 }

@@ -23,5 +23,8 @@ data class Node(
     val numEpisodes: Int,
 
     @SerializedName("num_list_users")
-    val numListUsers: Int
+    val numListUsers: Int,
+
+    @SerializedName("status")
+    val status: String
 )
