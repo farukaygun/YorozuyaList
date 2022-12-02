@@ -1,16 +1,14 @@
-package com.farukaygun.yorozuyalist.view.ranking
+package com.farukaygun.yorozuyalist.view.base
 
-import androidx.fragment.app.viewModels
 import com.farukaygun.yorozuyalist.adapter.viewpager.AnimeRankingViewPagerAdapter
 import com.farukaygun.yorozuyalist.adapter.viewpager.MangaRankingViewPagerAdapter
 import com.farukaygun.yorozuyalist.databinding.FragmentBaseRankingBinding
-import com.farukaygun.yorozuyalist.view.base.BaseFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**
  * Base ViewPager fragment for Anime and Manga Ranking fragments.
  * arg type 0 is anime ranking, 1 is manga ranking.
- * Both fragments uses Ranking Fragment for showing ranking list.
+ * Both fragments uses Ranking Fragment for showing ranking list in viewPager.
  */
 class BaseRankingFragment : BaseFragment<FragmentBaseRankingBinding>() {
     override fun getViewBinding(): FragmentBaseRankingBinding = FragmentBaseRankingBinding.inflate(layoutInflater)

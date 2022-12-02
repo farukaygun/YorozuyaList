@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    tools:context=".view.ranking.BaseRankingFragment">
+    tools:context=".view.base.BaseRankingFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarrLayout"
