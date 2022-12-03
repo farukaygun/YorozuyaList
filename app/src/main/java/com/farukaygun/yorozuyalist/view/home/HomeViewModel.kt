@@ -23,19 +23,7 @@ class HomeViewModel(application: Application, private val state: SavedStateHandl
 
 
     fun getSeasonalAnime() {
-        val year: Int
-        val month: CalendarUtil.Months
-        if (android.os.Build.VERSION.SDK_INT >= 26) {
-            val date = LocalDate.now()
-            year = date.year
-            month = CalendarUtil.getMonth(date.month.value)!!
-        } else {
-            val calendar = Calendar.getInstance()
-            year = calendar.get(Calendar.YEAR)
-            month = CalendarUtil.getMonth(calendar.get(Calendar.MONTH) + 1)!!
-        }
-        val season = CalendarUtil.getSeason(month)
-
+        val (year, season) = CalendarUtil.getYearAndSeason()
         viewModelLaunch {
             seasonalAnimeListFlow.emit(ResponseHandler.Loading())
             api.getSeasonalAnime(year, season.value).let {

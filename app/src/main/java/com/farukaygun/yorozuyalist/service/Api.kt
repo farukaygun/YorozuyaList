@@ -10,6 +10,7 @@ import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -51,7 +52,14 @@ class Api : BaseResponseHandler() {
             sort = "anime_score",
             limit = 10,
             offset = 0,
-            fields = ""
+            fields = "mean,media_type,num_episodes,num_list_users"
+        ) }
+    }
+
+    suspend fun getSeasonalAnimePaging(url: String): ResponseHandler<SeasonalAnime> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getSeasonalAnime(
+            url = url,
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
         ) }
     }
 
@@ -75,8 +83,15 @@ class Api : BaseResponseHandler() {
         return safeApiCall { createRetrofit(BASE_API_URL).getAnimeRanking(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
             rankingType = rankingType,
-            limit = 100,
+            limit = 50,
             fields = "mean,media_type,num_episodes,num_chapters,num_list_users"
+        ) }
+    }
+
+    suspend fun getAnimeRankingPaging(url: String): ResponseHandler<ResponseApi> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getAnimeRanking(
+            url = url,
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken")
         ) }
     }
 
@@ -84,8 +99,15 @@ class Api : BaseResponseHandler() {
         return safeApiCall { createRetrofit(BASE_API_URL).getMangaRanking(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
             rankingType = rankingType,
-            limit = 100,
+            limit = 50,
             fields = "mean,media_type,num_episodes,num_chapters,num_list_users"
+        ) }
+    }
+
+    suspend fun getMangaRankingPaging(url: String): ResponseHandler<ResponseApi> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getMangaRanking(
+            url = url,
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken")
         ) }
     }
 
@@ -98,12 +120,36 @@ class Api : BaseResponseHandler() {
         ) }
     }
 
+    suspend fun getUserAnimeListPaging(url: String): ResponseHandler<ResponseApi> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getUserMangaList(
+            url = url,
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken")
+        ) }
+    }
+
     suspend fun getUserMangaList(status: String): ResponseHandler<ResponseApi> {
         return safeApiCall { createRetrofit(BASE_API_URL).getUserMangaList(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
             status = status,
             sort = "manga_title",
-            fields = "list_status,num_chapters,num_volumes,media_type,status,num_list_users,mean"
+            fields = "list_status,num_chapters,media_type,status,num_list_users,mean"
+        ) }
+    }
+
+    suspend fun getUserMangaListPaging(url: String): ResponseHandler<ResponseApi> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getUserMangaList(
+            url = url,
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken")
+        ) }
+    }
+
+    suspend fun getAnimeDetails(animeId: Int): ResponseHandler<ResponseApi> {
+        return safeApiCall { createRetrofit(BASE_API_URL).getAnimeDetails(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            animeId =animeId,
+            fields = "id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,\" +\n" +
+                    " \"num_list_users,num_scoring_users,media_type,status,genres,my_list_status,num_episodes,start_season,\" +\n" +
+                    " \"broadcast,source,average_episode_duration,studios,opening_themes,ending_themes,related_anime{media_type},related_manga{media_type}"
         ) }
     }
 }

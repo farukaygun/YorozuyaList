@@ -2,16 +2,12 @@ package com.farukaygun.yorozuyalist.util
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.icu.text.DecimalFormat
-import android.icu.text.DecimalFormatSymbols
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.farukaygun.yorozuyalist.R
-import okhttp3.MediaType
 import java.util.*
-import kotlin.collections.ArrayList
 
 // DATA BINDING
 fun placeholderProgressBar(context: Context): CircularProgressDrawable {
@@ -23,7 +19,7 @@ fun placeholderProgressBar(context: Context): CircularProgressDrawable {
 }
 
 @BindingAdapter("android:downloadUrl")
-fun downloadImage(view: ImageView, url: String) {
+fun downloadImage(view: ImageView, url: String?) {
     view.downloadFromUrl(url, placeholderProgressBar(view.context))
 }
 

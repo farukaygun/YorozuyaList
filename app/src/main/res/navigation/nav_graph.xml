@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_homeFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_seasonalFragment"
+            app:destination="@id/seasonalFragment" />
     </fragment>
     <fragment
         android:id="@+id/animeFragment"
@@ -75,4 +78,9 @@
         android:name="com.farukaygun.yorozuyalist.view.about.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/seasonalFragment"
+        android:name="com.farukaygun.yorozuyalist.view.seasonal.SeasonalFragment"
+        android:label="fragment_seasonal"
+        tools:layout="@layout/fragment_seasonal" />
 </navigation>

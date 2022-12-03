@@ -5,14 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ItemRankingRecyclerBinding
 import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.model.Node
 
-class RankingAdapter(private val animeRankingList: List<Data>)
-    : RecyclerView.Adapter<RankingAdapter.ViewHolder>(), IRankingClickListener {
+class RankingAdapter()
+    : PagingDataAdapter<Data, RankingAdapter.ViewHolder>(RankingComparator), IRankingClickListener {
 
     class ViewHolder(val binding: ItemRankingRecyclerBinding)
         : RecyclerView.ViewHolder(binding.root)
@@ -23,15 +25,24 @@ class RankingAdapter(private val animeRankingList: List<Data>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.rankingData = animeRankingList[position].node
-        holder.binding.listener = this
-    }
-
-    override fun getItemCount(): Int {
-        return animeRankingList.size
+        getItem(position)?.let {
+            holder.binding.rankingData = it.node
+            holder.binding.listener = this
+        }
     }
 
     override fun onRankingClicked(view: View, rankingData: Node) {
         Toast.makeText(view.context, "${rankingData.title} ", Toast.LENGTH_SHORT).show()
+    }
+
+    object RankingComparator: DiffUtil.ItemCallback<Data>() {
+        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+            return oldItem.node.id == newItem.node.id
+        }
+
+        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+            return oldItem == newItem
+        }
+
     }
 }

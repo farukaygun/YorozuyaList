@@ -1,11 +1,9 @@
 package com.farukaygun.yorozuyalist.view.user_list
 
-import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import com.farukaygun.yorozuyalist.adapter.UserListAdapter
 import com.farukaygun.yorozuyalist.databinding.FragmentUserListBinding
-import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseFragment
 import kotlinx.coroutines.flow.collectLatest
 
@@ -13,6 +11,9 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     private val viewModelUserList: UserListViewModel by viewModels()
     override fun getViewBinding(): FragmentUserListBinding = FragmentUserListBinding.inflate(layoutInflater)
     override val isAppbarVisible: Boolean = true
+
+    private lateinit var userAnimeListAdapter: UserListAdapter
+    private lateinit var userMangaListAdapter: UserListAdapter
 
     override fun start() {
         when(arguments?.getInt("type")) {
@@ -22,45 +23,47 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     }
 
     private fun getUserAnimeList() {
-        val status = arguments?.getString("status") ?: "all"
-        viewModelUserList.getUserAnimeList(status)
+        viewModelUserList.setStatusFlow(arguments?.getString("status") ?: "all")
+
+        userAnimeListAdapter = UserListAdapter()
+        binding.recyclerViewUserList.adapter = userAnimeListAdapter
 
         lifecycleLaunch {
-            viewModelUserList.userAnimeList.collectLatest {
-                when(it) {
-                    is ResponseHandler.Loading -> binding.circularProgressBar.visibility = View.VISIBLE
-                    is ResponseHandler.Success -> {
-                        binding.circularProgressBar.visibility = View.GONE
-                        it.data?.let { userAnimeList ->
-                            val userAnimeListAdapter = UserListAdapter(userAnimeList.data)
-                            binding.recyclerViewUserList.adapter = userAnimeListAdapter
-                        }
-                    }
-                    is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
-                    else -> {}
+            userAnimeListAdapter.loadStateFlow.collectLatest {
+                if (it.refresh is LoadState.Loading) {
+                    binding.circularProgressBar.show()
+                } else {
+                    binding.circularProgressBar.hide()
                 }
+            }
+        }
+
+        lifecycleLaunch {
+            viewModelUserList.userListAnime.collectLatest {
+                userAnimeListAdapter.submitData(it)
             }
         }
     }
 
     private fun getUserMangaList() {
-        val status = arguments?.getString("status") ?: "all"
-        viewModelUserList.getUserMangaList(status)
+        viewModelUserList.setStatusFlow(arguments?.getString("status") ?: "all")
+
+        userMangaListAdapter = UserListAdapter()
+        binding.recyclerViewUserList.adapter = userMangaListAdapter
 
         lifecycleLaunch {
-            viewModelUserList.userMangaList.collectLatest {
-                when(it) {
-                    is ResponseHandler.Loading -> binding.circularProgressBar.visibility = View.VISIBLE
-                    is ResponseHandler.Success -> {
-                        binding.circularProgressBar.visibility = View.GONE
-                        it.data?.let { userMangaList ->
-                            val userMangaListAdapter = UserListAdapter(userMangaList.data)
-                            binding.recyclerViewUserList.adapter = userMangaListAdapter
-                        }
-                    }
-                    is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
-                    else -> {}
+            userMangaListAdapter.loadStateFlow.collectLatest {
+                if (it.refresh is LoadState.Loading) {
+                    binding.circularProgressBar.show()
+                } else {
+                    binding.circularProgressBar.hide()
                 }
+            }
+        }
+
+        lifecycleLaunch {
+            viewModelUserList.userListManga.collectLatest {
+                userMangaListAdapter.submitData(it)
             }
         }
     }

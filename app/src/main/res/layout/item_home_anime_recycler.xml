@@ -2,25 +2,25 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+    
     <data>
         <variable
-            name="suggestedAnimeData"
+            name="animeData"
             type="com.farukaygun.yorozuyalist.model.Node" />
         <variable
             name="listener"
-            type="com.farukaygun.yorozuyalist.adapter.ISuggestedAnimeClickListener" />
+            type="com.farukaygun.yorozuyalist.adapter.IHomeAnimeClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:layout_marginEnd="16dp"
         android:outlineProvider="none"
         app:strokeWidth="0dp"
-        android:onClick="@{(view) -> listener.onSuggestedAnimeClicked(view, suggestedAnimeData)}">
+        android:onClick="@{(view) -> listener.onHomeAnimeClicked(view, animeData)}">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
                 android:contentDescription="@string/anime_picture"
                 android:layout_marginBottom="4dp"
                 android:scaleType="center"
-                android:downloadUrl="@{suggestedAnimeData.mainPicture.medium}"
+                android:downloadUrl="@{animeData.mainPicture.medium}"
                 app:shapeAppearanceOverlay="@style/roundedImageView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
                 android:maxLines="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@{suggestedAnimeData.title}"
+                android:text="@{animeData.title}"
                 tools:ignore="HardcodedText" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

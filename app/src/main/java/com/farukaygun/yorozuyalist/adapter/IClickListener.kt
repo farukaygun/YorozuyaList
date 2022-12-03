@@ -8,8 +8,8 @@ interface ISeasonalAnimeClickListener {
     fun onSeasonalAnimeClicked(view: View, seasonalAnimeData: Node)
 }
 
-interface ISuggestedAnimeClickListener {
-    fun onSuggestedAnimeClicked(view: View, suggestedAnimeData: Node)
+interface IHomeAnimeClickListener {
+    fun onHomeAnimeClicked(view: View, homeAnimeData: Node)
 }
 
 interface IRankingClickListener {
