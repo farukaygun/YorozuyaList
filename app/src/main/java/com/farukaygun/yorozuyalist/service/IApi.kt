@@ -13,6 +13,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface IApi {
     @FormUrlEncoded
@@ -22,7 +23,7 @@ interface IApi {
         @Field("code") code: String,
         @Field("code_verifier") codeVerifier: String,
         @Field("grant_type") grantType: String
-    ) : Response<AccessToken>
+    ): Response<AccessToken>
 
     @GET("anime/season/{year}/{season}")
     suspend fun getSeasonalAnime(
@@ -33,7 +34,13 @@ interface IApi {
         @Query("limit") limit: Int,
         @Query("offset") offset: Int,
         @Query("fields") fields: String,
-    ) : Response<SeasonalAnime>
+    ): Response<SeasonalAnime>
+
+    @GET
+    suspend fun getSeasonalAnime(
+        @Url url: String,
+        @Header("AUTHORIZATION") header: String,
+    ): Response<SeasonalAnime>
 
     @GET("anime/suggestions")
     suspend fun getSuggestedAnime(
@@ -41,13 +48,13 @@ interface IApi {
         @Query("limit") limit: Int,
         @Query("offset") offset: Int,
         @Query("fields") fields: String,
-    ) : Response<SuggestedAnime>
+    ): Response<SuggestedAnime>
 
     @GET("users/@me")
     suspend fun getUser(
         @Header("AUTHORIZATION") header: String,
         @Query("fields") fields: String,
-    ) : Response<User>
+    ): Response<User>
 
     @GET("anime/ranking")
     suspend fun getAnimeRanking(
@@ -55,7 +62,13 @@ interface IApi {
         @Query("ranking_type") rankingType: String,
         @Query("limit") limit: Int,
         @Query("fields") fields: String
-    ) : Response<ResponseApi>
+    ): Response<ResponseApi>
+
+    @GET
+    suspend fun getAnimeRanking(
+        @Url url: String,
+        @Header("AUTHORIZATION") header: String
+    ): Response<ResponseApi>
 
     @GET("manga/ranking")
     suspend fun getMangaRanking(
@@ -63,7 +76,13 @@ interface IApi {
         @Query("ranking_type") rankingType: String,
         @Query("limit") limit: Int,
         @Query("fields") fields: String
-    ) : Response<ResponseApi>
+    ): Response<ResponseApi>
+
+    @GET
+    suspend fun getMangaRanking(
+        @Url url: String,
+        @Header("AUTHORIZATION") header: String
+    ): Response<ResponseApi>
 
     @GET("users/@me/animelist")
     suspend fun getUserAnimeList(
@@ -71,13 +90,32 @@ interface IApi {
         @Query("status") status: String,
         @Query("sort") sort: String,
         @Query("fields") fields: String
-    ) : Response<ResponseApi>
+    ): Response<ResponseApi>
+
+    @GET
+    suspend fun getUserAnimeList(
+        @Url url: String,
+        @Header("AUTHORIZATION") header: String
+    ): Response<ResponseApi>
 
     @GET("users/@me/mangalist")
     suspend fun getUserMangaList(
         @Header("AUTHORIZATION") header: String,
         @Query("status") status: String,
         @Query("sort") sort: String,
+        @Query("fields") fields: String
+    ): Response<ResponseApi>
+
+    @GET
+    suspend fun getUserMangaList(
+        @Url url: String,
+        @Header("AUTHORIZATION") header: String
+    ): Response<ResponseApi>
+
+    @GET("anime/{anime_id}")
+    suspend fun getAnimeDetails(
+        @Path("anime_id") animeId: Int,
+        @Header("AUTHORIZATION") header: String,
         @Query("fields") fields: String
     ) : Response<ResponseApi>
 }

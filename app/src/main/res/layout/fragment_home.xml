@@ -125,7 +125,7 @@
             android:orientation="horizontal"
             android:layout_below="@id/textViewSeasonal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_seasonal_anime_recycler" />
+            tools:listitem="@layout/item_home_anime_recycler" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progressBarSeasonal"
@@ -217,7 +217,7 @@
             android:orientation="horizontal"
             android:layout_below="@id/textViewSuggested"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_suggested_anime_recycler" />
+            tools:listitem="@layout/item_home_anime_recycler" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progressBarSuggested"

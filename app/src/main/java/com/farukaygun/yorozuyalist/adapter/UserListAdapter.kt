@@ -5,14 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ItemUserListRecyclerBinding
 import com.farukaygun.yorozuyalist.model.Data
-import com.farukaygun.yorozuyalist.model.Node
 
-class UserListAdapter(private val userList: List<Data>)
-    : RecyclerView.Adapter<UserListAdapter.ViewHolder>(), IUserListClickListener {
+class UserListAdapter()
+    : PagingDataAdapter<Data, UserListAdapter.ViewHolder>(UserListComparator), IUserListClickListener {
 
     class ViewHolder(val binding: ItemUserListRecyclerBinding)
         : RecyclerView.ViewHolder(binding.root)
@@ -23,15 +24,23 @@ class UserListAdapter(private val userList: List<Data>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.userListData = userList[position]
-        holder.binding.listener = this
-    }
-
-    override fun getItemCount(): Int {
-        return userList.size
+        getItem(position)?.let {
+            holder.binding.userListData = it
+            holder.binding.listener = this
+        }
     }
 
     override fun onUserListClicked(view: View, userListData: Data) {
         Toast.makeText(view.context, "${userListData.node.title} ", Toast.LENGTH_SHORT).show()
+    }
+
+    object UserListComparator: DiffUtil.ItemCallback<Data>() {
+        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+            return oldItem.node.id == newItem.node.id
+        }
+
+        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+            return oldItem == newItem
+        }
     }
 }

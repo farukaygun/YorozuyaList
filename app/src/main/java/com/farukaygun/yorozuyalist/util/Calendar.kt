@@ -1,17 +1,33 @@
 package com.farukaygun.yorozuyalist.util
 
+import java.time.LocalDate
+import android.icu.util.Calendar
+
 class Calendar {
     companion object {
-        fun getSeason(month: Months): Seasons {
+        fun getYearAndSeason(): Pair<Int, Seasons> {
+            val (year, month) = getYearAndMonth()
             return when(month) {
-                Months.JANUARY, Months.FEBRUARY, Months.MARCH -> Seasons.WINTER
-                Months.APRIL, Months.MAY, Months.JUNE -> Seasons.SPRING
-                Months.JULY, Months.AUGUST, Months.SEPTEMBER -> Seasons.SUMMER
-                Months.OCTOBER, Months.NOVEMBER, Months.DECEMBER -> Seasons.FALL
+                Months.JANUARY, Months.FEBRUARY, Months.MARCH -> Pair(year, Seasons.WINTER)
+                Months.APRIL, Months.MAY, Months.JUNE -> Pair(year, Seasons.SPRING)
+                Months.JULY, Months.AUGUST, Months.SEPTEMBER -> Pair(year, Seasons.SUMMER)
+                Months.OCTOBER, Months.NOVEMBER, Months.DECEMBER -> Pair(year, Seasons.FALL)
             }
         }
 
-        fun getMonth(value: Int): Months? = Months.values().find { it.value == value }
+        private fun getYearAndMonth(): Pair<Int, Months> {
+            val year: Int
+            val month = if (android.os.Build.VERSION.SDK_INT >= 26) {
+                val date = LocalDate.now()
+                year = date.year
+                date.month.value
+            } else {
+                val calendar = Calendar.getInstance()
+                year = calendar.get(Calendar.YEAR)
+                calendar.get(Calendar.MONTH) + 1
+            }
+            return Pair(year, Months.values().find { it.value == month }!!)
+        }
     }
 
     enum class Seasons(val value: String) {
