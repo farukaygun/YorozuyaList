@@ -1,6 +1,7 @@
 package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
+import com.farukaygun.yorozuyalist.model.Details
 import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
@@ -143,7 +144,7 @@ class Api : BaseResponseHandler() {
         ) }
     }
 
-    suspend fun getAnimeDetails(animeId: Int): ResponseHandler<ResponseApi> {
+    suspend fun getAnimeDetails(animeId: Int): ResponseHandler<Details> {
         return safeApiCall { createRetrofit(BASE_API_URL).getAnimeDetails(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
             animeId =animeId,

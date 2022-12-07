@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_seasonalFragment"
             app:destination="@id/seasonalFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/animeFragment"
@@ -33,6 +36,9 @@
             android:name="type"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_animeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/mangaFragment"
@@ -42,6 +48,9 @@
             android:name="type"
             android:defaultValue="1"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_mangaFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -57,6 +66,9 @@
             android:name="type"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_animeRankingFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/mangaRankingFragment"
@@ -67,6 +79,9 @@
             android:name="type"
             android:defaultValue="1"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_mangaRankingFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -82,5 +97,18 @@
         android:id="@+id/seasonalFragment"
         android:name="com.farukaygun.yorozuyalist.view.seasonal.SeasonalFragment"
         android:label="fragment_seasonal"
-        tools:layout="@layout/fragment_seasonal" />
+        tools:layout="@layout/fragment_seasonal" >
+        <action
+            android:id="@+id/action_seasonalFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.farukaygun.yorozuyalist.view.details.DetailsFragment"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

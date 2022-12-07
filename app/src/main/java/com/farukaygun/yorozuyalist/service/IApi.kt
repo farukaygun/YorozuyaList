@@ -1,6 +1,7 @@
 package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
+import com.farukaygun.yorozuyalist.model.Details
 import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.model.Response as ResponseApi
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
@@ -117,5 +118,5 @@ interface IApi {
         @Path("anime_id") animeId: Int,
         @Header("AUTHORIZATION") header: String,
         @Query("fields") fields: String
-    ) : Response<ResponseApi>
+    ) : Response<Details>
 }

@@ -5,11 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ItemHomeAnimeRecyclerBinding
 import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.model.Node
+import com.farukaygun.yorozuyalist.view.home.HomeFragmentDirections
 
 /**
  * Suggested and seasonal anime adapter in home fragment
@@ -39,6 +41,7 @@ class HomeAnimeAdapter(private var animeList: List<Data>)
     }
 
     override fun onHomeAnimeClicked(view: View, homeAnimeData: Node) {
-        Toast.makeText(view.context, "${homeAnimeData.title} ", Toast.LENGTH_SHORT).show()
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(homeAnimeData.id)
+        Navigation.findNavController(view).navigate(action)
     }
 }
