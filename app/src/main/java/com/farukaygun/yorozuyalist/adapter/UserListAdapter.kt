@@ -1,19 +1,21 @@
 package com.farukaygun.yorozuyalist.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ItemUserListRecyclerBinding
 import com.farukaygun.yorozuyalist.model.Data
+import com.farukaygun.yorozuyalist.model.Node
 
-class UserListAdapter()
-    : PagingDataAdapter<Data, UserListAdapter.ViewHolder>(UserListComparator), IUserListClickListener {
+class UserListAdapter(val type: Int)
+    : PagingDataAdapter<Data, UserListAdapter.ViewHolder>(UserListComparator), IItemClickListener {
 
     class ViewHolder(val binding: ItemUserListRecyclerBinding)
         : RecyclerView.ViewHolder(binding.root)
@@ -30,8 +32,13 @@ class UserListAdapter()
         }
     }
 
-    override fun onUserListClicked(view: View, userListData: Data) {
-        Toast.makeText(view.context, "${userListData.node.title} ", Toast.LENGTH_SHORT).show()
+    override fun onItemClicked(view: View, data: Node) {
+        val bundle = Bundle()
+        bundle.putInt("id", data.id)
+        when(type) {
+            0 -> Navigation.findNavController(view).navigate(R.id.action_animeFragment_to_animeDetailsFragment, bundle)
+            1 -> Navigation.findNavController(view).navigate(R.id.action_mangaFragment_to_mangaDetailsFragment, bundle)
+        }
     }
 
     object UserListComparator: DiffUtil.ItemCallback<Data>() {

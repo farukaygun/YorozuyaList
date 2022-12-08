@@ -1,10 +1,12 @@
 package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
+import com.farukaygun.yorozuyalist.model.anime.AnimeDetails
 import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.model.Response as ResponseApi
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
+import com.farukaygun.yorozuyalist.model.manga.MangaDetails
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -117,5 +119,12 @@ interface IApi {
         @Path("anime_id") animeId: Int,
         @Header("AUTHORIZATION") header: String,
         @Query("fields") fields: String
-    ) : Response<ResponseApi>
+    ) : Response<AnimeDetails>
+
+    @GET("manga/{manga_id}")
+    suspend fun getMangaDetails(
+        @Path("manga_id") mangaId: Int,
+        @Header("AUTHORIZATION") header: String,
+        @Query("fields") fields: String
+    ) : Response<MangaDetails>
 }

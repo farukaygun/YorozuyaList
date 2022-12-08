@@ -1,7 +1,6 @@
 package com.farukaygun.yorozuyalist.view.home
 
 import android.app.Application
-import android.icu.util.Calendar
 import androidx.lifecycle.SavedStateHandle
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
@@ -10,7 +9,6 @@ import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
 import com.farukaygun.yorozuyalist.util.Calendar as CalendarUtil
 import kotlinx.coroutines.flow.MutableStateFlow
-import java.time.LocalDate
 
 class HomeViewModel(application: Application, private val state: SavedStateHandle): BaseViewModel(application) {
     private val api = Api()

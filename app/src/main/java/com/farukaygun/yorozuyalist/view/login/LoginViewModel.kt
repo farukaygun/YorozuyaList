@@ -16,7 +16,6 @@ import com.farukaygun.yorozuyalist.util.Constants.STATE
 import com.farukaygun.yorozuyalist.util.Constants.YOROZUYA_PAGELINK
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 
 class LoginViewModel(application: Application) : BaseViewModel(application) {
     private val api = Api()
@@ -40,8 +39,6 @@ class LoginViewModel(application: Application) : BaseViewModel(application) {
         if (intent?.data?.toString()?.startsWith(YOROZUYA_PAGELINK) == true) {
             intent.data?.let {
                 val code = it.getQueryParameter("code")
-                // val receivedState = it.getQueryParameter("state")
-
                 if (code != null) {
                     getAccessToken(code)
                 }

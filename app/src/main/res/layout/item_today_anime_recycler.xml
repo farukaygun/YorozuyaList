@@ -19,8 +19,7 @@
         android:clickable="true"
         android:focusable="true"
         android:outlineProvider="none"
-        app:strokeWidth="0dp"
-        android:onClick="@{}">
+        app:strokeWidth="0dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"

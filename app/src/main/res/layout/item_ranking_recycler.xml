@@ -8,7 +8,7 @@
             type="com.farukaygun.yorozuyalist.model.Node" />
         <variable
             name="listener"
-            type="com.farukaygun.yorozuyalist.adapter.IRankingClickListener" />
+            type="com.farukaygun.yorozuyalist.adapter.IItemClickListener" />
     </data>
 
 <com.google.android.material.card.MaterialCardView
@@ -21,7 +21,7 @@
     android:layout_marginTop="16dp"
     android:outlineProvider="none"
     app:strokeWidth="0dp"
-    android:onClick="@{(view) -> listener.onRankingClicked(view, rankingData)}">
+    android:onClick="@{(view) -> listener.onItemClicked(view, rankingData)}">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
@@ -81,7 +81,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/textViewPopularity"
+                android:id="@+id/textViewNumListUsers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:formatInt="@{rankingData.numListUsers}"

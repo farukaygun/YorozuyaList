@@ -9,7 +9,7 @@
             type="com.farukaygun.yorozuyalist.model.Node" />
         <variable
             name="listener"
-            type="com.farukaygun.yorozuyalist.adapter.IHomeAnimeClickListener" />
+            type="com.farukaygun.yorozuyalist.adapter.IItemClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -20,7 +20,7 @@
         android:layout_marginEnd="16dp"
         android:outlineProvider="none"
         app:strokeWidth="0dp"
-        android:onClick="@{(view) -> listener.onHomeAnimeClicked(view, animeData)}">
+        android:onClick="@{(view) -> listener.onItemClicked(view, animeData)}">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"

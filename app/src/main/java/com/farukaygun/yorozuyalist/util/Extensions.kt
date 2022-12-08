@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.util
 
+import android.annotation.SuppressLint
 import android.icu.text.SimpleDateFormat
 import android.widget.ImageView
 import android.widget.TextView
@@ -37,4 +38,51 @@ fun TextView.formatDate(date: String) {
     }
 
     this.text = formattedDate
+}
+
+fun TextView.formatMediaType(mediaType: String, numEpisodes: Int) {
+    val animeMediaType = listOf("tv", "movie", "ona", "ova")
+    val mangaMediaType = listOf("manga", "light_novel", "novel", "web_novel")
+    var _mediaType = mediaType
+    when(mediaType) {
+        animeMediaType[0] -> _mediaType = this.context.getString(R.string.tv)
+        animeMediaType[1] -> _mediaType = this.context.getString(R.string.movie)
+        animeMediaType[2] -> _mediaType = this.context.getString(R.string.ona)
+        animeMediaType[3] -> _mediaType = this.context.getString(R.string.ova)
+        mangaMediaType[0] -> _mediaType = this.context.getString(R.string.manga)
+        mangaMediaType[1] -> _mediaType = this.context.getString(R.string.light_novel)
+        mangaMediaType[2] -> _mediaType = this.context.getString(R.string.novel)
+        mangaMediaType[3] -> _mediaType = this.context.getString(R.string.web_novel)
+    }
+    if (animeMediaType.contains(mediaType))
+        this.text = if(numEpisodes > 0) this.context.getString(R.string.episodes, _mediaType, numEpisodes) else "??"
+    else
+        this.text = if(numEpisodes > 0) this.context.getString(R.string.chapters, _mediaType, numEpisodes) else "??"
+}
+
+fun TextView.formatStatus(status: String) {
+    var status = status
+    when(status) {
+        "currently_airing" -> status = "Airing"
+        "finished_airing", "finished" -> status = "Finished"
+        "currently_publishing" -> status = "Publishing"
+    }
+    this.text = status
+}
+
+@SuppressLint("SetTextI18n")
+fun TextView.formatInt(value: Int) {
+    this.text = "%,.0f".format(Locale.getDefault(), value.toBigDecimal())
+}
+
+fun TextView.formatSource(source: String) {
+    var source = source
+    when(source) {
+        "original" -> source = this.context.getString(R.string.original)
+        "manga" -> source = this.context.getString(R.string.manga)
+        "light_novel" -> source = this.context.getString(R.string.light_novel)
+        "novel" -> source = this.context.getString(R.string.novel)
+        "web_novel" -> source = this.context.getString(R.string.web_novel)
+    }
+    this.text = source
 }

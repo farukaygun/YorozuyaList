@@ -31,6 +31,11 @@
     <string name="ona">ONA</string>
     <string name="light_novel">Light Novel</string>
     <string name="novel">Novel</string>
-    <string name="episodes">Episodes</string>
-    <string name="chapters">Chapters</string>
+    <string name="web_novel">Web Novel</string>
+    <string name="original">Original</string>
+    <string name="episodes">%1$s (%2$d Episodes)</string>
+    <string name="chapters">%1$s (%2$d Chapters)</string>
+    <string name="minutes">%1$d minutes</string>
+    <string name="more">More</string>
+    <string name="less">Less</string>
 </resources>

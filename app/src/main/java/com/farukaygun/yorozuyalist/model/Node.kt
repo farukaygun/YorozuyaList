@@ -7,11 +7,11 @@ data class Node(
     @SerializedName("id")
     val id: Int,
 
-    @SerializedName("main_picture")
-    val mainPicture: MainPicture,
-
     @SerializedName("title")
     val title: String,
+
+    @SerializedName("main_picture")
+    val mainPicture: MainPicture,
 
     @SerializedName("mean")
     val mean: String,

@@ -1,10 +1,11 @@
 package com.farukaygun.yorozuyalist.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,8 +14,8 @@ import com.farukaygun.yorozuyalist.databinding.ItemSeasonalAnimeRecyclerBinding
 import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.model.Node
 
-class SeasonalAdapter()
-    : PagingDataAdapter<Data, SeasonalAdapter.ViewHolder>(SeasonalAdapter.SeasonalComparator), ISeasonalAnimeClickListener {
+class SeasonalAdapter
+    : PagingDataAdapter<Data, SeasonalAdapter.ViewHolder>(SeasonalAdapter.SeasonalComparator), IItemClickListener {
 
     class ViewHolder(val binding: ItemSeasonalAnimeRecyclerBinding)
         : RecyclerView.ViewHolder(binding.root)
@@ -31,8 +32,10 @@ class SeasonalAdapter()
         }
     }
 
-    override fun onSeasonalAnimeClicked(view: View, seasonalAnimeData: Node) {
-        Toast.makeText(view.context, "${seasonalAnimeData.title} ", Toast.LENGTH_SHORT).show()
+    override fun onItemClicked(view: View, data: Node) {
+        val bundle = Bundle()
+        bundle.putInt("id", data.id)
+        Navigation.findNavController(view).navigate(R.id.action_seasonalFragment_to_detailsFragment, bundle)
     }
 
     object SeasonalComparator: DiffUtil.ItemCallback<Data>() {

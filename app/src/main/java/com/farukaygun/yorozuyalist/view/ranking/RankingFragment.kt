@@ -33,7 +33,7 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>() {
     private fun getAnimeRanking() {
         viewModelRanking.setRankingTypeFlow(arguments?.getString("ranking_type") ?: "all")
 
-        rankingAnimeAdapter = RankingAdapter()
+        rankingAnimeAdapter = RankingAdapter(0)
         binding.recyclerViewRanking.adapter = rankingAnimeAdapter
 
         lifecycleLaunch {
@@ -56,7 +56,7 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>() {
     private fun getMangaRanking() {
         viewModelRanking.setRankingTypeFlow(arguments?.getString("ranking_type") ?: "all")
 
-        rankingMangaAdapter = RankingAdapter()
+        rankingMangaAdapter = RankingAdapter(1)
         binding.recyclerViewRanking.adapter = rankingMangaAdapter
 
         lifecycleLaunch {

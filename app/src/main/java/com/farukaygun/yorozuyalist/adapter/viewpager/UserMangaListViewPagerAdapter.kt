@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.farukaygun.yorozuyalist.view.ranking.RankingFragment
 import com.farukaygun.yorozuyalist.view.user_list.UserListFragment
 
 class UserMangaListViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
