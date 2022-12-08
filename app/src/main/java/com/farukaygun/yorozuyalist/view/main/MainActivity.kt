@@ -12,6 +12,7 @@ import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ActivityMainBinding
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
 import com.farukaygun.yorozuyalist.view.login.LoginActivity
+import com.google.android.material.color.DynamicColors
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // DynamicColors.applyToActivitiesIfAvailable(application)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

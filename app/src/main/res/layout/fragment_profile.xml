@@ -119,7 +119,6 @@
                 android:padding="4dp"
                 android:text="@string/watching"
                 android:textSize="16sp"
-                android:textColor="@color/black"
                 app:drawableTint="#2db039"
                 app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
                 android:drawablePadding="4dp"/>
@@ -132,7 +131,6 @@
                 android:padding="4dp"
                 android:textSize="16sp"
                 android:text="@string/on_hold"
-                android:textColor="@color/black"
                 app:drawableTint="#f9d457"
                 app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
                 android:drawablePadding="4dp"/>
@@ -145,7 +143,6 @@
                 android:padding="4dp"
                 android:textSize="16sp"
                 android:text="@string/dropped"
-                android:textColor="@color/black"
                 app:drawableTint="#a12f31"
                 app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
                 android:drawablePadding="4dp"/>
@@ -158,7 +155,6 @@
                 android:padding="4dp"
                 android:textSize="16sp"
                 android:text="@string/dropped"
-                android:textColor="@color/black"
                 app:drawableTint="#26448f"
                 app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
                 android:drawablePadding="4dp"/>
@@ -171,7 +167,6 @@
                 android:padding="4dp"
                 android:textSize="16sp"
                 android:text="@string/plan_to_watch"
-                android:textColor="@color/black"
                 app:drawableTint="#c3c3c3"
                 app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
                 android:drawablePadding="4dp"/>
