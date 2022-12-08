@@ -1,9 +1,13 @@
-package com.farukaygun.yorozuyalist.model
-
-import com.farukaygun.yorozuyalist.model.anime.*
+package com.farukaygun.yorozuyalist.model.manga
+import com.farukaygun.yorozuyalist.model.AlternativeTitles
+import com.farukaygun.yorozuyalist.model.Recommendation
+import com.farukaygun.yorozuyalist.model.Related
+import com.farukaygun.yorozuyalist.model.Genre
+import com.farukaygun.yorozuyalist.model.anime.MainPicture
 import com.google.gson.annotations.SerializedName
 
-data class Details(
+
+data class MangaDetails(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")
@@ -40,30 +44,22 @@ data class Details(
     val status: String,
     @SerializedName("genres")
     val genres: List<Genre>,
-    @SerializedName("num_episodes")
-    val numEpisodes: Int,
-    @SerializedName("start_season")
-    val startSeason: StartSeason,
-    @SerializedName("broadcast")
-    val broadcast: Broadcast,
-    @SerializedName("source")
-    val source: String,
-    @SerializedName("average_episode_duration")
-    val averageEpisodeDuration: Int,
-    @SerializedName("rating")
-    val rating: String,
+    @SerializedName("num_volumes")
+    val numVolumes: Int,
+    @SerializedName("num_chapters")
+    val numChapters: Int,
+    @SerializedName("authors")
+    val authors: List<Author>,
     @SerializedName("pictures")
     val pictures: List<MainPicture>,
     @SerializedName("background")
     val background: String,
     @SerializedName("related_anime")
-    val relatedAnime: List<RelatedAnime>,
+    val relatedAnime: List<Any>,
     @SerializedName("related_manga")
-    val relatedManga: List<Any>,
+    val relatedManga: List<Related>,
     @SerializedName("recommendations")
     val recommendations: List<Recommendation>,
-    @SerializedName("studios")
-    val studios: List<Studio>,
-    @SerializedName("statistics")
-    val statistics: Statistics
+    @SerializedName("serialization")
+    val serialization: List<Serialization>
 )

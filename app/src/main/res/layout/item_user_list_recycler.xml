@@ -8,7 +8,7 @@
             type="com.farukaygun.yorozuyalist.model.Data" />
         <variable
             name="listener"
-            type="com.farukaygun.yorozuyalist.adapter.IUserListClickListener" />
+            type="com.farukaygun.yorozuyalist.adapter.IItemClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -19,7 +19,7 @@
         android:layout_margin="16dp"
         android:outlineProvider="none"
         app:strokeWidth="0dp"
-        android:onClick="@{(view) -> listener.onUserListClicked(view, userListData)}">
+        android:onClick="@{(view) -> listener.onItemClicked(view, userListData.node)}">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linearLayoutCompat"

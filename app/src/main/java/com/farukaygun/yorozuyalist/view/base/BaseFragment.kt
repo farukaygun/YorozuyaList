@@ -12,7 +12,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.farukaygun.yorozuyalist.view.main.MainActivity
 import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
 
 abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
     protected lateinit var binding: VBinding

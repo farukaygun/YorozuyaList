@@ -5,13 +5,23 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
     <fragment
+        android:id="@+id/animeRankingFragment"
+        android:name="com.farukaygun.yorozuyalist.view.base.BaseRankingFragment"
+        android:label="fragment_base_ranking"
+        tools:layout="@layout/fragment_base_ranking">
+        <argument
+            android:name="type"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_animeRankingFragment_to_detailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
+    <fragment
         android:id="@+id/homeFragment"
         android:name="com.farukaygun.yorozuyalist.view.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_animeRankingFragment"
-            app:destination="@id/animeRankingFragment" />
         <action
             android:id="@+id/action_homeFragment_to_mangaRankingFragment"
             app:destination="@id/mangaRankingFragment" />
@@ -26,7 +36,10 @@
             app:destination="@id/seasonalFragment" />
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/animeDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_animeRankingFragment"
+            app:destination="@id/animeRankingFragment" />
     </fragment>
     <fragment
         android:id="@+id/animeFragment"
@@ -37,8 +50,8 @@
             android:defaultValue="0"
             app:argType="integer" />
         <action
-            android:id="@+id/action_animeFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            android:id="@+id/action_animeFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/mangaFragment"
@@ -49,27 +62,14 @@
             android:defaultValue="1"
             app:argType="integer" />
         <action
-            android:id="@+id/action_mangaFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            android:id="@+id/action_mangaFragment_to_mangaDetailsFragment"
+            app:destination="@id/mangaDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.farukaygun.yorozuyalist.view.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile"/>
-    <fragment
-        android:id="@+id/animeRankingFragment"
-        android:name="com.farukaygun.yorozuyalist.view.base.BaseRankingFragment"
-        android:label="fragment_base_ranking"
-        tools:layout="@layout/fragment_base_ranking">
-        <argument
-            android:name="type"
-            android:defaultValue="0"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_animeRankingFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
-    </fragment>
     <fragment
         android:id="@+id/mangaRankingFragment"
         android:name="com.farukaygun.yorozuyalist.view.base.BaseRankingFragment"
@@ -80,8 +80,8 @@
             android:defaultValue="1"
             app:argType="integer" />
         <action
-            android:id="@+id/action_mangaRankingFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            android:id="@+id/action_mangaRankingFragment_to_mangaDetailsFragment"
+            app:destination="@id/mangaDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -100,15 +100,51 @@
         tools:layout="@layout/fragment_seasonal" >
         <action
             android:id="@+id/action_seasonalFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/animeDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailsFragment"
-        android:name="com.farukaygun.yorozuyalist.view.details.DetailsFragment"
-        android:label="DetailsFragment" >
+        android:id="@+id/animeDetailsFragment"
+        android:name="com.farukaygun.yorozuyalist.view.details.anime.AnimeDetailsFragment"
+        android:label="animeDetailsFragment">
         <argument
             android:name="id"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_animeDetailsFragment_self"
+            app:destination="@id/animeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rankingFragment"
+        android:name="com.farukaygun.yorozuyalist.view.ranking.RankingFragment"
+        android:label="fragment_ranking"
+        tools:layout="@layout/fragment_ranking" >
+        <action
+            android:id="@+id/action_rankingFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+        <action
+            android:id="@+id/action_rankingFragment_to_mangaDetailsFragment"
+            app:destination="@id/mangaDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userListFragment"
+        android:name="com.farukaygun.yorozuyalist.view.user_list.UserListFragment"
+        android:label="fragment_user_list"
+        tools:layout="@layout/fragment_user_list" >
+        <action
+            android:id="@+id/action_userListFragment_to_animeDetailsFragment"
+            app:destination="@id/animeDetailsFragment" />
+        <action
+            android:id="@+id/action_userListFragment_to_mangaDetailsFragment"
+            app:destination="@id/mangaDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mangaDetailsFragment"
+        android:name="com.farukaygun.yorozuyalist.view.details.manga.MangaDetailsFragment"
+        android:label="fragment_manga_details"
+        tools:layout="@layout/fragment_manga_details" >
+        <action
+            android:id="@+id/action_mangaDetailsFragment_self"
+            app:destination="@id/mangaDetailsFragment" />
     </fragment>
 </navigation>

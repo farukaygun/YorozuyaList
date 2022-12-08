@@ -1,9 +1,9 @@
 package com.farukaygun.yorozuyalist.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +17,7 @@ import com.farukaygun.yorozuyalist.view.home.HomeFragmentDirections
  * Suggested and seasonal anime adapter in home fragment
  */
 class HomeAnimeAdapter(private var animeList: List<Data>)
-    : RecyclerView.Adapter<HomeAnimeAdapter.ViewHolder>(), IHomeAnimeClickListener {
+    : RecyclerView.Adapter<HomeAnimeAdapter.ViewHolder>(), IItemClickListener {
 
     class ViewHolder(val binding: ItemHomeAnimeRecyclerBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -40,8 +40,9 @@ class HomeAnimeAdapter(private var animeList: List<Data>)
         return animeList.size
     }
 
-    override fun onHomeAnimeClicked(view: View, homeAnimeData: Node) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(homeAnimeData.id)
-        Navigation.findNavController(view).navigate(action)
+    override fun onItemClicked(view: View, data: Node) {
+        val bundle = Bundle()
+        bundle.putInt("id", data.id)
+        Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment().actionId, bundle)
     }
 }

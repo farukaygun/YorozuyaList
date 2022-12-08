@@ -5,13 +5,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.farukaygun.yorozuyalist.model.Response
 import com.farukaygun.yorozuyalist.paging.RankingAnimePaging
 import com.farukaygun.yorozuyalist.paging.RankingMangaPaging
 import com.farukaygun.yorozuyalist.service.Api
-import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class RankingViewModel(application: Application) : BaseViewModel(application) {

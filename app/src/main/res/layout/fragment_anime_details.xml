@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    tools:context=".view.details.DetailsFragment">
+    tools:context=".view.details.anime.AnimeDetailsFragment">
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/circularProgressBar"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ellipsize="end"
-        android:maxWidth="210dp"
+        android:maxWidth="200dp"
         android:maxLines="3"
         android:text="Overflow"
         android:textSize="18sp"
@@ -289,7 +289,7 @@ be able to remain indifferent to them both?"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewJpTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewJp" />
 
     <TextView
         android:id="@+id/textViewInfo"

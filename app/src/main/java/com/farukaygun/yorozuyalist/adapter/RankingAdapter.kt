@@ -1,10 +1,11 @@
 package com.farukaygun.yorozuyalist.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,8 +14,8 @@ import com.farukaygun.yorozuyalist.databinding.ItemRankingRecyclerBinding
 import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.model.Node
 
-class RankingAdapter()
-    : PagingDataAdapter<Data, RankingAdapter.ViewHolder>(RankingComparator), IRankingClickListener {
+class RankingAdapter(val type: Int)
+    : PagingDataAdapter<Data, RankingAdapter.ViewHolder>(RankingComparator), IItemClickListener {
 
     class ViewHolder(val binding: ItemRankingRecyclerBinding)
         : RecyclerView.ViewHolder(binding.root)
@@ -31,8 +32,13 @@ class RankingAdapter()
         }
     }
 
-    override fun onRankingClicked(view: View, rankingData: Node) {
-        Toast.makeText(view.context, "${rankingData.title} ", Toast.LENGTH_SHORT).show()
+    override fun onItemClicked(view: View, data: Node) {
+        val bundle = Bundle()
+        bundle.putInt("id", data.id)
+        when(type) {
+            0 -> Navigation.findNavController(view).navigate(R.id.action_animeRankingFragment_to_detailsFragment, bundle)
+            1 -> Navigation.findNavController(view).navigate(R.id.action_mangaRankingFragment_to_mangaDetailsFragment, bundle)
+        }
     }
 
     object RankingComparator: DiffUtil.ItemCallback<Data>() {

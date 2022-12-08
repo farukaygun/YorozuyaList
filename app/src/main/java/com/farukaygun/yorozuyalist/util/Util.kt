@@ -1,12 +1,10 @@
 package com.farukaygun.yorozuyalist.util
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.farukaygun.yorozuyalist.R
 import java.util.*
 
 // DATA BINDING
@@ -23,10 +21,9 @@ fun downloadImage(view: ImageView, url: String?) {
     view.downloadFromUrl(url, placeholderProgressBar(view.context))
 }
 
-@SuppressLint("SetTextI18n")
 @BindingAdapter("android:formatInt")
 fun formatInt(view: TextView, value: Int) {
-    view.text = "%,.0f".format(Locale.getDefault(), value.toBigDecimal())
+    view.formatInt(value)
 }
 
 @BindingAdapter("android:mediaType", "android:numEpisodes")

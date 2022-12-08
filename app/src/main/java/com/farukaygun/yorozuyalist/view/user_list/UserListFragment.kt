@@ -25,7 +25,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     private fun getUserAnimeList() {
         viewModelUserList.setStatusFlow(arguments?.getString("status") ?: "all")
 
-        userAnimeListAdapter = UserListAdapter()
+        userAnimeListAdapter = UserListAdapter(0)
         binding.recyclerViewUserList.adapter = userAnimeListAdapter
 
         lifecycleLaunch {
@@ -48,7 +48,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     private fun getUserMangaList() {
         viewModelUserList.setStatusFlow(arguments?.getString("status") ?: "all")
 
-        userMangaListAdapter = UserListAdapter()
+        userMangaListAdapter = UserListAdapter(1)
         binding.recyclerViewUserList.adapter = userMangaListAdapter
 
         lifecycleLaunch {

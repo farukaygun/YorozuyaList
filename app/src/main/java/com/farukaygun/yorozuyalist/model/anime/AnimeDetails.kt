@@ -1,4 +1,8 @@
 package com.farukaygun.yorozuyalist.model.anime
+import com.farukaygun.yorozuyalist.model.AlternativeTitles
+import com.farukaygun.yorozuyalist.model.Genre
+import com.farukaygun.yorozuyalist.model.Recommendation
+import com.farukaygun.yorozuyalist.model.Related
 import com.google.gson.annotations.SerializedName
 
 
@@ -56,7 +60,7 @@ data class AnimeDetails(
     @SerializedName("background")
     val background: String,
     @SerializedName("related_anime")
-    val relatedAnime: List<RelatedAnime>,
+    val related: List<Related>,
     @SerializedName("related_manga")
     val relatedManga: List<Any>,
     @SerializedName("recommendations")
