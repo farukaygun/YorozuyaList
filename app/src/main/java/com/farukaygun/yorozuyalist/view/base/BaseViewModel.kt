@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        Log.e("ViewModel Exception", ": ${throwable.localizedMessage}")
+        throwable.localizedMessage?.let { Log.e("ViewModel Exception", it) }
     }
 
 

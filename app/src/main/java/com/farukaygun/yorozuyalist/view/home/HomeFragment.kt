@@ -1,6 +1,5 @@
 package com.farukaygun.yorozuyalist.view.home
 
-import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -16,12 +15,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val isAppbarVisible: Boolean = true
 
     private lateinit var homeAnimeAdapter: HomeAnimeAdapter
-    private lateinit var seasonalAnimeAdapter: HomeAnimeAdapter
-
 
     override fun start() {
-        viewModelHome.getSeasonalAnime()
-
         binding.buttonAnimeRanking.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToAnimeRankingFragment()
             Navigation.findNavController(it).navigate(action)
@@ -37,12 +32,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             Navigation.findNavController(it).navigate(action)
         }
 
+        viewModelHome.getSeasonalAnime()
         lifecycleLaunch {
             viewModelHome.seasonalAnimeList.collectLatest {
                 when(it) {
-                    is ResponseHandler.Loading -> binding.progressBarSeasonal.visibility = View.VISIBLE
+                    is ResponseHandler.Loading -> binding.progressBarSeasonal.show()
                     is ResponseHandler.Success -> {
-                        binding.progressBarSeasonal.visibility = View.GONE
+                        binding.progressBarSeasonal.hide()
                         it.data?.let { seasonalAnime ->
                             homeAnimeAdapter = HomeAnimeAdapter(seasonalAnime.data)
                             binding.recyclerViewSeasonalAnime.adapter = homeAnimeAdapter
@@ -55,16 +51,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
 
         viewModelHome.getSuggestedAnime()
-
         lifecycleLaunch {
             viewModelHome.suggestedAnimeList.collectLatest {
                 when(it) {
-                    is ResponseHandler.Loading -> binding.progressBarSuggested.visibility = View.VISIBLE
+                    is ResponseHandler.Loading -> binding.progressBarSuggested.show()
                     is ResponseHandler.Success -> {
-                        binding.progressBarSuggested.visibility = View.GONE
+                        binding.progressBarSuggested.hide()
                         it.data?.let { suggestedAnime ->
-                            seasonalAnimeAdapter = HomeAnimeAdapter(suggestedAnime.data)
-                            binding.recyclerViewSuggestedAnime.adapter = seasonalAnimeAdapter
+                            homeAnimeAdapter = HomeAnimeAdapter(suggestedAnime.data)
+                            binding.recyclerViewSuggestedAnime.adapter = homeAnimeAdapter
                         }
                     }
                     is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()

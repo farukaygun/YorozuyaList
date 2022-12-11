@@ -1,6 +1,7 @@
 package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
+import com.farukaygun.yorozuyalist.model.MyListStatus
 import com.farukaygun.yorozuyalist.model.anime.AnimeDetails
 import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.model.Response as ResponseApi
@@ -8,14 +9,7 @@ import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.model.manga.MangaDetails
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
-import retrofit2.http.Url
+import retrofit2.http.*
 
 interface IApi {
     @FormUrlEncoded
@@ -127,4 +121,14 @@ interface IApi {
         @Header("AUTHORIZATION") header: String,
         @Query("fields") fields: String
     ) : Response<MangaDetails>
+
+    @FormUrlEncoded
+    @PATCH("anime/{anime_id}/my_list_status")
+    suspend fun updateUserAnimeList(
+        @Path("anime_id") animeId: Int,
+        @Header("AUTHORIZATION") header: String,
+        @Field("status") status: String,
+        @Field("score") score: Int,
+        @Field("num_watched_episodes") numWatchedEpisodes: Int
+    ) : Response<MyListStatus>
 }

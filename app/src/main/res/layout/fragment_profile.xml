@@ -154,7 +154,7 @@
                 android:layout_weight="1"
                 android:padding="4dp"
                 android:textSize="16sp"
-                android:text="@string/dropped"
+                android:text="@string/completed"
                 app:drawableTint="#26448f"
                 app:drawableLeftCompat="@drawable/ic_baseline_circle_24"
                 android:drawablePadding="4dp"/>

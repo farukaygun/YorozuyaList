@@ -1,9 +1,11 @@
 package com.farukaygun.yorozuyalist.service
 
 import com.farukaygun.yorozuyalist.model.AccessToken
+import com.farukaygun.yorozuyalist.model.MyListStatus
 import com.farukaygun.yorozuyalist.model.anime.AnimeDetails
 import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
+import com.farukaygun.yorozuyalist.model.anime.Status
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.model.manga.MangaDetails
 import com.farukaygun.yorozuyalist.model.Response as ResponseApi
@@ -14,6 +16,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Field
+import retrofit2.http.Header
+import retrofit2.http.Path
 
 class Api : BaseResponseHandler() {
     private fun createRetrofit(baseUrl: String) : IApi {
@@ -161,6 +166,21 @@ class Api : BaseResponseHandler() {
             fields = "id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity," +
                     "num_list_users,num_scoring_users,media_type,status,genres,my_list_status,num_chapters,num_volumes," +
                     "source,authors{first_name,last_name},serialization,related_anime{media_type},related_manga{media_type}"
+        ) }
+    }
+
+    suspend fun updateUserAnimeList(
+        animeId: Int,
+        status: String,
+        score: Int,
+        numWatchedEpisodes: Int
+    ): ResponseHandler<MyListStatus> {
+        return safeApiCall { createRetrofit(BASE_API_URL).updateUserAnimeList(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            animeId = animeId,
+            status = status,
+            score = score,
+            numWatchedEpisodes = numWatchedEpisodes
         ) }
     }
 }

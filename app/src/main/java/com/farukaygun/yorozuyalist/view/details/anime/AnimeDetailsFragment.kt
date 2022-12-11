@@ -1,10 +1,13 @@
 package com.farukaygun.yorozuyalist.view.details.anime
 
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.adapter.RelatedAdapter
 import com.farukaygun.yorozuyalist.databinding.FragmentAnimeDetailsBinding
+import com.farukaygun.yorozuyalist.model.MyListStatus
+import com.farukaygun.yorozuyalist.model.anime.AnimeDetails
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.util.*
 import com.farukaygun.yorozuyalist.view.base.BaseFragment
@@ -19,7 +22,18 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
     private lateinit var relatedAdapter: RelatedAdapter
     private var isShowMore = false
 
+    private var animeId: Int = 0
+    private var numEpisodes: Int = 0
+    private var myListStatus: MyListStatus? = null
+
     override fun start() {
+        // add/edit fab
+        binding.fabAdd.setOnClickListener {
+            val bottomSheetAddFragment = BottomSheetAddFragment(animeId, numEpisodes, myListStatus)
+            bottomSheetAddFragment.show(parentFragmentManager, "Add")
+        }
+
+        // synopsis more button
         binding.textViewMore.setOnClickListener {
             isShowMore = !isShowMore
             when(isShowMore) {
@@ -36,7 +50,7 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
             }
         }
 
-        val animeId = arguments?.getInt("id") ?: 0
+        animeId = arguments?.getInt("id") ?: 0
         viewModelAnimeDetails.getAnimeDetails(animeId)
         lifecycleLaunch {
             viewModelAnimeDetails.animeDetails.collectLatest { it ->
@@ -45,38 +59,7 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
                     is ResponseHandler.Success -> {
                         binding.circularProgressBar.hide()
                         it.data?.let { details ->
-                            relatedAdapter = RelatedAdapter(0, details.related)
-                            binding.recyclerViewRelatedAnime.adapter = relatedAdapter
-
-                            binding.shapeableImageView.downloadFromUrl(details.mainPicture.large)
-                            binding.textViewName.text = details.title
-                            binding.textViewEpisodes.formatMediaType(details.mediaType, details.numEpisodes)
-                            binding.textViewScore.text = details.mean.toString()
-                            binding.textViewScoringUsers.formatInt(details.numScoringUsers)
-                            binding.textViewStatus.formatStatus(details.status)
-
-                            val chipGroup = binding.chipGroup
-                            details.genres.map { genre ->
-                                val chip = Chip(chipGroup.context)
-                                chip.text = genre.name
-
-                                chipGroup.addView(chip)
-                            }
-
-                            binding.textViewSynopsis.text = details.synopsis
-                            binding.textViewRank.text = details.rank.toString()
-                            binding.textViewPopularity.text = details.popularity.toString()
-                            binding.textViewNumListUsers.formatInt(details.numListUsers)
-                            binding.textViewEn.text = details.alternativeTitles.en
-                            binding.textViewJp.text = details.alternativeTitles.ja
-                            details.studios.joinToString(",") { it.name }
-                                .let {
-                                    binding.textViewStudios.text = it
-                                }
-                            binding.textViewSource.formatSource(details.source)
-                            binding.textViewDuration.text = getString(R.string.minutes, details.averageEpisodeDuration.div(60))
-                            binding.textViewStartDate.formatDate(details.startDate)
-                            binding.textViewEndDate.formatDate(details.endDate)
+                            updateUi(details)
                         }
                     }
                     is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
@@ -86,4 +69,55 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
         }
     }
 
+    // FIXME: Idk why I should use Coroutine at line 82 and 112.
+    private fun updateUi(details: AnimeDetails) {
+        numEpisodes = details.numEpisodes
+        myListStatus = details.myListStatus
+        println("myListStatus: $myListStatus")
+
+        relatedAdapter = RelatedAdapter(0, details.related)
+        binding.recyclerViewRelatedAnime.adapter = relatedAdapter
+
+        lifecycleLaunch {
+            if (myListStatus?.status.isNullOrEmpty()) {
+                binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_round_add_24, context?.theme))
+            } else {
+                binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_edit_24, context?.theme))
+            }
+        }
+
+        binding.shapeableImageView.downloadFromUrl(details.mainPicture.large)
+        binding.textViewName.text = details.title
+        binding.textViewEpisodes.formatMediaType(details.mediaType, details.numEpisodes)
+        binding.textViewScore.text = details.mean.toString()
+        binding.textViewScoringUsers.formatInt(details.numScoringUsers)
+        binding.textViewStatus.formatStatus(details.status)
+
+        val chipGroup = binding.chipGroup
+        details.genres.map { genre ->
+            val chip = Chip(chipGroup.context)
+            chip.text = genre.name
+
+            chipGroup.addView(chip)
+        }
+
+        binding.textViewSynopsis.text = details.synopsis
+        binding.textViewRank.text = details.rank.toString()
+        binding.textViewPopularity.text = details.popularity.toString()
+        binding.textViewNumListUsers.formatInt(details.numListUsers)
+        binding.textViewEn.text = details.alternativeTitles.en
+        binding.textViewJp.text = details.alternativeTitles.ja
+
+        lifecycleLaunch {
+            binding.textViewStartDate.formatDate(details.startDate)
+            binding.textViewEndDate.formatDate(details.endDate)
+        }
+
+        details.studios.joinToString(",") {
+            it.name
+        }.let { binding.textViewStudios.text = it }
+
+        binding.textViewSource.formatSource(details.source)
+        binding.textViewDuration.text = getString(R.string.minutes, details.averageEpisodeDuration.div(60))
+    }
 }

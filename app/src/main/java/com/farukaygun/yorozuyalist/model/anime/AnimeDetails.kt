@@ -1,8 +1,5 @@
 package com.farukaygun.yorozuyalist.model.anime
-import com.farukaygun.yorozuyalist.model.AlternativeTitles
-import com.farukaygun.yorozuyalist.model.Genre
-import com.farukaygun.yorozuyalist.model.Recommendation
-import com.farukaygun.yorozuyalist.model.Related
+import com.farukaygun.yorozuyalist.model.*
 import com.google.gson.annotations.SerializedName
 
 
@@ -45,6 +42,8 @@ data class AnimeDetails(
     val genres: List<Genre>,
     @SerializedName("num_episodes")
     val numEpisodes: Int,
+    @SerializedName("my_list_status")
+    val myListStatus: MyListStatus,
     @SerializedName("start_season")
     val startSeason: StartSeason,
     @SerializedName("broadcast")

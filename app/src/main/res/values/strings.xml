@@ -43,4 +43,8 @@
     <string name="manhua">Manhua</string>
     <string name="one_shot">One Shot</string>
     <string name="special">Special</string>
+    <string name="add_anime_list">Add to Anime List</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="apply">Apply</string>
 </resources>
