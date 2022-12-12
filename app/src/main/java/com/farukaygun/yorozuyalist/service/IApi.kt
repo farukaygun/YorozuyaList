@@ -8,6 +8,7 @@ import com.farukaygun.yorozuyalist.model.Response as ResponseApi
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.model.manga.MangaDetails
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -128,7 +129,13 @@ interface IApi {
         @Path("anime_id") animeId: Int,
         @Header("AUTHORIZATION") header: String,
         @Field("status") status: String,
-        @Field("score") score: Int,
+        @Field("score") score: Int?,
         @Field("num_watched_episodes") numWatchedEpisodes: Int
     ) : Response<MyListStatus>
+
+    @DELETE("anime/{anime_id}/my_list_status")
+    suspend fun deleteUserAnimeList(
+        @Path("anime_id") animeId: Int,
+        @Header("AUTHORIZATION") header: String
+    ) : Response<ResponseBody>
 }

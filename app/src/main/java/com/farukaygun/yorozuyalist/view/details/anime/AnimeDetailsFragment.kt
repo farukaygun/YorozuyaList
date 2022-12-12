@@ -73,7 +73,6 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
     private fun updateUi(details: AnimeDetails) {
         numEpisodes = details.numEpisodes
         myListStatus = details.myListStatus
-        println("myListStatus: $myListStatus")
 
         relatedAdapter = RelatedAdapter(0, details.related)
         binding.recyclerViewRelatedAnime.adapter = relatedAdapter

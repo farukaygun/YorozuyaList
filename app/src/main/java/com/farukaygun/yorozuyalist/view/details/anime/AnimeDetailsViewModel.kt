@@ -7,6 +7,7 @@ import com.farukaygun.yorozuyalist.service.Api
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import okhttp3.ResponseBody
 
 class AnimeDetailsViewModel(application: Application) : BaseViewModel(application) {
     private val api = Api()
@@ -17,6 +18,9 @@ class AnimeDetailsViewModel(application: Application) : BaseViewModel(applicatio
     private val updateUserListFlow = MutableStateFlow<ResponseHandler<MyListStatus>?>(null)
     val updateUserList = updateUserListFlow
 
+    private val deleteUserListFlow = MutableStateFlow<ResponseHandler<ResponseBody>?>(null)
+    val deleteUserList = deleteUserListFlow
+
     fun getAnimeDetails(animeId: Int) {
         viewModelLaunch {
             animeAnimeDetailsFlow.emit(ResponseHandler.Loading())
@@ -26,11 +30,20 @@ class AnimeDetailsViewModel(application: Application) : BaseViewModel(applicatio
         }
     }
 
-    fun updateUserAnimeList(animeId: Int, status: String, score: Int, numWatchedEpisodes: Int) {
+    fun updateUserAnimeList(animeId: Int, status: String, score: Int?, numWatchedEpisodes: Int) {
         viewModelLaunch {
             updateUserListFlow.emit(ResponseHandler.Loading())
             api.updateUserAnimeList(animeId, status, score, numWatchedEpisodes).let {
                 updateUserListFlow.emit(it)
+            }
+        }
+    }
+
+    fun deleteUserAnimeList(animeId: Int) {
+        viewModelLaunch {
+            deleteUserListFlow.emit(ResponseHandler.Loading())
+            api.deleteUserAnimeList(animeId).let {
+                deleteUserListFlow.emit(it)
             }
         }
     }

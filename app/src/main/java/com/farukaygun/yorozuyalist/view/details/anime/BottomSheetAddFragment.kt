@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.text.InputFilter
 import android.text.Spanned
 import android.util.Range
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.FragmentBottomSheetAddBinding
@@ -29,6 +30,7 @@ class BottomSheetAddFragment(
 	private val viewModelAnimeDetails: AnimeDetailsViewModel by viewModels()
 	override fun getViewBinding(): FragmentBottomSheetAddBinding =
 		FragmentBottomSheetAddBinding.inflate(layoutInflater)
+
 	private lateinit var statusArray: Array<String>
 	private lateinit var scoreArray: Array<String>
 
@@ -48,11 +50,25 @@ class BottomSheetAddFragment(
 			binding.editTextEpisode.setText("${numEpisode - 1}")
 		}
 
+		binding.buttonDelete.setOnClickListener { viewModelAnimeDetails.deleteUserAnimeList(animeId) }
+
+		// update response
 		lifecycleLaunch {
 			viewModelAnimeDetails.updateUserList.collectLatest {
+				when (it) {
+					is ResponseHandler.Success -> dismiss()
+					is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
+					else -> {}
+				}
+			}
+		}
+
+		// delete response
+		lifecycleLaunch {
+			viewModelAnimeDetails.deleteUserList.collectLatest {
 				when(it) {
-					is ResponseHandler.Success -> println("update result: $it")
-					is ResponseHandler.Error -> println("error update: $it")
+					is ResponseHandler.Success -> dismiss()
+					is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
 					else -> {}
 				}
 			}
@@ -65,11 +81,13 @@ class BottomSheetAddFragment(
 			getString(R.string.dropped),
 			getString(R.string.plan_to_watch)
 		)
-		(binding.autoCompleteTextViewStatus as MaterialAutoCompleteTextView).setSimpleItems(statusArray)
+		(binding.autoCompleteTextViewStatus as MaterialAutoCompleteTextView).setSimpleItems(
+			statusArray)
 
 
-		scoreArray = arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-		(binding.autoCompleteTextViewScore as MaterialAutoCompleteTextView).setSimpleItems(scoreArray)
+		scoreArray = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
+		(binding.autoCompleteTextViewScore as MaterialAutoCompleteTextView).setSimpleItems(
+			scoreArray)
 
 		// editTextEpisodes min max value filter
 		binding.editTextEpisode.filters = arrayOf(InputFilterMinMax(0, numEpisodes))
@@ -85,16 +103,21 @@ class BottomSheetAddFragment(
 		binding.autoCompleteTextViewStatus.setText(statusArray.first(), false)
 		binding.autoCompleteTextViewScore.setText(scoreArray.first(), false)
 		binding.textInputLayoutEpisodes.suffixText = "/ $numEpisodes"
-		binding.editTextEpisode.setText("${myListStatus?.numEpisodesWatched}")
+		binding.editTextEpisode.setText("${myListStatus?.numEpisodesWatched ?: 0}")
 	}
 
 	private fun initEditUi() {
 		when (myListStatus?.status) {
-			WATCHING -> binding.autoCompleteTextViewStatus.setText(getString(R.string.watching),false)
-			COMPLETED -> binding.autoCompleteTextViewStatus.setText(getString(R.string.completed),false)
-			ON_HOLD -> binding.autoCompleteTextViewStatus.setText(getString(R.string.on_hold),false)
-			DROPPED -> binding.autoCompleteTextViewStatus.setText(getString(R.string.dropped),false)
-			PTW -> binding.autoCompleteTextViewStatus.setText(getString(R.string.plan_to_watch),false)
+			WATCHING -> binding.autoCompleteTextViewStatus.setText(getString(R.string.watching),
+				false)
+			COMPLETED -> binding.autoCompleteTextViewStatus.setText(getString(R.string.completed),
+				false)
+			ON_HOLD -> binding.autoCompleteTextViewStatus.setText(getString(R.string.on_hold),
+				false)
+			DROPPED -> binding.autoCompleteTextViewStatus.setText(getString(R.string.dropped),
+				false)
+			PTW -> binding.autoCompleteTextViewStatus.setText(getString(R.string.plan_to_watch),
+				false)
 		}
 		binding.autoCompleteTextViewScore.setText(myListStatus?.score.toString(), false)
 		binding.textInputLayoutEpisodes.suffixText = "/ $numEpisodes"
@@ -102,11 +125,17 @@ class BottomSheetAddFragment(
 	}
 
 	private fun updateUserAnimeList() {
+		// Score 0 means is unset.
+		val score = if (binding.autoCompleteTextViewScore.text.toString().isEmpty())
+			scoreArray.first().toInt()
+		else
+			binding.autoCompleteTextViewScore.text.toString().toInt()
+
 		viewModelAnimeDetails.updateUserAnimeList(
-			animeId,
-			binding.autoCompleteTextViewStatus.text.toString().lowercase(),
-			binding.autoCompleteTextViewScore.text.toString().toInt(),
-			binding.editTextEpisode.text.toString().toInt()
+			animeId = animeId,
+			status = binding.autoCompleteTextViewStatus.text.toString().lowercase().replace(" ", "_"),
+			score = score,
+			numWatchedEpisodes = binding.editTextEpisode.text.toString().toInt()
 		)
 	}
 }

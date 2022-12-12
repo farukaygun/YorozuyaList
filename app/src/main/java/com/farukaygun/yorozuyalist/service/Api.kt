@@ -13,6 +13,7 @@ import com.farukaygun.yorozuyalist.util.Constants.BASE_API_URL
 import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -172,7 +173,7 @@ class Api : BaseResponseHandler() {
     suspend fun updateUserAnimeList(
         animeId: Int,
         status: String,
-        score: Int,
+        score: Int?,
         numWatchedEpisodes: Int
     ): ResponseHandler<MyListStatus> {
         return safeApiCall { createRetrofit(BASE_API_URL).updateUserAnimeList(
@@ -182,5 +183,13 @@ class Api : BaseResponseHandler() {
             score = score,
             numWatchedEpisodes = numWatchedEpisodes
         ) }
+    }
+
+    suspend fun deleteUserAnimeList(animeId: Int): ResponseHandler<ResponseBody> {
+        val a = createRetrofit(BASE_API_URL).deleteUserAnimeList(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            animeId = animeId)
+        println("a: $a")
+        return safeApiCall { a }
     }
 }
