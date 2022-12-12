@@ -12,6 +12,9 @@ data class MyListStatus(
     @SerializedName("num_episodes_watched")
     val numEpisodesWatched: Int,
 
+    @SerializedName("num_chapters_read")
+    val numChaptersRead: Int,
+
     @SerializedName("is_rewatching")
     val isRewatching: Boolean,
 

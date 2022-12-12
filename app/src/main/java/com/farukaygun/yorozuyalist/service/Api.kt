@@ -186,10 +186,29 @@ class Api : BaseResponseHandler() {
     }
 
     suspend fun deleteUserAnimeList(animeId: Int): ResponseHandler<ResponseBody> {
-        val a = createRetrofit(BASE_API_URL).deleteUserAnimeList(
+        return safeApiCall { createRetrofit(BASE_API_URL).deleteUserAnimeList(
             header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
-            animeId = animeId)
-        println("a: $a")
-        return safeApiCall { a }
+            animeId = animeId) }
+    }
+
+    suspend fun updateUserMangaList(
+        mangaId: Int,
+        status: String,
+        score: Int?,
+        numReadedChapters: Int
+    ): ResponseHandler<MyListStatus> {
+        return safeApiCall { createRetrofit(BASE_API_URL).updateUserMangaList(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            mangaId = mangaId,
+            status = status,
+            score = score,
+            numReadedChapters = numReadedChapters
+        ) }
+    }
+
+    suspend fun deleteUserMangaList(mangaId: Int): ResponseHandler<ResponseBody> {
+        return safeApiCall { createRetrofit(BASE_API_URL).deleteUserMangaList(
+            header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+            mangaId = mangaId) }
     }
 }

@@ -1,13 +1,10 @@
 package com.farukaygun.yorozuyalist.view.details.anime
 
 import android.annotation.SuppressLint
-import android.text.InputFilter
-import android.text.Spanned
-import android.util.Range
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.farukaygun.yorozuyalist.R
-import com.farukaygun.yorozuyalist.databinding.FragmentBottomSheetAddBinding
+import com.farukaygun.yorozuyalist.databinding.FragmentBottomSheetAddAnimeBinding
 import com.farukaygun.yorozuyalist.model.MyListStatus
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.util.Constants.COMPLETED
@@ -21,15 +18,15 @@ import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import kotlinx.coroutines.flow.collectLatest
 
 
-class BottomSheetAddFragment(
+class BottomSheetAddAnimeFragment(
 	private val animeId: Int,
 	private val numEpisodes: Int,
 	private val myListStatus: MyListStatus?,
-) : BaseBottomSheetDialog<FragmentBottomSheetAddBinding>() {
+) : BaseBottomSheetDialog<FragmentBottomSheetAddAnimeBinding>() {
 
 	private val viewModelAnimeDetails: AnimeDetailsViewModel by viewModels()
-	override fun getViewBinding(): FragmentBottomSheetAddBinding =
-		FragmentBottomSheetAddBinding.inflate(layoutInflater)
+	override fun getViewBinding(): FragmentBottomSheetAddAnimeBinding =
+		FragmentBottomSheetAddAnimeBinding.inflate(layoutInflater)
 
 	private lateinit var statusArray: Array<String>
 	private lateinit var scoreArray: Array<String>

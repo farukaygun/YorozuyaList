@@ -29,8 +29,8 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
     override fun start() {
         // add/edit fab
         binding.fabAdd.setOnClickListener {
-            val bottomSheetAddFragment = BottomSheetAddFragment(animeId, numEpisodes, myListStatus)
-            bottomSheetAddFragment.show(parentFragmentManager, "Add")
+            val bottomSheetAddAnimeFragment = BottomSheetAddAnimeFragment(animeId, numEpisodes, myListStatus)
+            bottomSheetAddAnimeFragment.show(parentFragmentManager, "Add")
         }
 
         // synopsis more button

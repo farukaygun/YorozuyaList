@@ -1,8 +1,5 @@
 package com.farukaygun.yorozuyalist.model.manga
-import com.farukaygun.yorozuyalist.model.AlternativeTitles
-import com.farukaygun.yorozuyalist.model.Recommendation
-import com.farukaygun.yorozuyalist.model.Related
-import com.farukaygun.yorozuyalist.model.Genre
+import com.farukaygun.yorozuyalist.model.*
 import com.farukaygun.yorozuyalist.model.anime.MainPicture
 import com.google.gson.annotations.SerializedName
 
@@ -48,6 +45,8 @@ data class MangaDetails(
     val numVolumes: Int,
     @SerializedName("num_chapters")
     val numChapters: Int,
+    @SerializedName("my_list_status")
+    val myListStatus: MyListStatus,
     @SerializedName("authors")
     val authors: List<Author>,
     @SerializedName("pictures")

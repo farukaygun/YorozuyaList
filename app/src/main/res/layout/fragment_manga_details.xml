@@ -14,6 +14,7 @@
         android:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -30,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        tools:context=".view.details.anime.AnimeDetailsFragment">
+        tools:context=".view.details.manga.MangaDetailsFragment">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/shapeableImageView"
@@ -451,14 +452,14 @@ be able to remain indifferent to them both?"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Related Anime"
+            android:text="Related Manga"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewRelatedAnime"
+            android:id="@+id/recyclerViewRelatedManga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

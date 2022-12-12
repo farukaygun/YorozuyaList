@@ -138,4 +138,20 @@ interface IApi {
         @Path("anime_id") animeId: Int,
         @Header("AUTHORIZATION") header: String
     ) : Response<ResponseBody>
+
+    @FormUrlEncoded
+    @PATCH("manga/{manga_id}/my_list_status")
+    suspend fun updateUserMangaList(
+        @Path("manga_id") mangaId: Int,
+        @Header("AUTHORIZATION") header: String,
+        @Field("status") status: String,
+        @Field("score") score: Int?,
+        @Field("num_chapters_read") numReadedChapters: Int
+    ) : Response<MyListStatus>
+
+    @DELETE("manga/{manga_id}/my_list_status")
+    suspend fun deleteUserMangaList(
+        @Path("manga_id") mangaId: Int,
+        @Header("AUTHORIZATION") header: String
+    ) : Response<ResponseBody>
 }

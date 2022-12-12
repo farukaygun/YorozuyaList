@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.details.anime.BottomSheetAddFragment">
+    tools:context=".view.details.anime.BottomSheetAddAnimeFragment">
 
     <Button
         android:id="@+id/buttonCancel"
@@ -37,8 +37,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
-        android:hint="Status"
-        android:labelFor="@id/autoCompleteTextViewStatus"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
@@ -48,7 +46,8 @@
             android:id="@+id/autoCompleteTextViewStatus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="none" />
+            android:inputType="none"
+            android:hint="@string/status" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,10 +78,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutStatus">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextEpisode"
+            android:id="@+id/editTextChapter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Episodes"
+            android:hint="Chapter"
             android:inputType="number"
             android:textAlignment="center" />
 
@@ -109,8 +108,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Score"
-        android:labelFor="@id/autoCompleteTextViewScore"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="2"
@@ -121,7 +118,8 @@
             android:id="@+id/autoCompleteTextViewScore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="none" />
+            android:inputType="none"
+            android:hint="@string/score" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
