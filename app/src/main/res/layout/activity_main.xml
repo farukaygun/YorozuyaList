@@ -10,21 +10,21 @@
         android:id="@+id/topAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScroll="true"
         android:animateLayoutChanges="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/fragmentContainerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/app_name"
-            app:titleCentered="true"
+            app:menu="@menu/app_bar_menu"
             app:navigationIcon="@drawable/ic_baseline_search_24"
-            app:menu="@menu/app_bar_menu" />
+            app:title="@string/app_name"
+            app:titleCentered="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -36,10 +36,10 @@
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         app:defaultNavHost="true"
-        app:layout_constraintTop_toBottomOf="@id/topAppBarLayout"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationBarLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topAppBarLayout"
         app:navGraph="@navigation/nav_graph" />
 
     <androidx.appcompat.widget.LinearLayoutCompat

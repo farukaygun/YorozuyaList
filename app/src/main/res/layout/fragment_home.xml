@@ -2,232 +2,131 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.appcompat.widget.LinearLayoutCompat
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.home.HomeFragment"
-    android:orientation="vertical">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linearLayoutButtons"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingEnd="8dp"
-            tools:ignore="RtlSymmetry">
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            tools:context=".view.home.HomeFragment">
 
             <Button
                 android:id="@+id/buttonAnimeRanking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/anime_ranking"
-                android:padding="16dp"
                 style="@style/semiRoundedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:padding="16dp"
+                android:text="@string/anime_ranking"
                 app:icon="@drawable/ic_round_view_list_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/buttonMangaRanking"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-<!--            <Button-->
-<!--                android:id="@+id/buttonMangaRanking"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:text="Button"-->
-<!--                android:padding="16dp"-->
-<!--                style="@style/semiRoundedButton"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="8dp">
 
             <Button
                 android:id="@+id/buttonMangaRanking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/manga_ranking"
-                android:padding="16dp"
                 style="@style/semiRoundedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:padding="16dp"
+                android:text="@string/manga_ranking"
                 app:icon="@drawable/ic_round_view_list_24"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buttonAnimeRanking"
                 app:layout_constraintTop_toTopOf="parent" />
 
-<!--            <Button-->
-<!--                android:id="@+id/buttonCalendar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:text="Button"-->
-<!--                android:padding="16dp"-->
-<!--                style="@style/semiRoundedButton"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <TextView
+                android:id="@+id/textViewSeasonal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="48dp"
+                android:text="@string/this_season"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_round_arrow_forward_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonAnimeRanking" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayoutSeasonal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:minHeight="235dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayoutButtons"
-        app:layout_constraintVertical_bias="0.0">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewSeasonalAnime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="186dp"
+                android:layout_below="@id/textViewSeasonal"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSeasonal"
+                tools:listitem="@layout/item_home_anime_recycler" />
 
-        <TextView
-            android:id="@+id/textViewSeasonal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            android:text="@string/this_season"
-            android:gravity="center_vertical"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:minHeight="48dp"
-            app:drawableEndCompat="@drawable/ic_round_arrow_forward_24" />
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBarSeasonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/recyclerViewSeasonalAnime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recyclerViewSeasonalAnime" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewSeasonalAnime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/textViewSeasonal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_home_anime_recycler" />
+            <TextView
+                android:id="@+id/textViewSuggested"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:minHeight="48dp"
+                android:text="@string/suggested_anime"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_round_arrow_forward_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerViewSeasonalAnime" />
 
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/progressBarSeasonal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:indeterminate="true"
-            android:layout_centerInParent="true" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewSuggestedAnime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="186dp"
+                android:layout_below="@id/textViewSuggested"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewSuggested"
+                tools:listitem="@layout/item_home_anime_recycler" />
 
-    </RelativeLayout>
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBarSuggested"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/recyclerViewSuggestedAnime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/recyclerViewSuggestedAnime" />
 
-<!--    <RelativeLayout-->
-<!--        android:id="@+id/relativeLayoutToday"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        android:minHeight="235dp"-->
-<!--        android:layout_margin="16dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/relativeLayoutSeasonal"-->
-<!--        app:layout_constraintVertical_bias="0.0">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/textViewToday"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:clickable="true"-->
-<!--            android:focusable="true"-->
-<!--            android:background="?attr/selectableItemBackground"-->
-<!--            android:text="@string/today"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:textSize="24sp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:minHeight="48dp"-->
-<!--            app:drawableEndCompat="@drawable/ic_round_arrow_forward_24" />-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recyclerViewTodayAnime"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_below="@id/textViewToday"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            tools:listitem="@layout/item_seasonal_anime_recycler" />-->
-
-<!--        <com.google.android.material.progressindicator.CircularProgressIndicator-->
-<!--            android:id="@+id/progressBarToday"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:visibility="visible"-->
-<!--            android:indeterminate="true"-->
-<!--            android:layout_centerInParent="true" />-->
-
-<!--    </RelativeLayout>-->
-
-    <RelativeLayout
-        android:id="@+id/linearLayoutSuggested"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:minHeight="235dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relativeLayoutSeasonal"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/textViewSuggested"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            android:text="@string/suggested_anime"
-            android:gravity="center_vertical"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:minHeight="48dp"
-            app:drawableEndCompat="@drawable/ic_round_arrow_forward_24" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewSuggestedAnime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/textViewSuggested"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_home_anime_recycler" />
-
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/progressBarSuggested"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:indeterminate="true"
-            android:layout_centerInParent="true" />
-
-    </RelativeLayout>
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

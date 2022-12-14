@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/circularProgressBar"
@@ -23,7 +23,7 @@
         android:contentDescription="@string/add_anime_list"
         app:srcCompat="@drawable/ic_round_add_24"/>
 
-<androidx.core.widget.NestedScrollView
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none">
@@ -31,7 +31,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:padding="16dp"
     tools:context=".view.details.anime.AnimeDetailsFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -158,10 +158,11 @@ be able to remain indifferent to them both?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:drawablePadding="-12dp"
         android:clickable="true"
+        android:drawablePadding="-12dp"
         android:focusable="true"
-        android:text="More"
+        android:minHeight="48dp"
+        android:text="@string/more"
         android:textAlignment="center"
         android:textStyle="bold"
         app:drawableBottomCompat="@drawable/ic_round_arrow_drop_down_36"
@@ -469,7 +470,7 @@ be able to remain indifferent to them both?"
         tools:listitem="@layout/item_home_anime_recycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRelated"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewRelated" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+</ScrollView>
 </FrameLayout>

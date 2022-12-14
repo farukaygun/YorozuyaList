@@ -10,8 +10,8 @@
         android:id="@+id/buttonCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
         android:text="@string/cancel"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayoutStatus"
@@ -35,8 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
@@ -46,8 +46,8 @@
             android:id="@+id/autoCompleteTextViewStatus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="none"
-            android:hint="@string/status" />
+            android:hint="@string/status"
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,8 +118,8 @@
             android:id="@+id/autoCompleteTextViewScore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="none"
-            android:hint="@string/score" />
+            android:hint="@string/score"
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,14 +127,14 @@
         android:id="@+id/buttonDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="32dp"
         android:text="@string/delete"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayoutScore"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutScore" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,9 +71,11 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/show_in_mal"
-                android:layout_gravity="end"
-                android:layout_margin="16dp" />
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="32dp"
+                style="@style/semiRoundedButton"
+                android:text="@string/show_in_mal" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>

@@ -23,14 +23,15 @@
         android:src="@drawable/ic_round_add_24"
         android:contentDescription="@string/add_anime_list" />
 
-<androidx.core.widget.NestedScrollView
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:padding="16dp"
         tools:context=".view.details.manga.MangaDetailsFragment">
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -470,5 +471,5 @@ be able to remain indifferent to them both?"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewRelated"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+</ScrollView>
 </FrameLayout>
