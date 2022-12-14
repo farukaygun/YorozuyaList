@@ -68,9 +68,10 @@ fun TextView.formatMediaType(mediaType: String, numEpisodes: Int) {
 fun TextView.formatStatus(status: String) {
     var status = status
     when(status) {
-        "currently_airing" -> status = "Airing"
-        "finished_airing", "finished" -> status = "Finished"
-        "currently_publishing" -> status = "Publishing"
+        "currently_airing" -> status = context.getString(R.string.airing)
+        "finished_airing", "finished" -> status = context.getString(R.string.finished)
+        "currently_publishing" -> status = context.getString(R.string.publishing)
+        "not_yet_aired" -> status = context.getString(R.string.not_yet_aired)
     }
     this.text = status
 }
