@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.seasonal
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import com.farukaygun.yorozuyalist.adapter.SeasonalAdapter
@@ -12,7 +13,7 @@ class SeasonalFragment : BaseFragment<FragmentSeasonalBinding>() {
     override val isAppbarVisible: Boolean = false
     override fun getViewBinding(): FragmentSeasonalBinding = FragmentSeasonalBinding.inflate(layoutInflater)
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
         binding.toolBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() } // back
 
         val seasonalAdapter = SeasonalAdapter()

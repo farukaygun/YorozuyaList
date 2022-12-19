@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.details.manga
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
@@ -26,7 +27,7 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
     private var numChapters: Int = 0
     private var myListStatus: MyListStatus? = null
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
         // add/edit fab
         binding.fabAdd.setOnClickListener {
             println("id: $mangaId")

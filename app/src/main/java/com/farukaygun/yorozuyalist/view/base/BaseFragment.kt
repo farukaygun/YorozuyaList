@@ -25,7 +25,7 @@ abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
 
     abstract val isAppbarVisible: Boolean
     abstract fun getViewBinding(): VBinding
-    abstract fun start()
+    abstract fun start(savedInstanceState: Bundle?)
 
     fun lifecycleLaunch(launch: suspend () -> Unit) {
         viewLifecycleOwner.lifecycleScope.launch(exceptionHandler) {
@@ -47,7 +47,7 @@ abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity = getActivity() as MainActivity
-        start()
+        start(savedInstanceState)
     }
 
     override fun onResume() {

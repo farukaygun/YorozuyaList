@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.details.anime
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
@@ -26,7 +27,7 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
     private var numEpisodes: Int = 0
     private var myListStatus: MyListStatus? = null
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
         // add/edit fab
         binding.fabAdd.setOnClickListener {
             val bottomSheetAddAnimeFragment = BottomSheetAddAnimeFragment(animeId, numEpisodes, myListStatus)

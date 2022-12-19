@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.base
 
+import android.os.Bundle
 import com.farukaygun.yorozuyalist.adapter.viewpager.UserAnimeListViewPagerAdapter
 import com.farukaygun.yorozuyalist.adapter.viewpager.UserMangaListViewPagerAdapter
 import com.farukaygun.yorozuyalist.databinding.FragmentBaseUserListBinding
@@ -14,7 +15,7 @@ class BaseUserListFragment : BaseFragment<FragmentBaseUserListBinding>() {
     override fun getViewBinding(): FragmentBaseUserListBinding = FragmentBaseUserListBinding.inflate(layoutInflater)
     override val isAppbarVisible: Boolean = true
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
         val type = arguments?.let { BaseUserListFragmentArgs.fromBundle(it).type } ?: 0
 
         when(type) {

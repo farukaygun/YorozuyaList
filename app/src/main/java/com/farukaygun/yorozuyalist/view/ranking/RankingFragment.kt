@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.ranking
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import com.farukaygun.yorozuyalist.adapter.RankingAdapter
@@ -22,7 +23,7 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>() {
     private lateinit var rankingMangaAdapter: RankingAdapter
 
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
         viewModelRanking.setRankingTypeFlow(arguments?.getString("ranking_type") ?: "all")
         when(arguments?.getInt("type")) {
             0 -> getAnimeRanking()

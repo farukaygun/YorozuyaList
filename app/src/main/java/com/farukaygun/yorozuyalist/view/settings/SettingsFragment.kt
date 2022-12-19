@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.settings
 
+import android.os.Bundle
 import com.farukaygun.yorozuyalist.databinding.FragmentSettingsBinding
 import com.farukaygun.yorozuyalist.view.base.BaseFragment
 
@@ -8,6 +9,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     override val isAppbarVisible: Boolean = false
 
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
     }
 }

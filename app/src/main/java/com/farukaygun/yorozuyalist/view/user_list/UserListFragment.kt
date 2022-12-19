@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.user_list
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import com.farukaygun.yorozuyalist.adapter.UserListAdapter
@@ -15,7 +16,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
     private lateinit var userAnimeListAdapter: UserListAdapter
     private lateinit var userMangaListAdapter: UserListAdapter
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
         when(arguments?.getInt("type")) {
             0 -> getUserAnimeList()
             1 -> getUserMangaList()

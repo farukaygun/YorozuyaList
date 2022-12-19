@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.home
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -8,15 +9,16 @@ import com.farukaygun.yorozuyalist.databinding.FragmentHomeBinding
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseFragment
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.count
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     private val viewModelHome: HomeViewModel by viewModels()
     override fun getViewBinding(): FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
     override val isAppbarVisible: Boolean = true
 
     private lateinit var homeAnimeAdapter: HomeAnimeAdapter
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
         binding.buttonAnimeRanking.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToAnimeRankingFragment()
             Navigation.findNavController(it).navigate(action)
@@ -32,7 +34,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             Navigation.findNavController(it).navigate(action)
         }
 
-        viewModelHome.getSeasonalAnime()
         lifecycleLaunch {
             viewModelHome.seasonalAnimeList.collectLatest {
                 when(it) {
@@ -50,7 +51,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
         }
 
-        viewModelHome.getSuggestedAnime()
         lifecycleLaunch {
             viewModelHome.suggestedAnimeList.collectLatest {
                 when(it) {

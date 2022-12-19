@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.base
 
+import android.os.Bundle
 import com.farukaygun.yorozuyalist.adapter.viewpager.AnimeRankingViewPagerAdapter
 import com.farukaygun.yorozuyalist.adapter.viewpager.MangaRankingViewPagerAdapter
 import com.farukaygun.yorozuyalist.databinding.FragmentBaseRankingBinding
@@ -14,7 +15,7 @@ class BaseRankingFragment : BaseFragment<FragmentBaseRankingBinding>() {
     override fun getViewBinding(): FragmentBaseRankingBinding = FragmentBaseRankingBinding.inflate(layoutInflater)
     override val isAppbarVisible: Boolean = false
 
-    override fun start() {
+    override fun start(savedInstanceState: Bundle?) {
         val type = arguments?.let { BaseRankingFragmentArgs.fromBundle(it).type } ?: 0
         binding.toolBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() } // back
 
