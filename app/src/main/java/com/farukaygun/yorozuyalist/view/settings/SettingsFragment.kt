@@ -9,6 +9,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
     override val isAppbarVisible: Boolean = false
 
 
-    override fun start(savedInstanceState: Bundle?) {
+    override fun start() {
     }
 }

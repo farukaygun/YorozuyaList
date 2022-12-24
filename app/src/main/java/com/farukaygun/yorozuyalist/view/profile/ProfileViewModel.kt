@@ -17,7 +17,12 @@ class ProfileViewModel(application: Application) : BaseViewModel(application) {
     private val userDataFlow = MutableStateFlow<ResponseHandler<User>?>(null)
     val userData = userDataFlow
 
-    fun getUser() {
+
+    init {
+    	getUser()
+    }
+
+    private fun getUser() {
         viewModelLaunch {
             userDataFlow.emit(ResponseHandler.Loading())
             api.getUser().let {
@@ -54,7 +59,6 @@ class ProfileViewModel(application: Application) : BaseViewModel(application) {
         )
 
         donutProgressView.cap = 0f
-        println(donutProgressView.cap)
         donutProgressView.submitData(listOf(
             watching,
             completed,

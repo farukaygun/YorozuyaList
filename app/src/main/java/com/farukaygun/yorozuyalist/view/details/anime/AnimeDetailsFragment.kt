@@ -27,7 +27,7 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
     private var numEpisodes: Int = 0
     private var myListStatus: MyListStatus? = null
 
-    override fun start(savedInstanceState: Bundle?) {
+    override fun start() {
         // add/edit fab
         binding.fabAdd.setOnClickListener {
             val bottomSheetAddAnimeFragment = BottomSheetAddAnimeFragment(animeId, numEpisodes, myListStatus)
@@ -70,7 +70,7 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
         }
     }
 
-    // FIXME: Idk why I should use Coroutine at line 82 and 112.
+    // FIXME: Idk why I should use Coroutine at line 81-89.
     private fun updateUi(details: AnimeDetails) {
         numEpisodes = details.numEpisodes
         myListStatus = details.myListStatus
@@ -79,11 +79,13 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
         binding.recyclerViewRelatedAnime.adapter = relatedAdapter
 
         lifecycleLaunch {
-            if (myListStatus?.status.isNullOrEmpty()) {
+            if (myListStatus?.status.isNullOrEmpty())
                 binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_round_add_24, context?.theme))
-            } else {
+            else
                 binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_edit_24, context?.theme))
-            }
+
+            binding.textViewStartDate.formatDate(details.startDate)
+            binding.textViewEndDate.formatDate(details.endDate)
         }
 
         binding.shapeableImageView.downloadFromUrl(details.mainPicture.large)
@@ -97,7 +99,6 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
         details.genres.map { genre ->
             val chip = Chip(chipGroup.context)
             chip.text = genre.name
-
             chipGroup.addView(chip)
         }
 
@@ -108,14 +109,8 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
         binding.textViewEn.text = details.alternativeTitles.en
         binding.textViewJp.text = details.alternativeTitles.ja
 
-        lifecycleLaunch {
-            binding.textViewStartDate.formatDate(details.startDate)
-            binding.textViewEndDate.formatDate(details.endDate)
-        }
-
-        details.studios.joinToString(",") {
-            it.name
-        }.let { binding.textViewStudios.text = it }
+        details.studios.joinToString(",") { it.name }
+            .let { binding.textViewStudios.text = it }
 
         binding.textViewSource.formatSource(details.source)
         binding.textViewDuration.text = getString(R.string.minutes, details.averageEpisodeDuration.div(60))

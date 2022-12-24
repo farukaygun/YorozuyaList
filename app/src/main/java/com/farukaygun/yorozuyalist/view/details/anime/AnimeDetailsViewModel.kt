@@ -21,6 +21,7 @@ class AnimeDetailsViewModel(application: Application) : BaseViewModel(applicatio
     private val deleteUserListFlow = MutableStateFlow<ResponseHandler<ResponseBody>?>(null)
     val deleteUserList = deleteUserListFlow
 
+
     fun getAnimeDetails(animeId: Int) {
         viewModelLaunch {
             animeAnimeDetailsFlow.emit(ResponseHandler.Loading())

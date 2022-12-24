@@ -15,7 +15,7 @@ class BaseRankingFragment : BaseFragment<FragmentBaseRankingBinding>() {
     override fun getViewBinding(): FragmentBaseRankingBinding = FragmentBaseRankingBinding.inflate(layoutInflater)
     override val isAppbarVisible: Boolean = false
 
-    override fun start(savedInstanceState: Bundle?) {
+    override fun start() {
         val type = arguments?.let { BaseRankingFragmentArgs.fromBundle(it).type } ?: 0
         binding.toolBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() } // back
 

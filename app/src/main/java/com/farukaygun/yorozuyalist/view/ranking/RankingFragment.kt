@@ -23,7 +23,7 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>() {
     private lateinit var rankingMangaAdapter: RankingAdapter
 
 
-    override fun start(savedInstanceState: Bundle?) {
+    override fun start() {
         viewModelRanking.setRankingTypeFlow(arguments?.getString("ranking_type") ?: "all")
         when(arguments?.getInt("type")) {
             0 -> getAnimeRanking()

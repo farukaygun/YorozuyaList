@@ -56,7 +56,8 @@
         android:id="@+id/profileFragment"
         android:name="com.farukaygun.yorozuyalist.view.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+    </fragment>
     <fragment
         android:id="@+id/animeRankingFragment"
         android:name="com.farukaygun.yorozuyalist.view.base.BaseRankingFragment"

@@ -4,24 +4,20 @@
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/ic_round_home_36"
-        android:title="@string/home"
-        android:menuCategory="secondary" />
+        android:title="@string/home"/>
     <item
         android:id="@+id/animeFragment"
         android:enabled="true"
         android:icon="@drawable/ic_round_movie_filter_36"
-        android:title="@string/anime"
-        android:menuCategory="secondary"/>
+        android:title="@string/anime"/>
     <item
         android:id="@+id/mangaFragment"
         android:enabled="true"
         android:icon="@drawable/ic_round_menu_book_36"
-        android:title="@string/manga"
-        android:menuCategory="secondary"/>
+        android:title="@string/manga"/>
     <item
         android:id="@+id/profileFragment"
         android:enabled="true"
         android:icon="@drawable/ic_round_account_circle_36"
-        android:title="@string/profile"
-        android:menuCategory="secondary"/>
+        android:title="@string/profile"/>
 </menu>

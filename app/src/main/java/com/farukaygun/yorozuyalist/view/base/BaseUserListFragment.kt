@@ -15,7 +15,7 @@ class BaseUserListFragment : BaseFragment<FragmentBaseUserListBinding>() {
     override fun getViewBinding(): FragmentBaseUserListBinding = FragmentBaseUserListBinding.inflate(layoutInflater)
     override val isAppbarVisible: Boolean = true
 
-    override fun start(savedInstanceState: Bundle?) {
+    override fun start() {
         val type = arguments?.let { BaseUserListFragmentArgs.fromBundle(it).type } ?: 0
 
         when(type) {

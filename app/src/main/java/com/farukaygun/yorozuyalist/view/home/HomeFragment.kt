@@ -9,7 +9,6 @@ import com.farukaygun.yorozuyalist.databinding.FragmentHomeBinding
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseFragment
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.count
 
 class HomeFragment: BaseFragment<FragmentHomeBinding>() {
     private val viewModelHome: HomeViewModel by viewModels()
@@ -18,7 +17,8 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var homeAnimeAdapter: HomeAnimeAdapter
 
-    override fun start(savedInstanceState: Bundle?) {
+
+    override fun start() {
         binding.buttonAnimeRanking.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToAnimeRankingFragment()
             Navigation.findNavController(it).navigate(action)

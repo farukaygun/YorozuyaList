@@ -17,8 +17,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override val isAppbarVisible: Boolean = true
     override fun getViewBinding(): FragmentProfileBinding = FragmentProfileBinding.inflate(layoutInflater)
 
-    override fun start(savedInstanceState: Bundle?) {
-        viewModelProfile.getUser()
+
+    override fun start() {
         lifecycleLaunch {
             viewModelProfile.userData.collectLatest {
                 when(it) {

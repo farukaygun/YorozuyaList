@@ -9,6 +9,6 @@ class AboutFragment : BaseFragment<FragmentAboutBinding>() {
     override fun getViewBinding(): FragmentAboutBinding = FragmentAboutBinding.inflate(layoutInflater)
     override val isAppbarVisible: Boolean = false
 
-    override fun start(savedInstanceState: Bundle?) {
+    override fun start() {
     }
 }

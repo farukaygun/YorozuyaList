@@ -13,7 +13,7 @@ class SeasonalFragment : BaseFragment<FragmentSeasonalBinding>() {
     override val isAppbarVisible: Boolean = false
     override fun getViewBinding(): FragmentSeasonalBinding = FragmentSeasonalBinding.inflate(layoutInflater)
 
-    override fun start(savedInstanceState: Bundle?) {
+    override fun start() {
         binding.toolBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() } // back
 
         val seasonalAdapter = SeasonalAdapter()

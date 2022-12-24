@@ -7,8 +7,8 @@ import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.service.Api
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
+import kotlinx.coroutines.flow.*
 import com.farukaygun.yorozuyalist.util.Calendar as CalendarUtil
-import kotlinx.coroutines.flow.MutableStateFlow
 
 class HomeViewModel(application: Application): BaseViewModel(application) {
     private val api = Api()
@@ -21,7 +21,7 @@ class HomeViewModel(application: Application): BaseViewModel(application) {
 
 
     init {
-    	getSeasonalAnime()
+        getSeasonalAnime()
         getSuggestedAnime()
     }
 
