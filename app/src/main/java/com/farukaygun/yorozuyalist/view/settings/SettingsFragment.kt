@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.settings
 
+import android.os.Bundle
 import com.farukaygun.yorozuyalist.databinding.FragmentSettingsBinding
 import com.farukaygun.yorozuyalist.view.base.BaseFragment
 

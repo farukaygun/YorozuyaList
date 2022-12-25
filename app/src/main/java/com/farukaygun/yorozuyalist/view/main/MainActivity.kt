@@ -12,7 +12,6 @@ import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ActivityMainBinding
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
 import com.farukaygun.yorozuyalist.view.login.LoginActivity
-import com.google.android.material.color.DynamicColors
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

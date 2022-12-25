@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.ranking
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import com.farukaygun.yorozuyalist.adapter.RankingAdapter

@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.details.manga
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
@@ -25,6 +26,7 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
     private var mangaId: Int = 0
     private var numChapters: Int = 0
     private var myListStatus: MyListStatus? = null
+
 
     override fun start() {
         // add/edit fab
@@ -69,7 +71,7 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
         }
     }
 
-    // FIXME: Idk why I should use Coroutine at line 80 and 115.
+    // FIXME: Idk why I should use Coroutine at line 82-90.
     private fun updateUI(details: MangaDetails) {
         numChapters = details.numChapters
         myListStatus = details.myListStatus
@@ -78,11 +80,13 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
         binding.recyclerViewRelatedManga.adapter = relatedAdapter
 
         lifecycleLaunch {
-            if (myListStatus?.status.isNullOrEmpty()) {
+            if (myListStatus?.status.isNullOrEmpty())
                 binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_round_add_24, context?.theme))
-            } else {
+            else
                 binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_edit_24, context?.theme))
-            }
+
+            binding.textViewStartDate.formatDate(details.startDate)
+            binding.textViewEndDate.formatDate(details.endDate)
         }
 
         binding.shapeableImageView.downloadFromUrl(details.mainPicture.large)
@@ -96,7 +100,6 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
         details.genres.map { genre ->
             val chip = Chip(chipGroup.context)
             chip.text = genre.name
-
             chipGroup.addView(chip)
         }
 
@@ -111,11 +114,6 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
         //binding.textViewSource.formatSource(details.source)
         details.serialization.joinToString(",") { it.node.name }
             .let { binding.textViewSerialization.text = it }
-
-        lifecycleLaunch {
-            binding.textViewStartDate.formatDate(details.startDate)
-            binding.textViewEndDate.formatDate(details.endDate)
-        }
     }
 
 }

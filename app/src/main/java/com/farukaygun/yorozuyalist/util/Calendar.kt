@@ -2,6 +2,7 @@ package com.farukaygun.yorozuyalist.util
 
 import java.time.LocalDate
 import android.icu.util.Calendar
+import android.os.Build
 
 class Calendar {
     companion object {
@@ -17,7 +18,7 @@ class Calendar {
 
         private fun getYearAndMonth(): Pair<Int, Months> {
             val year: Int
-            val month = if (android.os.Build.VERSION.SDK_INT >= 26) {
+            val month = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val date = LocalDate.now()
                 year = date.year
                 date.month.value

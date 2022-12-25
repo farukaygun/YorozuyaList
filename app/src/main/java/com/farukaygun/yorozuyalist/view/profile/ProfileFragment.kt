@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.profile
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.farukaygun.yorozuyalist.databinding.FragmentProfileBinding
@@ -16,8 +17,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override val isAppbarVisible: Boolean = true
     override fun getViewBinding(): FragmentProfileBinding = FragmentProfileBinding.inflate(layoutInflater)
 
+
     override fun start() {
-        viewModelProfile.getUser()
         lifecycleLaunch {
             viewModelProfile.userData.collectLatest {
                 when(it) {

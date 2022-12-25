@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.view.base
 
+import android.os.Bundle
 import com.farukaygun.yorozuyalist.adapter.viewpager.AnimeRankingViewPagerAdapter
 import com.farukaygun.yorozuyalist.adapter.viewpager.MangaRankingViewPagerAdapter
 import com.farukaygun.yorozuyalist.databinding.FragmentBaseRankingBinding
