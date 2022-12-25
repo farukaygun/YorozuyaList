@@ -11,25 +11,25 @@ import com.farukaygun.yorozuyalist.service.Api
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class UserListViewModel(application: Application): BaseViewModel(application) {
-    private val api = Api()
+class UserListViewModel(application: Application) : BaseViewModel(application) {
+	private val api = Api()
 
-    private val statusFlow = MutableStateFlow("completed")
-    fun setStatusFlow(value: String) {
-        statusFlow.value = value
-    }
+	private val statusFlow = MutableStateFlow("completed")
+	fun setStatusFlow(value: String) {
+		statusFlow.value = value
+	}
 
-    private val userAnimeListFlow = Pager(
-        PagingConfig(pageSize = 50, prefetchDistance = 50)
-    ) {
-        UserAnimeListPaging(api, statusFlow.value)
-    }.flow.cachedIn(viewModelScope)
-    val userListAnime = userAnimeListFlow
+	private val userAnimeListFlow = Pager(
+		PagingConfig(pageSize = 50, prefetchDistance = 50)
+	) {
+		UserAnimeListPaging(api, statusFlow.value)
+	}.flow.cachedIn(viewModelScope)
+	val userListAnime = userAnimeListFlow
 
-    private val userMangaListFlow = Pager(
-        PagingConfig(pageSize = 50, prefetchDistance = 50)
-    ) {
-        UserMangaListPaging(api, statusFlow.value)
-    }.flow.cachedIn(viewModelScope)
-    val userListManga = userMangaListFlow
+	private val userMangaListFlow = Pager(
+		PagingConfig(pageSize = 50, prefetchDistance = 50)
+	) {
+		UserMangaListPaging(api, statusFlow.value)
+	}.flow.cachedIn(viewModelScope)
+	val userListManga = userMangaListFlow
 }

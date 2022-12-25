@@ -8,23 +8,23 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.farukaygun.yorozuyalist.view.user_list.UserListFragment
 
 class UserMangaListViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
-    : FragmentStateAdapter(fragmentManager, lifecycle) {
-    override fun getItemCount(): Int = 5
+	: FragmentStateAdapter(fragmentManager, lifecycle) {
+	override fun getItemCount(): Int = 5
 
-    override fun createFragment(position: Int): Fragment {
-        val fragment = UserListFragment()
-        val bundle = Bundle()
+	override fun createFragment(position: Int): Fragment {
+		val fragment = UserListFragment()
+		val bundle = Bundle()
 
-        when (position) {
-            0 -> bundle.putString("status", "reading")
-            1 -> bundle.putString("status", "plan_to_read")
-            2 -> bundle.putString("status", "completed")
-            3 -> bundle.putString("status", "on_hold")
-            4 -> bundle.putString("status", "dropped")
-        }
+		when (position) {
+			0 -> bundle.putString("status", "reading")
+			1 -> bundle.putString("status", "plan_to_read")
+			2 -> bundle.putString("status", "completed")
+			3 -> bundle.putString("status", "on_hold")
+			4 -> bundle.putString("status", "dropped")
+		}
 
-        bundle.putInt("type", 1)
-        fragment.arguments = bundle
-        return fragment
-    }
+		bundle.putInt("type", 1)
+		fragment.arguments = bundle
+		return fragment
+	}
 }

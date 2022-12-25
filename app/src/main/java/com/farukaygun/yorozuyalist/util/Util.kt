@@ -11,57 +11,57 @@ import java.util.*
 
 // DATA BINDING
 fun placeholderProgressBar(context: Context): CircularProgressDrawable {
-    return CircularProgressDrawable(context).apply {
-        strokeWidth = 8f
-        centerRadius = 40f
-        start()
-    }
+	return CircularProgressDrawable(context).apply {
+		strokeWidth = 8f
+		centerRadius = 40f
+		start()
+	}
 }
 
 @BindingAdapter("android:downloadUrl")
 fun downloadImage(view: ImageView, url: String?) {
-    view.downloadFromUrl(url, placeholderProgressBar(view.context))
+	view.downloadFromUrl(url, placeholderProgressBar(view.context))
 }
 
 @BindingAdapter("android:formatInt")
 fun formatInt(view: TextView, value: Int) {
-    view.formatInt(value)
+	view.formatInt(value)
 }
 
 @BindingAdapter("android:mediaType", "android:numEpisodes")
 fun formatMediaType(view: TextView, mediaType: String, numEpisodes: Int) {
-    view.formatMediaType(mediaType, numEpisodes)
+	view.formatMediaType(mediaType, numEpisodes)
 }
 
 class InputFilterMinMax(
     private var min: Int,
-    private var max: Int
+    private var max: Int,
 ) : InputFilter {
 
-    override fun filter(
-        source: CharSequence?,
-        start: Int,
-        end: Int,
-        dest: Spanned?,
-        dstart: Int,
-        dend: Int,
-    ): CharSequence? {
-        try {
-            val input = Integer.parseInt(dest.toString() + source.toString())
-            if (isInRange(min, max, input)) return null
-            else if (input + 1 == min) return (input + 1).toString()
-            else if (input - 1 == max) return (input - 1).toString()
-        } catch (nfe: NumberFormatException) {
-            nfe.stackTrace
-        }
-        return ""
-    }
+	override fun filter(
+		source: CharSequence?,
+		start: Int,
+		end: Int,
+		dest: Spanned?,
+		dstart: Int,
+		dend: Int,
+	): CharSequence? {
+		try {
+			val input = Integer.parseInt(dest.toString() + source.toString())
+			if (isInRange(min, max, input)) return null
+			else if (input + 1 == min) return (input + 1).toString()
+			else if (input - 1 == max) return (input - 1).toString()
+		} catch (nfe: NumberFormatException) {
+			nfe.stackTrace
+		}
+		return ""
+	}
 
-    private fun isInRange(min: Int, max: Int, input: Int): Boolean {
-        return if (max > min)
-            input in min..max
-        else
-            input in max..min
-    }
+	private fun isInRange(min: Int, max: Int, input: Int): Boolean {
+		return if (max > min)
+			input in min..max
+		else
+			input in max..min
+	}
 
 }

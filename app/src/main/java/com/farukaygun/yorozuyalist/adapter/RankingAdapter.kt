@@ -15,40 +15,40 @@ import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.model.Node
 
 class RankingAdapter(val type: Int)
-    : PagingDataAdapter<Data, RankingAdapter.ViewHolder>(RankingComparator), IItemClickListener {
+	: PagingDataAdapter<Data, RankingAdapter.ViewHolder>(RankingComparator), IItemClickListener {
 
-    class ViewHolder(val binding: ItemRankingRecyclerBinding)
-        : RecyclerView.ViewHolder(binding.root)
+	class ViewHolder(val binding: ItemRankingRecyclerBinding)
+		: RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = DataBindingUtil.inflate<ItemRankingRecyclerBinding>(LayoutInflater.from(parent.context), R.layout.item_ranking_recycler, parent, false)
-        return RankingAdapter.ViewHolder(binding)
-    }
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+		val binding = DataBindingUtil.inflate<ItemRankingRecyclerBinding>(LayoutInflater.from(parent.context), R.layout.item_ranking_recycler, parent, false)
+		return ViewHolder(binding)
+	}
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let {
-            holder.binding.rankingData = it.node
-            holder.binding.listener = this
-        }
-    }
+	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+		getItem(position)?.let {
+			holder.binding.rankingData = it.node
+			holder.binding.listener = this
+		}
+	}
 
-    override fun onItemClicked(view: View, data: Node) {
-        val bundle = Bundle()
-        bundle.putInt("id", data.id)
-        when(type) {
-            0 -> Navigation.findNavController(view).navigate(R.id.action_animeRankingFragment_to_detailsFragment, bundle)
-            1 -> Navigation.findNavController(view).navigate(R.id.action_mangaRankingFragment_to_mangaDetailsFragment, bundle)
-        }
-    }
+	override fun onItemClicked(view: View, data: Node) {
+		val bundle = Bundle()
+		bundle.putInt("id", data.id)
+		when(type) {
+			0 -> Navigation.findNavController(view).navigate(R.id.action_animeRankingFragment_to_detailsFragment, bundle)
+			1 -> Navigation.findNavController(view).navigate(R.id.action_mangaRankingFragment_to_mangaDetailsFragment, bundle)
+		}
+	}
 
-    object RankingComparator: DiffUtil.ItemCallback<Data>() {
-        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
-            return oldItem.node.id == newItem.node.id
-        }
+	object RankingComparator: DiffUtil.ItemCallback<Data>() {
+		override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+			return oldItem.node.id == newItem.node.id
+		}
 
-        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
-            return oldItem == newItem
-        }
+		override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+			return oldItem == newItem
+		}
 
-    }
+	}
 }

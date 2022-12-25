@@ -10,14 +10,14 @@ import kotlinx.coroutines.launch
 
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        throwable.localizedMessage?.let { Log.e("ViewModel Exception", it) }
-    }
+	private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+		throwable.localizedMessage?.let { Log.e("ViewModel Exception", it) }
+	}
 
 
-    fun viewModelLaunch(launch: suspend () -> Unit) {
-        viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
-            launch.invoke()
-        }
-    }
+	fun viewModelLaunch(launch: suspend () -> Unit) {
+		viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
+			launch.invoke()
+		}
+	}
 }

@@ -1,12 +1,11 @@
 package com.farukaygun.yorozuyalist.model
 
-import com.farukaygun.yorozuyalist.model.Node
 import com.google.gson.annotations.SerializedName
 
 data class Recommendation(
-    @SerializedName("node")
-    val node: Node,
+	@SerializedName("node")
+	val node: Node,
 
-    @SerializedName("num_recommendations")
-    val numRecommendations: Int
+	@SerializedName("num_recommendations")
+	val numRecommendations: Int,
 )

@@ -27,6 +27,7 @@ class BottomSheetAddMangaFragment(
 	private lateinit var statusArray: Array<String>
 	private lateinit var scoreArray: Array<String>
 
+
 	@SuppressLint("SetTextI18n")
 	override fun start() {
 		binding.buttonCancel.setOnClickListener { dismiss() }
@@ -128,8 +129,10 @@ class BottomSheetAddMangaFragment(
 			binding.autoCompleteTextViewScore.text.toString().toInt()
 
 		println("id: $mangaId")
-		println("status: ${binding.autoCompleteTextViewStatus.text.toString().lowercase()
-			.replace(" ", "_")}")
+		println("status: ${
+			binding.autoCompleteTextViewStatus.text.toString().lowercase()
+				.replace(" ", "_")
+		}")
 		println("score: $score")
 		println("numepisode: ${binding.editTextChapter.text.toString().toInt()}")
 		viewModelMangaDetails.updateUserMangaList(

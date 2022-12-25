@@ -5,9 +5,9 @@ import com.farukaygun.yorozuyalist.model.Paging
 import com.google.gson.annotations.SerializedName
 
 data class SuggestedAnime(
-    @SerializedName("data")
-    val `data`: List<Data>,
+	@SerializedName("data")
+	val `data`: List<Data>,
 
-    @SerializedName("paging")
-    val paging: Paging
+	@SerializedName("paging")
+	val paging: Paging,
 )

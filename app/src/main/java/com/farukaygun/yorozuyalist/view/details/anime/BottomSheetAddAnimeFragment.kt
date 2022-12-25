@@ -31,6 +31,7 @@ class BottomSheetAddAnimeFragment(
 	private lateinit var statusArray: Array<String>
 	private lateinit var scoreArray: Array<String>
 
+
 	@SuppressLint("SetTextI18n")
 	override fun start() {
 		binding.buttonCancel.setOnClickListener { dismiss() }
@@ -54,7 +55,9 @@ class BottomSheetAddAnimeFragment(
 			viewModelAnimeDetails.updateUserList.collectLatest {
 				when (it) {
 					is ResponseHandler.Success -> dismiss()
-					is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
+					is ResponseHandler.Error -> Toast.makeText(context,
+						"${it.message}",
+						Toast.LENGTH_SHORT).show()
 					else -> {}
 				}
 			}
@@ -63,9 +66,11 @@ class BottomSheetAddAnimeFragment(
 		// delete response
 		lifecycleLaunch {
 			viewModelAnimeDetails.deleteUserList.collectLatest {
-				when(it) {
+				when (it) {
 					is ResponseHandler.Success -> dismiss()
-					is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
+					is ResponseHandler.Error -> Toast.makeText(context,
+						"${it.message}",
+						Toast.LENGTH_SHORT).show()
 					else -> {}
 				}
 			}
@@ -130,7 +135,8 @@ class BottomSheetAddAnimeFragment(
 
 		viewModelAnimeDetails.updateUserAnimeList(
 			animeId = animeId,
-			status = binding.autoCompleteTextViewStatus.text.toString().lowercase().replace(" ", "_"),
+			status = binding.autoCompleteTextViewStatus.text.toString().lowercase()
+				.replace(" ", "_"),
 			score = score,
 			numWatchedEpisodes = binding.editTextEpisode.text.toString().toInt()
 		)

@@ -1,6 +1,5 @@
 package com.farukaygun.yorozuyalist.view.details.anime
 
-import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
@@ -16,103 +15,119 @@ import com.google.android.material.chip.Chip
 import kotlinx.coroutines.flow.collectLatest
 
 class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
-    private val viewModelAnimeDetails: AnimeDetailsViewModel by viewModels()
-    override val isAppbarVisible: Boolean = false
-    override fun getViewBinding(): FragmentAnimeDetailsBinding = FragmentAnimeDetailsBinding.inflate(layoutInflater)
+	private val viewModelAnimeDetails: AnimeDetailsViewModel by viewModels()
+	override val isAppbarVisible: Boolean = false
+	override fun getViewBinding(): FragmentAnimeDetailsBinding =
+		FragmentAnimeDetailsBinding.inflate(layoutInflater)
 
-    private lateinit var relatedAdapter: RelatedAdapter
-    private var isShowMore = false
+	private lateinit var relatedAdapter: RelatedAdapter
+	private var isShowMore = false
 
-    private var animeId: Int = 0
-    private var numEpisodes: Int = 0
-    private var myListStatus: MyListStatus? = null
+	private var animeId: Int = 0
+	private var numEpisodes: Int = 0
+	private var myListStatus: MyListStatus? = null
 
-    override fun start() {
-        // add/edit fab
-        binding.fabAdd.setOnClickListener {
-            val bottomSheetAddAnimeFragment = BottomSheetAddAnimeFragment(animeId, numEpisodes, myListStatus)
-            bottomSheetAddAnimeFragment.show(parentFragmentManager, "Add")
-        }
 
-        // synopsis more button
-        binding.textViewMore.setOnClickListener {
-            isShowMore = !isShowMore
-            when(isShowMore) {
-                true -> {
-                    binding.textViewMore.text = getString(R.string.less)
-                    binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_round_arrow_drop_up_36)
-                    binding.textViewSynopsis.maxLines = Int.MAX_VALUE
-                }
-                false -> {
-                    binding.textViewMore.text = getString(R.string.more)
-                    binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.ic_round_arrow_drop_down_36)
-                    binding.textViewSynopsis.maxLines = 6
-                }
-            }
-        }
+	override fun start() {
+		binding.toolBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() } // back
 
-        animeId = arguments?.getInt("id") ?: 0
-        viewModelAnimeDetails.getAnimeDetails(animeId)
-        lifecycleLaunch {
-            viewModelAnimeDetails.animeDetails.collectLatest { it ->
-                when(it) {
-                    is ResponseHandler.Loading -> binding.circularProgressBar.show()
-                    is ResponseHandler.Success -> {
-                        binding.circularProgressBar.hide()
-                        it.data?.let { details ->
-                            updateUi(details)
-                        }
-                    }
-                    is ResponseHandler.Error -> Toast.makeText(context, "${it.message}", Toast.LENGTH_SHORT).show()
-                    else -> {}
-                }
-            }
-        }
-    }
+		// add/edit fab
+		binding.fabAdd.setOnClickListener {
+			val bottomSheetAddAnimeFragment =
+				BottomSheetAddAnimeFragment(animeId, numEpisodes, myListStatus)
+			bottomSheetAddAnimeFragment.show(parentFragmentManager, "Add")
+		}
 
-    // FIXME: Idk why I should use Coroutine at line 81-89.
-    private fun updateUi(details: AnimeDetails) {
-        numEpisodes = details.numEpisodes
-        myListStatus = details.myListStatus
+		// synopsis more button
+		binding.textViewMore.setOnClickListener {
+			isShowMore = !isShowMore
+			when (isShowMore) {
+				true -> {
+					binding.textViewMore.text = getString(R.string.less)
+					binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(0,
+						0,
+						0,
+						R.drawable.ic_round_arrow_drop_up_36)
+					binding.textViewSynopsis.maxLines = Int.MAX_VALUE
+				}
+				false -> {
+					binding.textViewMore.text = getString(R.string.more)
+					binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(0,
+						0,
+						0,
+						R.drawable.ic_round_arrow_drop_down_36)
+					binding.textViewSynopsis.maxLines = 6
+				}
+			}
+		}
 
-        relatedAdapter = RelatedAdapter(0, details.related)
-        binding.recyclerViewRelatedAnime.adapter = relatedAdapter
+		lifecycleLaunch {
+			viewModelAnimeDetails.animeDetails.collectLatest { it ->
+				when (it) {
+					is ResponseHandler.Loading -> binding.circularProgressBar.show()
+					is ResponseHandler.Success -> {
+						binding.circularProgressBar.hide()
+						it.data?.let { details ->
+							updateUi(details)
+						}
+					}
+					is ResponseHandler.Error -> Toast.makeText(context,
+						"${it.message}",
+						Toast.LENGTH_SHORT).show()
+					else -> {}
+				}
+			}
+		}
+	}
 
-        lifecycleLaunch {
-            if (myListStatus?.status.isNullOrEmpty())
-                binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_round_add_24, context?.theme))
-            else
-                binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_edit_24, context?.theme))
+	// TODO: Idk why I should use Coroutine at line 81-89.
+	private fun updateUi(details: AnimeDetails) {
+		numEpisodes = details.numEpisodes
+		myListStatus = details.myListStatus
 
-            binding.textViewStartDate.formatDate(details.startDate)
-            binding.textViewEndDate.formatDate(details.endDate)
-        }
+		relatedAdapter = RelatedAdapter(0, details.related)
+		binding.recyclerViewRelatedAnime.adapter = relatedAdapter
 
-        binding.shapeableImageView.downloadFromUrl(details.mainPicture.large)
-        binding.textViewName.text = details.title
-        binding.textViewEpisodes.formatMediaType(details.mediaType, details.numEpisodes)
-        binding.textViewScore.text = details.mean.toString()
-        binding.textViewScoringUsers.formatInt(details.numScoringUsers)
-        binding.textViewStatus.formatStatus(details.status)
+		lifecycleLaunch {
+			if (myListStatus?.status.isNullOrEmpty())
+				binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources,
+					R.drawable.ic_round_add_24,
+					context?.theme))
+			else
+				binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources,
+					R.drawable.ic_baseline_edit_24,
+					context?.theme))
 
-        val chipGroup = binding.chipGroup
-        details.genres.map { genre ->
-            val chip = Chip(chipGroup.context)
-            chip.text = genre.name
-            chipGroup.addView(chip)
-        }
+			binding.textViewStartDate.formatDate(details.startDate)
+			binding.textViewEndDate.formatDate(details.endDate)
+		}
 
-        binding.textViewSynopsis.text = details.synopsis
-        binding.textViewRank.text = details.rank.toString()
-        binding.textViewPopularity.text = details.popularity.toString()
-        binding.textViewNumListUsers.formatInt(details.numListUsers)
-        binding.textViewEn.text = details.alternativeTitles.en
-        binding.textViewJp.text = details.alternativeTitles.ja
+		binding.shapeableImageView.downloadFromUrl(details.mainPicture.large)
+		binding.textViewName.text = details.title
+		binding.textViewEpisodes.formatMediaType(details.mediaType, details.numEpisodes)
+		binding.textViewScore.text = details.mean.toString()
+		binding.textViewScoringUsers.formatInt(details.numScoringUsers)
+		binding.textViewStatus.formatStatus(details.status)
 
-        details.studios.joinToString(",") { it.name }
-            .let { binding.textViewStudios.text = it }
+		val chipGroup = binding.chipGroup
+		details.genres.map { genre ->
+			val chip = Chip(chipGroup.context)
+			chip.text = genre.name
+			chipGroup.addView(chip)
+		}
 
-        binding.textViewSource.formatSource(details.source)
-        binding.textViewDuration.text = getString(R.string.minutes, details.averageEpisodeDuration.div(60))
-    }
+		binding.textViewSynopsis.text = details.synopsis
+		binding.textViewRank.text = details.rank.toString()
+		binding.textViewPopularity.text = details.popularity.toString()
+		binding.textViewNumListUsers.formatInt(details.numListUsers)
+		binding.textViewEn.text = details.alternativeTitles.en
+		binding.textViewJp.text = details.alternativeTitles.ja
+
+		details.studios.joinToString(",") { it.name }
+			.let { binding.textViewStudios.text = it }
+
+		binding.textViewSource.formatSource(details.source)
+		binding.textViewDuration.text =
+			getString(R.string.minutes, details.averageEpisodeDuration.div(60))
+	}
 }
