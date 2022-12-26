@@ -117,7 +117,7 @@ class BottomSheetAddAnimeFragment(
 			scoreArray)
 
 		// editTextEpisodes min max value filter
-		binding.editTextEpisode.filters = arrayOf(InputFilterMinMax(0, numEpisodes))
+		binding.editTextEpisode.filters = arrayOf(InputFilterMinMax(0, Int.MAX_VALUE))
 
 		if (myListStatus?.status.isNullOrEmpty()) {
 			initAddUi()

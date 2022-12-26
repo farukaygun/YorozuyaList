@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ActivityMainBinding
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
+import com.farukaygun.yorozuyalist.view.home.HomeFragmentDirections
 import com.farukaygun.yorozuyalist.view.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		when (item.itemId) {
 			//R.id.settings -> navController.navigate(R.id.settingsFragment)
-			R.id.about -> navController.navigate(R.id.aboutFragment)
+			R.id.about -> navController.navigate(HomeFragmentDirections.actionHomeFragmentToAboutFragment())
 		}
 		return super.onOptionsItemSelected(item)
 	}
