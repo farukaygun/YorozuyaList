@@ -31,6 +31,7 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
 	override fun start() {
 		binding.toolBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() } // back
 
+		mangaId = arguments?.getInt("id") ?: 0
 		// add/edit fab
 		binding.fabAdd.setOnClickListener {
 			val bottomSheetAddMangaFragment =
@@ -43,7 +44,8 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
 			when (isShowMore) {
 				true -> {
 					binding.textViewMore.text = getString(R.string.less)
-					binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(0,
+					binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(
+						0,
 						0,
 						0,
 						R.drawable.ic_round_arrow_drop_up_36)
@@ -51,7 +53,8 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
 				}
 				false -> {
 					binding.textViewMore.text = getString(R.string.more)
-					binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(0,
+					binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(
+						0,
 						0,
 						0,
 						R.drawable.ic_round_arrow_drop_down_36)

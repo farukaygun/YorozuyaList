@@ -25,14 +25,14 @@ class MangaDetailsViewModel(
 	private val deleteUserListFlow = MutableStateFlow<ResponseHandler<ResponseBody>?>(null)
 	val deleteUserList = deleteUserListFlow
 
-	private val mangaId = savedStateHandle.get<Int>("id") ?: 0
+	private var mangaId = savedStateHandle.get<Int>("id") ?: 0
 
 
 	init {
-		getMangaDetails(mangaId)
+		getMangaDetails()
 	}
 
-	fun getMangaDetails(mangaId: Int) {
+	private fun getMangaDetails() {
 		viewModelLaunch {
 			userMangaDetailsFlow.emit(ResponseHandler.Loading())
 			api.getMangaDetails(mangaId).let {

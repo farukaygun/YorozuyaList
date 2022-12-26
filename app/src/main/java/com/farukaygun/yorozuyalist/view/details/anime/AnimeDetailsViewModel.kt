@@ -29,10 +29,10 @@ class AnimeDetailsViewModel(
 
 
 	init {
-		getAnimeDetails(animeId)
+		getAnimeDetails()
 	}
 
-	fun getAnimeDetails(animeId: Int) {
+	fun getAnimeDetails() {
 		viewModelLaunch {
 			animeAnimeDetailsFlow.emit(ResponseHandler.Loading())
 			api.getAnimeDetails(animeId).let {

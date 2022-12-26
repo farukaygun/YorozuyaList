@@ -4,16 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 data class MyListStatus(
 	@SerializedName("status")
-	val status: String,
+	var status: String,
 
 	@SerializedName("score")
-	val score: Int,
+	var score: Int,
 
 	@SerializedName("num_episodes_watched")
-	val numEpisodesWatched: Int,
+	var numEpisodesWatched: Int,
 
 	@SerializedName("num_chapters_read")
-	val numChaptersRead: Int,
+	var numChaptersRead: Int,
 
 	@SerializedName("is_rewatching")
 	val isRewatching: Boolean,

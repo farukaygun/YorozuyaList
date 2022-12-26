@@ -31,12 +31,29 @@ class BottomSheetAddAnimeFragment(
 	private lateinit var statusArray: Array<String>
 	private lateinit var scoreArray: Array<String>
 
+	private var status = ""
+	private var score = 0
+	private var numWatchedEpisodes = 0
+
 
 	@SuppressLint("SetTextI18n")
 	override fun start() {
 		binding.buttonCancel.setOnClickListener { dismiss() }
 
-		binding.buttonApply.setOnClickListener { updateUserAnimeList() }
+		binding.buttonApply.setOnClickListener {
+			// Score 0 means is unset.
+			status = binding.autoCompleteTextViewStatus.text.toString().lowercase()
+				.replace(" ", "_")
+			score = binding.autoCompleteTextViewScore.text.toString().toInt()
+			numWatchedEpisodes = binding.editTextEpisode.text.toString().toInt()
+
+			viewModelAnimeDetails.updateUserAnimeList(
+				animeId = animeId,
+				status = status,
+				score = score,
+				numWatchedEpisodes = numWatchedEpisodes
+			)
+		}
 
 		binding.buttonIncrease.setOnClickListener {
 			val numEpisode = binding.editTextEpisode.text.toString().toIntOrNull() ?: 0
@@ -54,7 +71,15 @@ class BottomSheetAddAnimeFragment(
 		lifecycleLaunch {
 			viewModelAnimeDetails.updateUserList.collectLatest {
 				when (it) {
-					is ResponseHandler.Success -> dismiss()
+					is ResponseHandler.Success -> {
+						// update my list status if update success
+						myListStatus?.let { myListStatus ->
+							myListStatus.status = status
+							myListStatus.score = score
+							myListStatus.numEpisodesWatched = numWatchedEpisodes
+						}
+						dismiss()
+					}
 					is ResponseHandler.Error -> Toast.makeText(context,
 						"${it.message}",
 						Toast.LENGTH_SHORT).show()
@@ -124,21 +149,5 @@ class BottomSheetAddAnimeFragment(
 		binding.autoCompleteTextViewScore.setText(myListStatus?.score.toString(), false)
 		binding.textInputLayoutEpisodes.suffixText = "/ $numEpisodes"
 		binding.editTextEpisode.setText("${myListStatus?.numEpisodesWatched}")
-	}
-
-	private fun updateUserAnimeList() {
-		// Score 0 means is unset.
-		val score = if (binding.autoCompleteTextViewScore.text.toString().isEmpty())
-			scoreArray.first().toInt()
-		else
-			binding.autoCompleteTextViewScore.text.toString().toInt()
-
-		viewModelAnimeDetails.updateUserAnimeList(
-			animeId = animeId,
-			status = binding.autoCompleteTextViewStatus.text.toString().lowercase()
-				.replace(" ", "_"),
-			score = score,
-			numWatchedEpisodes = binding.editTextEpisode.text.toString().toInt()
-		)
 	}
 }

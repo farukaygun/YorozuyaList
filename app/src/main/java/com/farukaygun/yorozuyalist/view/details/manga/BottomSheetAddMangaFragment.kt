@@ -27,12 +27,29 @@ class BottomSheetAddMangaFragment(
 	private lateinit var statusArray: Array<String>
 	private lateinit var scoreArray: Array<String>
 
+	private var status = ""
+	private var score = 0
+	private var numReadedChapters = 0
+
 
 	@SuppressLint("SetTextI18n")
 	override fun start() {
 		binding.buttonCancel.setOnClickListener { dismiss() }
 
-		binding.buttonApply.setOnClickListener { updateUserMangaList() }
+		binding.buttonApply.setOnClickListener {
+			// Score 0 means is unset.
+			status = binding.autoCompleteTextViewStatus.text.toString().lowercase()
+				.replace(" ", "_")
+			score = binding.autoCompleteTextViewScore.text.toString().toInt()
+			numReadedChapters = binding.editTextChapter.text.toString().toInt()
+
+			viewModelMangaDetails.updateUserMangaList(
+				mangaId = mangaId,
+				status = status,
+				score = score,
+				numReadedChapters = numReadedChapters
+			)
+		}
 
 		binding.buttonIncrease.setOnClickListener {
 			val numChapters = binding.editTextChapter.text.toString().toIntOrNull() ?: 0
@@ -50,7 +67,15 @@ class BottomSheetAddMangaFragment(
 		lifecycleLaunch {
 			viewModelMangaDetails.updateUserList.collectLatest {
 				when (it) {
-					is ResponseHandler.Success -> dismiss()
+					is ResponseHandler.Success -> {
+						// update my list status if update success
+						myListStatus?.let { myListStatus ->
+							myListStatus.status = status
+							myListStatus.score = score
+							myListStatus.numChaptersRead = numReadedChapters
+						}
+						dismiss()
+					}
 					is ResponseHandler.Error -> Toast.makeText(context,
 						"${it.message}",
 						Toast.LENGTH_SHORT).show()
@@ -87,7 +112,7 @@ class BottomSheetAddMangaFragment(
 			scoreArray)
 
 		// editTextEpisodes min max value filter
-		binding.editTextChapter.filters = arrayOf(InputFilterMinMax(0, numChapters))
+		binding.editTextChapter.filters = arrayOf(InputFilterMinMax(0, Int.MAX_VALUE))
 
 		if (myListStatus?.status.isNullOrEmpty()) {
 			initAddUi()
@@ -100,7 +125,7 @@ class BottomSheetAddMangaFragment(
 		binding.autoCompleteTextViewStatus.setText(statusArray.first(), false)
 		binding.autoCompleteTextViewScore.setText(scoreArray.first(), false)
 		binding.textInputLayoutEpisodes.suffixText = "/ $numChapters"
-		binding.editTextChapter.setText("${myListStatus?.numChaptersRead ?: 0}")
+		binding.editTextChapter.setText("0")
 	}
 
 	private fun initEditUi() {
@@ -118,29 +143,6 @@ class BottomSheetAddMangaFragment(
 		}
 		binding.autoCompleteTextViewScore.setText(myListStatus?.score.toString(), false)
 		binding.textInputLayoutEpisodes.suffixText = "/ $numChapters"
-		binding.editTextChapter.setText("${myListStatus?.numChaptersRead}")
-	}
-
-	private fun updateUserMangaList() {
-		// Score 0 means is unset.
-		val score = if (binding.autoCompleteTextViewScore.text.toString().isEmpty())
-			scoreArray.first().toInt()
-		else
-			binding.autoCompleteTextViewScore.text.toString().toInt()
-
-		println("id: $mangaId")
-		println("status: ${
-			binding.autoCompleteTextViewStatus.text.toString().lowercase()
-				.replace(" ", "_")
-		}")
-		println("score: $score")
-		println("numepisode: ${binding.editTextChapter.text.toString().toInt()}")
-		viewModelMangaDetails.updateUserMangaList(
-			mangaId = mangaId,
-			status = binding.autoCompleteTextViewStatus.text.toString().lowercase()
-				.replace(" ", "_"),
-			score = score,
-			numReadedChapters = binding.editTextChapter.text.toString().toInt()
-		)
+		binding.editTextChapter.setText(myListStatus?.numChaptersRead.toString().ifEmpty { "0" })
 	}
 }
