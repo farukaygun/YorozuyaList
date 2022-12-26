@@ -13,58 +13,58 @@ import androidx.viewbinding.ViewBinding
 import com.farukaygun.yorozuyalist.view.main.MainActivity
 import kotlinx.coroutines.*
 
-abstract class BaseFragment<VBinding: ViewBinding> : Fragment() {
-    protected lateinit var binding: VBinding
-    private lateinit var activity: MainActivity
+abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
+	protected lateinit var binding: VBinding
+	private lateinit var activity: MainActivity
 
 
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        throwable.localizedMessage?.let { Log.e("Fragment Exception", it) }
-    }
+	private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+		throwable.localizedMessage?.let { Log.e("Fragment Exception", it) }
+	}
 
 
-    abstract val isAppbarVisible: Boolean
-    abstract fun getViewBinding(): VBinding
-    abstract fun start()
+	abstract val isAppbarVisible: Boolean
+	abstract fun getViewBinding(): VBinding
+	abstract fun start()
 
-    fun lifecycleLaunch(launch: suspend () -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch(exceptionHandler) {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch.invoke()
-            }
-        }
-    }
+	fun lifecycleLaunch(launch: suspend () -> Unit) {
+		viewLifecycleOwner.lifecycleScope.launch(exceptionHandler) {
+			viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+				launch.invoke()
+			}
+		}
+	}
 
-    override fun onCreateView(
+	override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        binding = getViewBinding()
-        return binding.root
-    }
+		binding = getViewBinding()
+		return binding.root
+	}
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        activity = getActivity() as MainActivity
-        start()
-    }
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+		activity = getActivity() as MainActivity
+		start()
+	}
 
-    override fun onResume() {
-        super.onResume()
+	override fun onResume() {
+		super.onResume()
 
-        if (!isAppbarVisible) {
-            activity.supportActionBar?.hide()
-            activity.isNavViewVisible(View.GONE)
-        }
-    }
+		if (!isAppbarVisible) {
+			activity.supportActionBar?.hide()
+			activity.isNavViewVisible(View.GONE)
+		}
+	}
 
-    override fun onStop() {
-        super.onStop()
+	override fun onStop() {
+		super.onStop()
 
-        if (!isAppbarVisible) {
-            activity.supportActionBar?.show()
-            activity.isNavViewVisible(View.VISIBLE)
-        }
-    }
+		if (!isAppbarVisible) {
+			activity.supportActionBar?.show()
+			activity.isNavViewVisible(View.VISIBLE)
+		}
+	}
 }

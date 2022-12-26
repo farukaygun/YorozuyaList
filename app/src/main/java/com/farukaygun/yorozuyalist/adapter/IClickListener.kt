@@ -4,5 +4,5 @@ import android.view.View
 import com.farukaygun.yorozuyalist.model.Node
 
 interface IItemClickListener {
-    fun onItemClicked(view: View, data: Node)
+	fun onItemClicked(view: View, data: Node)
 }

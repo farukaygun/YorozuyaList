@@ -1,6 +1,5 @@
 package com.farukaygun.yorozuyalist.view.base
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,36 +13,36 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
-abstract class BaseBottomSheetDialog<VBinding: ViewBinding> : BottomSheetDialogFragment() {
-    protected lateinit var binding: VBinding
+abstract class BaseBottomSheetDialog<VBinding : ViewBinding> : BottomSheetDialogFragment() {
+	protected lateinit var binding: VBinding
 
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        throwable.localizedMessage?.let { Log.e("Fragment Exception", it) }
-    }
+	private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+		throwable.localizedMessage?.let { Log.e("Fragment Exception", it) }
+	}
 
 
-    abstract fun getViewBinding(): VBinding
-    abstract fun start()
+	abstract fun getViewBinding(): VBinding
+	abstract fun start()
 
-    override fun onCreateView(
+	override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        binding = getViewBinding()
-        return binding.root
-    }
+		binding = getViewBinding()
+		return binding.root
+	}
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        start()
-    }
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+		start()
+	}
 
-    fun lifecycleLaunch(launch: suspend () -> Unit) {
-        viewLifecycleOwner.lifecycleScope.launch(exceptionHandler) {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch.invoke()
-            }
-        }
-    }
+	fun lifecycleLaunch(launch: suspend () -> Unit) {
+		viewLifecycleOwner.lifecycleScope.launch(exceptionHandler) {
+			viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+				launch.invoke()
+			}
+		}
+	}
 }

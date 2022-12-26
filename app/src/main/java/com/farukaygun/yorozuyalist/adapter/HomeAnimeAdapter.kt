@@ -17,32 +17,32 @@ import com.farukaygun.yorozuyalist.view.home.HomeFragmentDirections
  * Suggested and seasonal anime adapter in home fragment
  */
 class HomeAnimeAdapter(private var animeList: List<Data>)
-    : RecyclerView.Adapter<HomeAnimeAdapter.ViewHolder>(), IItemClickListener {
+	: RecyclerView.Adapter<HomeAnimeAdapter.ViewHolder>(), IItemClickListener {
 
-    class ViewHolder(val binding: ItemHomeAnimeRecyclerBinding) :
-        RecyclerView.ViewHolder(binding.root)
+	class ViewHolder(val binding: ItemHomeAnimeRecyclerBinding) :
+		RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding =
-            DataBindingUtil.inflate<ItemHomeAnimeRecyclerBinding>(LayoutInflater.from(parent.context),
-                R.layout.item_home_anime_recycler,
-                parent,
-                false)
-        return ViewHolder(binding)
-    }
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+		val binding =
+			DataBindingUtil.inflate<ItemHomeAnimeRecyclerBinding>(LayoutInflater.from(parent.context),
+				R.layout.item_home_anime_recycler,
+				parent,
+				false)
+		return ViewHolder(binding)
+	}
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.animeData = animeList[position].node
-        holder.binding.listener = this
-    }
+	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+		holder.binding.animeData = animeList[position].node
+		holder.binding.listener = this
+	}
 
-    override fun getItemCount(): Int {
-        return animeList.size
-    }
+	override fun getItemCount(): Int {
+		return animeList.size
+	}
 
-    override fun onItemClicked(view: View, data: Node) {
-        val bundle = Bundle()
-        bundle.putInt("id", data.id)
-        Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment().actionId, bundle)
-    }
+	override fun onItemClicked(view: View, data: Node) {
+		val bundle = Bundle()
+		bundle.putInt("id", data.id)
+		Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment().actionId, bundle)
+	}
 }

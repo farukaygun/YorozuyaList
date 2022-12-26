@@ -4,27 +4,27 @@ import com.farukaygun.yorozuyalist.model.anime.MainPicture
 import com.google.gson.annotations.SerializedName
 
 data class Node(
-    @SerializedName("id")
-    val id: Int,
+	@SerializedName("id")
+	val id: Int,
 
-    @SerializedName("title")
-    val title: String,
+	@SerializedName("title")
+	val title: String,
 
-    @SerializedName("main_picture")
-    val mainPicture: MainPicture,
+	@SerializedName("main_picture")
+	val mainPicture: MainPicture,
 
-    @SerializedName("mean")
-    val mean: String,
+	@SerializedName("mean")
+	val mean: String,
 
-    @SerializedName("media_type")
-    val mediaType: String,
+	@SerializedName("media_type")
+	val mediaType: String,
 
-    @SerializedName(value = "num_episodes", alternate = ["num_chapters"])
-    val numEpisodes: Int,
+	@SerializedName(value = "num_episodes", alternate = ["num_chapters"])
+	val numEpisodes: Int,
 
-    @SerializedName("num_list_users")
-    val numListUsers: Int,
+	@SerializedName("num_list_users")
+	val numListUsers: Int,
 
-    @SerializedName("status")
-    val status: String
+	@SerializedName("status")
+	val status: String,
 )

@@ -53,9 +53,9 @@
                 android:clickable="true"
                 android:ellipsize="end"
                 android:focusable="true"
-                android:gravity="center"
+                android:gravity="start"
                 android:maxWidth="110dp"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:text="@{animeData.title}"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText" />

@@ -1,6 +1,5 @@
 package com.farukaygun.yorozuyalist.view.base
 
-import android.os.Bundle
 import com.farukaygun.yorozuyalist.adapter.viewpager.AnimeRankingViewPagerAdapter
 import com.farukaygun.yorozuyalist.adapter.viewpager.MangaRankingViewPagerAdapter
 import com.farukaygun.yorozuyalist.databinding.FragmentBaseRankingBinding
@@ -12,25 +11,29 @@ import com.google.android.material.tabs.TabLayoutMediator
  * Both fragments uses Ranking Fragment for showing ranking list in viewPager.
  */
 class BaseRankingFragment : BaseFragment<FragmentBaseRankingBinding>() {
-    override fun getViewBinding(): FragmentBaseRankingBinding = FragmentBaseRankingBinding.inflate(layoutInflater)
-    override val isAppbarVisible: Boolean = false
+	override fun getViewBinding(): FragmentBaseRankingBinding =
+		FragmentBaseRankingBinding.inflate(layoutInflater)
 
-    override fun start() {
-        val type = arguments?.let { BaseRankingFragmentArgs.fromBundle(it).type } ?: 0
-        binding.toolBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() } // back
+	override val isAppbarVisible: Boolean = false
 
-        when(type) {
-            0 -> binding.viewPager.adapter = AnimeRankingViewPagerAdapter(childFragmentManager, lifecycle)
-            1 -> binding.viewPager.adapter = MangaRankingViewPagerAdapter(childFragmentManager, lifecycle)
-        }
+	override fun start() {
+		val type = arguments?.let { BaseRankingFragmentArgs.fromBundle(it).type } ?: 0
+		binding.toolBar.setNavigationOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() } // back
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            when(position) {
-                0 -> tab.text = "Score"
-                1 -> tab.text = "Popular"
-                2 -> tab.text = "Favorite"
-                3 -> tab.text = "Upcoming"
-            }
-        }.attach()
-    }
+		when (type) {
+			0 -> binding.viewPager.adapter =
+				AnimeRankingViewPagerAdapter(childFragmentManager, lifecycle)
+			1 -> binding.viewPager.adapter =
+				MangaRankingViewPagerAdapter(childFragmentManager, lifecycle)
+		}
+
+		TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+			when (position) {
+				0 -> tab.text = "Score"
+				1 -> tab.text = "Popular"
+				2 -> tab.text = "Favorite"
+				3 -> tab.text = "Upcoming"
+			}
+		}.attach()
+	}
 }

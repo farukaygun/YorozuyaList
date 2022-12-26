@@ -11,22 +11,46 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_animeRankingFragment"
-            app:destination="@id/animeRankingFragment" />
+            app:destination="@id/animeRankingFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom"/>
         <action
             android:id="@+id/action_homeFragment_to_mangaRankingFragment"
-            app:destination="@id/mangaRankingFragment" />
+            app:destination="@id/mangaRankingFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom"/>
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_bottom" />
         <action
             android:id="@+id/action_homeFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment" />
+            app:destination="@id/aboutFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_bottom" />
         <action
             android:id="@+id/action_homeFragment_to_seasonalFragment"
-            app:destination="@id/seasonalFragment" />
+            app:destination="@id/seasonalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
-            app:destination="@id/animeDetailsFragment" />
+            app:destination="@id/animeDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/animeFragment"
@@ -38,7 +62,11 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_animeFragment_to_animeDetailsFragment"
-            app:destination="@id/animeDetailsFragment" />
+            app:destination="@id/animeDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/mangaFragment"
@@ -50,7 +78,11 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_mangaFragment_to_mangaDetailsFragment"
-            app:destination="@id/mangaDetailsFragment" />
+            app:destination="@id/mangaDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -69,7 +101,11 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_animeRankingFragment_to_detailsFragment"
-            app:destination="@id/animeDetailsFragment" />
+            app:destination="@id/animeDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/mangaRankingFragment"
@@ -82,7 +118,11 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_mangaRankingFragment_to_mangaDetailsFragment"
-            app:destination="@id/mangaDetailsFragment" />
+            app:destination="@id/mangaDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -113,7 +153,13 @@
             app:argType="integer" />
         <action
             android:id="@+id/action_animeDetailsFragment_self"
-            app:destination="@id/animeDetailsFragment" />
+            app:destination="@id/animeDetailsFragment"
+            app:popUpTo="@id/animeDetailsFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/rankingFragment"
@@ -146,6 +192,12 @@
         tools:layout="@layout/fragment_manga_details" >
         <action
             android:id="@+id/action_mangaDetailsFragment_self"
-            app:destination="@id/mangaDetailsFragment" />
+            app:destination="@id/mangaDetailsFragment"
+            app:popUpTo="@id/mangaDetailsFragment"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>

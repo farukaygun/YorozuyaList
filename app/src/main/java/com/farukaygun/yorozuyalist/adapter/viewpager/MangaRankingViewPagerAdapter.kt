@@ -8,21 +8,21 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.farukaygun.yorozuyalist.view.ranking.RankingFragment
 
 class MangaRankingViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
-    : FragmentStateAdapter(fragmentManager, lifecycle) {
-    override fun getItemCount(): Int = 3
+	: FragmentStateAdapter(fragmentManager, lifecycle) {
+	override fun getItemCount(): Int = 3
 
-    override fun createFragment(position: Int): Fragment {
-        val fragment = RankingFragment()
-        val bundle = Bundle()
+	override fun createFragment(position: Int): Fragment {
+		val fragment = RankingFragment()
+		val bundle = Bundle()
 
-        when (position) {
-            0 -> bundle.putString("ranking_type", "all")
-            1 -> bundle.putString("ranking_type", "bypopularity")
-            2 -> bundle.putString("ranking_type", "favorite")
-        }
+		when (position) {
+			0 -> bundle.putString("ranking_type", "all")
+			1 -> bundle.putString("ranking_type", "bypopularity")
+			2 -> bundle.putString("ranking_type", "favorite")
+		}
 
-        bundle.putInt("type", 1)
-        fragment.arguments = bundle
-        return fragment
-    }
+		bundle.putInt("type", 1)
+		fragment.arguments = bundle
+		return fragment
+	}
 }
