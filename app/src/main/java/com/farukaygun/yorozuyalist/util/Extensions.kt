@@ -1,7 +1,10 @@
 package com.farukaygun.yorozuyalist.util
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.icu.text.SimpleDateFormat
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
@@ -100,4 +103,22 @@ fun TextView.formatSource(source: String) {
 		"web_novel" -> source = this.context.getString(R.string.web_novel)
 	}
 	this.text = source
+}
+
+@SuppressLint("SetTextI18n")
+fun TextView.formatSeason(season: String?, year: Int?) {
+	var season = season
+	
+	when (season) {
+		"fall" -> season = context.getString(R.string.fall)
+		"winter" -> season = context.getString(R.string.winter)
+		"spring" -> season = context.getString(R.string.spring)
+		"summer" -> season = context.getString(R.string.summer)
+	}
+	this.text = "$season $year"
+}
+
+fun View.hideKeyboard() {
+	val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+	imm.hideSoftInputFromWindow(windowToken, 0)
 }

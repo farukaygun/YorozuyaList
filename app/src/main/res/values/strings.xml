@@ -54,4 +54,13 @@
     <string name="finished">Finished</string>
     <string name="publishing">Publishing</string>
     <string name="not_yet_aired">Not Yet Aired</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fall">Fall</string>
+    <string name="winter">Winter</string>
+    <string name="spring">Spring</string>
+    <string name="summer">Summer</string>
+    <string name="search_anime">Search Anime</string>
+    <string name="search_manga">Search Manga</string>
+    <string name="no_results">No results</string>
 </resources>

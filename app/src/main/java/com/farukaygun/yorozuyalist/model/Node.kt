@@ -1,6 +1,7 @@
 package com.farukaygun.yorozuyalist.model
 
 import com.farukaygun.yorozuyalist.model.anime.MainPicture
+import com.farukaygun.yorozuyalist.model.anime.StartSeason
 import com.google.gson.annotations.SerializedName
 
 data class Node(
@@ -21,6 +22,9 @@ data class Node(
 
 	@SerializedName(value = "num_episodes", alternate = ["num_chapters"])
 	val numEpisodes: Int,
+
+	@SerializedName("start_season")
+	val startSeason: StartSeason,
 
 	@SerializedName("num_list_users")
 	val numListUsers: Int,
