@@ -21,8 +21,8 @@ class RankingMangaPaging(
 		return try {
 			val nextPage = params.key
 			val response =
-				if (nextPage != null) api.getMangaRankingPaging(nextPage) else api.getMangaRanking(
-					rankingType)
+				if (nextPage != null) api.getMangaRankingPaging(nextPage)
+				else api.getMangaRanking(rankingType)
 
 			LoadResult.Page(
 				data = response.data?.data!!,

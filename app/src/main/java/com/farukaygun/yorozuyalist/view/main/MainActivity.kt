@@ -34,17 +34,22 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 
+		// bottom nav
 		navController = findNavController(R.id.fragmentContainerView)
 		binding.bottomNavigationBar.setupWithNavController(navController)
 
+		// toolbar
 		setSupportActionBar(binding.topAppBar)
+		binding.topAppBar.setNavigationOnClickListener { navController.navigate(R.id.action_global_baseSearchFragment) }
 	}
 
+	// toolbar right menu bind
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 		menuInflater.inflate(R.menu.app_bar_menu, menu)
 		return super.onCreateOptionsMenu(menu)
 	}
 
+	// toolbar right menu click
 	override fun onOptionsItemSelected(item: MenuItem): Boolean {
 		when (item.itemId) {
 			//R.id.settings -> navController.navigate(R.id.settingsFragment)

@@ -6,8 +6,8 @@ import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.service.Api
 
 class RankingAnimePaging(
-    private val api: Api,
-    private val rankingType: String,
+	private val api: Api,
+	private val rankingType: String,
 ) : PagingSource<String, Data>() {
 	override fun getRefreshKey(state: PagingState<String, Data>): String? {
 		return state.anchorPosition?.let { anchorPosition ->
@@ -21,14 +21,13 @@ class RankingAnimePaging(
 		return try {
 			val nextPage = params.key
 			val response =
-				if (nextPage != null) api.getAnimeRankingPaging(nextPage) else api.getAnimeRanking(
-					rankingType)
+				if (nextPage != null) api.getAnimeRankingPaging(nextPage)
+				else api.getAnimeRanking(rankingType)
 
 			LoadResult.Page(
 				data = response.data?.data!!,
 				prevKey = response.data.paging.previous,
-				nextKey = response.data.paging.next
-			)
+				nextKey = response.data.paging.next)
 		} catch (e: Exception) {
 			LoadResult.Error(e)
 		}

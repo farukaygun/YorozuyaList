@@ -33,6 +33,16 @@ fun formatMediaType(view: TextView, mediaType: String, numEpisodes: Int) {
 	view.formatMediaType(mediaType, numEpisodes)
 }
 
+@BindingAdapter("android:formatStatus")
+fun formatStatus(view: TextView, status: String) {
+	view.formatStatus(status)
+}
+
+@BindingAdapter("android:season", "android:year")
+fun formatSeason(view: TextView, season: String?, year: Int?) {
+	view.formatSeason(season, year)
+}
+
 class InputFilterMinMax(
     private var min: Int,
     private var max: Int,

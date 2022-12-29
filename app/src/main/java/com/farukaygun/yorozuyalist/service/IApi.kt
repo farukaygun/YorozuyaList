@@ -154,4 +154,29 @@ interface IApi {
         @Path("manga_id") mangaId: Int,
         @Header("AUTHORIZATION") header: String,
     ): Response<ResponseBody>
+
+	@GET("anime")
+	suspend fun getSearchAnimeList(
+		@Header("AUTHORIZATION") header: String,
+		@Query("q") query: String,
+		@Query("fields") fields: String,
+	): Response<ResponseApi>
+
+	suspend fun getSearchAnimeList(
+		@Url url: String,
+		@Header("AUTHORIZATION") header: String,
+	): Response<ResponseApi>
+
+	@GET("manga")
+	suspend fun getSearchMangaList(
+		@Header("AUTHORIZATION") header: String,
+		@Query("q") query: String,
+		@Query("fields") fields: String,
+	): Response<ResponseApi>
+
+	@GET
+	suspend fun getSearchMangaList(
+		@Url url: String,
+		@Header("AUTHORIZATION") header: String,
+	): Response<ResponseApi>
 }

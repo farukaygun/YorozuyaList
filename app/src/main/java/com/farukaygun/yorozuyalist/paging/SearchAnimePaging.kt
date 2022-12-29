@@ -5,9 +5,9 @@ import androidx.paging.PagingState
 import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.service.Api
 
-class UserAnimeListPaging(
-    private val api: Api,
-    private val status: String,
+class SearchAnimePaging(
+	private val api: Api,
+	private val query: String,
 ) : PagingSource<String, Data>() {
 	override fun getRefreshKey(state: PagingState<String, Data>): String? {
 		return state.anchorPosition?.let { anchorPosition ->
@@ -21,16 +21,16 @@ class UserAnimeListPaging(
 		return try {
 			val nextPage = params.key
 			val response =
-				if (nextPage != null) api.getUserAnimeListPaging(nextPage)
-				else api.getUserAnimeList(status)
+				if (nextPage != null) api.getSearchAnimeListPaging(nextPage)
+				else api.getSearchAnimeList(query)
 
 			LoadResult.Page(
 				data = response.data?.data!!,
 				prevKey = response.data.paging.previous,
-				nextKey = response.data.paging.next
-			)
+				nextKey = response.data.paging.next)
 		} catch (e: Exception) {
 			LoadResult.Error(e)
 		}
 	}
+
 }

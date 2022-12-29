@@ -245,4 +245,42 @@ class Api : BaseResponseHandler() {
 				mangaId = mangaId)
 		}
 	}
+
+	suspend fun getSearchAnimeList(query: String): ResponseHandler<ResponseApi> {
+		return safeApiCall {
+			createRetrofit(BASE_API_URL).getSearchAnimeList(
+				header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+				query = query,
+				fields = "id,title,main_picture,mean,media_type,num_episodes,start_season,status"
+			)
+		}
+	}
+
+	suspend fun getSearchAnimeListPaging(url: String): ResponseHandler<ResponseApi> {
+		return safeApiCall {
+			createRetrofit(BASE_API_URL).getSearchAnimeList(
+				url = url,
+				header = "Bearer " + SharedPrefsHelper().getString("accessToken")
+			)
+		}
+	}
+
+	suspend fun getSearchMangaList(query: String): ResponseHandler<ResponseApi> {
+		return safeApiCall {
+			createRetrofit(BASE_API_URL).getSearchMangaList(
+				header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
+				query = query,
+				fields = "id,title,main_picture,mean,media_type,num_chapters,start_season,status"
+			)
+		}
+	}
+
+	suspend fun getSearchMangaListPaging(url: String): ResponseHandler<ResponseApi> {
+		return safeApiCall {
+			createRetrofit(BASE_API_URL).getSearchMangaList(
+				url = url,
+				header = "Bearer " + SharedPrefsHelper().getString("accessToken")
+			)
+		}
+	}
 }

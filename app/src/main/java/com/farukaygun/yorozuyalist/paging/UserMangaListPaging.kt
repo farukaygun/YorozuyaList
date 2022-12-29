@@ -21,8 +21,8 @@ class UserMangaListPaging(
 		return try {
 			val nextPage = params.key
 			val response =
-				if (nextPage != null) api.getUserMangaListPaging(nextPage) else api.getUserMangaList(
-					status)
+				if (nextPage != null) api.getUserMangaListPaging(nextPage)
+				else api.getUserMangaList(status)
 
 			LoadResult.Page(
 				data = response.data?.data!!,

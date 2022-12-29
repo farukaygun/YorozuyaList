@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="searchListData"
+            type="com.farukaygun.yorozuyalist.model.Data" />
+
+        <variable
+            name="listener"
+            type="com.farukaygun.yorozuyalist.adapter.IItemClickListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{(view) -> listener.onItemClicked(view, searchListData.node)}"
+        android:outlineProvider="none"
+        app:strokeWidth="0dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearLayoutCompat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView"
+                android:layout_width="110dp"
+                android:layout_height="150dp"
+                android:downloadUrl="@{searchListData.node.mainPicture.medium}"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/roundedImageView" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:ellipsize="end"
+                    android:maxWidth="240dp"
+                    android:maxLines="1"
+                    android:text="@{searchListData.node.title}"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewPoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewName"
+                    android:layout_marginBottom="8dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:text="@{searchListData.node.mean}"
+                    android:textSize="14sp"
+                    app:drawableLeftCompat="@drawable/ic_round_thumb_up_alt_24" />
+
+                <TextView
+                    android:id="@+id/textViewSeason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPoint"
+                    android:layout_marginBottom="8dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:season="@{searchListData.node.startSeason.season}"
+                    android:year="@{searchListData.node.startSeason.year}"
+                    android:textSize="14sp"
+                    app:drawableLeftCompat="@drawable/ic_round_tv_24" />
+
+                <TextView
+                    android:id="@+id/textViewStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewSeason"
+                    android:layout_marginBottom="8dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:formatStatus="@{searchListData.node.status}"
+                    android:textSize="14sp"
+                    app:drawableLeftCompat="@drawable/ic_baseline_rss_feed_24" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

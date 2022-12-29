@@ -11,10 +11,10 @@ import com.google.android.material.tabs.TabLayoutMediator
  * Both fragments uses User List Fragment for showing user list in viewPager.
  */
 class BaseUserListFragment : BaseFragment<FragmentBaseUserListBinding>() {
+	override val isAppbarVisible: Boolean = true
 	override fun getViewBinding(): FragmentBaseUserListBinding =
 		FragmentBaseUserListBinding.inflate(layoutInflater)
 
-	override val isAppbarVisible: Boolean = true
 
 	override fun start() {
 		val type = arguments?.let { BaseUserListFragmentArgs.fromBundle(it).type } ?: 0
