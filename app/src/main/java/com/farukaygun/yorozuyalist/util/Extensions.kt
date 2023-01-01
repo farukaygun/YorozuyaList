@@ -107,7 +107,8 @@ fun TextView.formatSource(source: String) {
 
 @SuppressLint("SetTextI18n")
 fun TextView.formatSeason(season: String?, year: Int?) {
-	var season = season
+	var season = if (season.isNullOrEmpty()) "??" else season
+	val year = if (year == 0) "" else year
 	
 	when (season) {
 		"fall" -> season = context.getString(R.string.fall)

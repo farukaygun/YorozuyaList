@@ -3,7 +3,6 @@ package com.farukaygun.yorozuyalist.view.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -11,7 +10,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.ActivityMainBinding
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
-import com.farukaygun.yorozuyalist.view.home.HomeFragmentDirections
 import com.farukaygun.yorozuyalist.view.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
@@ -50,13 +48,13 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	// toolbar right menu click
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		when (item.itemId) {
-			//R.id.settings -> navController.navigate(R.id.settingsFragment)
-			R.id.about -> navController.navigate(HomeFragmentDirections.actionHomeFragmentToAboutFragment())
-		}
-		return super.onOptionsItemSelected(item)
-	}
+//	override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//		when (item.itemId) {
+//			R.id.settings -> navController.navigate(R.id.settingsFragment)
+//			R.id.about -> navController.navigate(HomeFragmentDirections.actionHomeFragmentToAboutFragment())
+//		}
+//		return super.onOptionsItemSelected(item)
+//	}
 
 	fun isNavViewVisible(visibility: Int) {
 		binding.bottomNavigationBar.visibility = visibility

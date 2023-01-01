@@ -58,10 +58,36 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textViewPoint"
+                    android:id="@+id/textViewType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textViewName"
+                    android:layout_marginBottom="8dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:mediaType="@{searchListData.node.mediaType}"
+                    android:numEpisodes="@{searchListData.node.numEpisodes}"
+                    android:textSize="14sp"
+                    app:drawableLeftCompat="@drawable/ic_round_tv_24" />
+
+                <TextView
+                    android:id="@+id/textViewSeason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewType"
+                    android:layout_marginBottom="8dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:season="@{searchListData.node.startSeason.season}"
+                    android:year="@{searchListData.node.startSeason.year}"
+                    android:textSize="14sp"
+                    app:drawableLeftCompat="@drawable/ic_round_date_range_24" />
+
+                <TextView
+                    android:id="@+id/textViewPoint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewSeason"
                     android:layout_marginBottom="8dp"
                     android:drawablePadding="4dp"
                     android:gravity="center"
@@ -70,23 +96,10 @@
                     app:drawableLeftCompat="@drawable/ic_round_thumb_up_alt_24" />
 
                 <TextView
-                    android:id="@+id/textViewSeason"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textViewPoint"
-                    android:layout_marginBottom="8dp"
-                    android:drawablePadding="4dp"
-                    android:gravity="center"
-                    android:season="@{searchListData.node.startSeason.season}"
-                    android:year="@{searchListData.node.startSeason.year}"
-                    android:textSize="14sp"
-                    app:drawableLeftCompat="@drawable/ic_round_tv_24" />
-
-                <TextView
                     android:id="@+id/textViewStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/textViewSeason"
+                    android:layout_below="@+id/textViewPoint"
                     android:layout_marginBottom="8dp"
                     android:drawablePadding="4dp"
                     android:gravity="center"
@@ -96,6 +109,5 @@
 
             </RelativeLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
-
     </com.google.android.material.card.MaterialCardView>
 </layout>

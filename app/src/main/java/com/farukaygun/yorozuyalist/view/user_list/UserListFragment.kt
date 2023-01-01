@@ -18,8 +18,21 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 	private lateinit var userAnimeListAdapter: UserListAdapter
 	private lateinit var userMangaListAdapter: UserListAdapter
 
+	private val type: Int by lazy {
+		arguments?.getInt("type") ?: 0
+	}
+
 	override fun start() {
-		when (arguments?.getInt("type")) {
+		initWithType()
+
+		binding.swipeRefreshLayout.setOnRefreshListener {
+			binding.swipeRefreshLayout.isRefreshing = false
+			initWithType()
+		}
+	}
+
+	private fun initWithType() {
+		when (type) {
 			0 -> getUserAnimeList()
 			1 -> getUserMangaList()
 		}

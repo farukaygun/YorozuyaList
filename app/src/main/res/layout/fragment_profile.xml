@@ -73,7 +73,7 @@
             android:drawablePadding="4dp"
             android:text="01.01.2023"
             android:textSize="16sp"
-            app:drawableStartCompat="@drawable/ic_baseline_date_range_24"
+            app:drawableStartCompat="@drawable/ic_round_date_range_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imageViewPicture"
             app:layout_constraintTop_toBottomOf="@id/textLocation" />
@@ -224,7 +224,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:text="Mean Score\n"
+            android:text="Mean\n"
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
