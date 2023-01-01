@@ -51,30 +51,30 @@ fun TextView.formatMediaType(mediaType: String, numEpisodes: Int) {
 	val animeMediaType = listOf("tv", "movie", "ona", "ova", "music", "special")
 	val mangaMediaType =
 		listOf("manga", "light_novel", "novel", "web_novel", "manhwa", "manhua", "one_shot")
-	var _mediaType = mediaType
+	var mediaType = mediaType
 	when (mediaType) {
-		animeMediaType[0] -> _mediaType = this.context.getString(R.string.tv)
-		animeMediaType[1] -> _mediaType = this.context.getString(R.string.movie)
-		animeMediaType[2] -> _mediaType = this.context.getString(R.string.ona)
-		animeMediaType[3] -> _mediaType = this.context.getString(R.string.ova)
-		animeMediaType[4] -> _mediaType = context.getString(R.string.music)
-		animeMediaType[5] -> _mediaType = context.getString(R.string.special)
-		mangaMediaType[0] -> _mediaType = this.context.getString(R.string.manga)
-		mangaMediaType[1] -> _mediaType = this.context.getString(R.string.light_novel)
-		mangaMediaType[2] -> _mediaType = this.context.getString(R.string.novel)
-		mangaMediaType[3] -> _mediaType = this.context.getString(R.string.web_novel)
-		mangaMediaType[4] -> _mediaType = context.getString(R.string.manhwa)
-		mangaMediaType[5] -> _mediaType = context.getString(R.string.manhua)
-		mangaMediaType[6] -> _mediaType = context.getString(R.string.one_shot)
+		animeMediaType[0] -> mediaType = this.context.getString(R.string.tv)
+		animeMediaType[1] -> mediaType = this.context.getString(R.string.movie)
+		animeMediaType[2] -> mediaType = this.context.getString(R.string.ona)
+		animeMediaType[3] -> mediaType = this.context.getString(R.string.ova)
+		animeMediaType[4] -> mediaType = context.getString(R.string.music)
+		animeMediaType[5] -> mediaType = context.getString(R.string.special)
+		mangaMediaType[0] -> mediaType = this.context.getString(R.string.manga)
+		mangaMediaType[1] -> mediaType = this.context.getString(R.string.light_novel)
+		mangaMediaType[2] -> mediaType = this.context.getString(R.string.novel)
+		mangaMediaType[3] -> mediaType = this.context.getString(R.string.web_novel)
+		mangaMediaType[4] -> mediaType = context.getString(R.string.manhwa)
+		mangaMediaType[5] -> mediaType = context.getString(R.string.manhua)
+		mangaMediaType[6] -> mediaType = context.getString(R.string.one_shot)
 	}
 	if (animeMediaType.contains(mediaType))
 		this.text = if (numEpisodes > 0) this.context.getString(R.string.episodes,
-			_mediaType,
-			numEpisodes) else "$_mediaType (??)"
+			mediaType,
+			numEpisodes) else "$mediaType (??)"
 	else
 		this.text = if (numEpisodes > 0) this.context.getString(R.string.chapters,
-			_mediaType,
-			numEpisodes) else "$_mediaType (??)"
+			mediaType,
+			numEpisodes) else "$mediaType (??)"
 }
 
 fun TextView.formatStatus(status: String) {

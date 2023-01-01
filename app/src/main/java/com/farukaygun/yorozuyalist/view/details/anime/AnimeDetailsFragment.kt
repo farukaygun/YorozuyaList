@@ -65,7 +65,7 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
 		}
 
 		lifecycleLaunch {
-			viewModelAnimeDetails.animeDetails.collectLatest { it ->
+			viewModelAnimeDetails.animeDetails.collectLatest {
 				when (it) {
 					is ResponseHandler.Loading -> binding.circularProgressBar.show()
 					is ResponseHandler.Success -> {

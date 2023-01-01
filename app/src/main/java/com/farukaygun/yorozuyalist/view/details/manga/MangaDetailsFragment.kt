@@ -64,7 +64,7 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
 		}
 
 		lifecycleLaunch {
-			viewModelMangaDetails.mangaDetails.collectLatest { it ->
+			viewModelMangaDetails.mangaDetails.collectLatest {
 				when (it) {
 					is ResponseHandler.Loading -> binding.circularProgressBar.show()
 					is ResponseHandler.Success -> {

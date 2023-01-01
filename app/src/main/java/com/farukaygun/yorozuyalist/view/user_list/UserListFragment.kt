@@ -23,18 +23,17 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 	}
 
 	override fun start() {
-		initWithType()
-
-		binding.swipeRefreshLayout.setOnRefreshListener {
-			binding.swipeRefreshLayout.isRefreshing = false
-			initWithType()
-		}
-	}
-
-	private fun initWithType() {
 		when (type) {
 			0 -> getUserAnimeList()
 			1 -> getUserMangaList()
+		}
+
+		binding.swipeRefreshLayout.setOnRefreshListener {
+			binding.swipeRefreshLayout.isRefreshing = false
+			when (type) {
+				0 -> userAnimeListAdapter.refresh()
+				1 -> userMangaListAdapter.refresh()
+			}
 		}
 	}
 

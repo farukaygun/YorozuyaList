@@ -2,6 +2,7 @@ package com.farukaygun.yorozuyalist.view.profile
 
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.farukaygun.yorozuyalist.R
 import com.farukaygun.yorozuyalist.databinding.FragmentProfileBinding
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.util.downloadFromUrl
@@ -31,14 +32,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 								binding.textLocation.text = it.data.location
 								binding.textBirthday.formatDate(it.data.birthday)
 								binding.textJoinedDate.formatDate(it.data.joinedAt)
-								binding.textWatching.append(" (" + it.data.userAnimeStatistics.numItemsWatching.toString() + ")")
-								binding.textOnHold.append(" (" + it.data.userAnimeStatistics.numItemsOnHold.toString() + ")")
-								binding.textDropped.append(" (" + it.data.userAnimeStatistics.numItemsDropped.toString() + ")")
-								binding.textCompleted.append(" (" + it.data.userAnimeStatistics.numItemsCompleted.toString() + ")")
-								binding.textPlanToWatch.append(" (" + it.data.userAnimeStatistics.numItemsPlanToWatch.toString() + ")")
-								binding.textDay.append(it.data.userAnimeStatistics.numDays.toString())
-								binding.textEpisodes.append(it.data.userAnimeStatistics.numEpisodes.toString())
-								binding.textMeanScore.append(it.data.userAnimeStatistics.meanScore.toString())
+								binding.textWatching.text = getString(R.string.watching_num, it.data.userAnimeStatistics.numItemsWatching.toString())
+								binding.textOnHold.text = getString(R.string.on_hold_num, it.data.userAnimeStatistics.numItemsOnHold.toString())
+								binding.textDropped.text = getString(R.string.dropped_num, it.data.userAnimeStatistics.numItemsDropped.toString())
+								binding.textCompleted.text = getString(R.string.completed_num, it.data.userAnimeStatistics.numItemsCompleted.toString())
+								binding.textPlanToWatch.text = getString(R.string.plan_to_watch_num, it.data.userAnimeStatistics.numItemsPlanToWatch.toString())
+								binding.textDay.text = getString(R.string.days_num, it.data.userAnimeStatistics.numDays.toString())
+								binding.textEpisodes.text = getString(R.string.episodes_num, it.data.userAnimeStatistics.numEpisodes.toString())
+								binding.textMeanScore.text = getString(R.string.mean_num, it.data.userAnimeStatistics.meanScore.toString())
 							}
 							viewModelProfile.drawChart(binding.donutProgressView, statistics)
 						}

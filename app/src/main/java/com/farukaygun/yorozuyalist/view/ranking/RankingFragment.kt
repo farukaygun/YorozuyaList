@@ -23,9 +23,13 @@ class RankingFragment : BaseFragment<FragmentRankingBinding>() {
 	private lateinit var rankingAnimeAdapter: RankingAdapter
 	private lateinit var rankingMangaAdapter: RankingAdapter
 
+	private val type: Int by lazy {
+		arguments?.getInt("type") ?: 0
+	}
+
 
 	override fun start() {
-		when (arguments?.getInt("type")) {
+		when (type) {
 			0 -> getAnimeRanking()
 			1 -> getMangaRanking()
 		}

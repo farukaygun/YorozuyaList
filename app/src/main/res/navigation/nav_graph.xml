@@ -24,20 +24,6 @@
             app:popEnterAnim="@anim/slide_in_top"
             app:popExitAnim="@anim/slide_out_bottom" />
         <action
-            android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment"
-            app:enterAnim="@anim/slide_in_bottom"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out_bottom" />
-        <action
-            android:id="@+id/action_homeFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment"
-            app:enterAnim="@anim/slide_in_bottom"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out_bottom" />
-        <action
             android:id="@+id/action_homeFragment_to_seasonalFragment"
             app:destination="@id/seasonalFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -123,16 +109,6 @@
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.farukaygun.yorozuyalist.view.settings.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.farukaygun.yorozuyalist.view.about.AboutFragment"
-        android:label="fragment_about"
-        tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/seasonalFragment"
         android:name="com.farukaygun.yorozuyalist.view.seasonal.SeasonalFragment"

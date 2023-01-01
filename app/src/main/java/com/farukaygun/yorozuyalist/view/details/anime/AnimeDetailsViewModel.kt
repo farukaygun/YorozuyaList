@@ -32,7 +32,7 @@ class AnimeDetailsViewModel(
 		getAnimeDetails()
 	}
 
-	fun getAnimeDetails() {
+	private fun getAnimeDetails() {
 		viewModelLaunch {
 			animeAnimeDetailsFlow.emit(ResponseHandler.Loading())
 			api.getAnimeDetails(animeId).let {
