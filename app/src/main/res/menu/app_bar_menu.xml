@@ -9,10 +9,10 @@
 <!--        android:title="@string/settings"-->
 <!--        android:icon="@drawable/ic_baseline_settings_24"-->
 <!--        app:showAsAction="ifRoom"/>-->
-    <item
-        android:id="@+id/about"
-        android:enabled="true"
-        android:title="@string/about"
-        android:icon="@drawable/ic_baseline_info_24"
-        app:showAsAction="ifRoom"/>
+<!--    <item-->
+<!--        android:id="@+id/about"-->
+<!--        android:enabled="true"-->
+<!--        android:title="@string/about"-->
+<!--        android:icon="@drawable/ic_baseline_info_24"-->
+<!--        app:showAsAction="ifRoom"/>-->
 </menu>
