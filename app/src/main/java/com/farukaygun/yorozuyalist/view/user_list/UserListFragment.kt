@@ -15,8 +15,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 
 	override val isAppbarVisible: Boolean = true
 
-	private lateinit var userAnimeListAdapter: UserListAdapter
-	private lateinit var userMangaListAdapter: UserListAdapter
+	private lateinit var adapter: UserListAdapter
 
 	private val type: Int by lazy {
 		arguments?.getInt("type") ?: 0
@@ -30,21 +29,18 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 
 		binding.swipeRefreshLayout.setOnRefreshListener {
 			binding.swipeRefreshLayout.isRefreshing = false
-			when (type) {
-				0 -> userAnimeListAdapter.refresh()
-				1 -> userMangaListAdapter.refresh()
-			}
+			adapter.refresh()
 		}
 	}
 
 	private fun getUserAnimeList() {
 		viewModelUserList.setStatusFlow(arguments?.getString("status") ?: STATUS_ALL)
 
-		userAnimeListAdapter = UserListAdapter(0)
-		binding.recyclerViewUserList.adapter = userAnimeListAdapter
+		adapter = UserListAdapter(0)
+		binding.recyclerViewUserList.adapter = adapter
 
 		lifecycleLaunch {
-			userAnimeListAdapter.loadStateFlow.collectLatest {
+			adapter.loadStateFlow.collectLatest {
 				if (it.refresh is LoadState.Loading) {
 					binding.circularProgressBar.show()
 				} else {
@@ -55,7 +51,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 
 		lifecycleLaunch {
 			viewModelUserList.userListAnime.collectLatest {
-				userAnimeListAdapter.submitData(it)
+				adapter.submitData(it)
 			}
 		}
 	}
@@ -63,11 +59,11 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 	private fun getUserMangaList() {
 		viewModelUserList.setStatusFlow(arguments?.getString("status") ?: STATUS_ALL)
 
-		userMangaListAdapter = UserListAdapter(1)
-		binding.recyclerViewUserList.adapter = userMangaListAdapter
+		adapter = UserListAdapter(1)
+		binding.recyclerViewUserList.adapter = adapter
 
 		lifecycleLaunch {
-			userMangaListAdapter.loadStateFlow.collectLatest {
+			adapter.loadStateFlow.collectLatest {
 				if (it.refresh is LoadState.Loading) {
 					binding.circularProgressBar.show()
 				} else {
@@ -78,7 +74,7 @@ class UserListFragment : BaseFragment<FragmentUserListBinding>() {
 
 		lifecycleLaunch {
 			viewModelUserList.userListManga.collectLatest {
-				userMangaListAdapter.submitData(it)
+				adapter.submitData(it)
 			}
 		}
 	}

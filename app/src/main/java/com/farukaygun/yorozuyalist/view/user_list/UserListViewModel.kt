@@ -19,6 +19,7 @@ class UserListViewModel(application: Application) : BaseViewModel(application) {
 		statusFlow.value = value
 	}
 
+
 	private val userAnimeListFlow = Pager(
 		PagingConfig(pageSize = 50, prefetchDistance = 50)
 	) {

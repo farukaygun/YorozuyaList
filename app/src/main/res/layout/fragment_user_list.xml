@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="16dp"
     tools:context=".view.user_list.UserListFragment">
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -24,7 +25,6 @@
         android:id="@+id/recyclerViewUserList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:scrollbars="none"
