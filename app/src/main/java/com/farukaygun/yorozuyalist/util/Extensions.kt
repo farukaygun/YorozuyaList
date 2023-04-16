@@ -3,6 +3,7 @@ package com.farukaygun.yorozuyalist.util
 import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -12,8 +13,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.farukaygun.yorozuyalist.R
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.math.absoluteValue
 
 fun ImageView.downloadFromUrl(
     url: String?,
@@ -34,7 +37,7 @@ fun ImageView.downloadFromUrl(
 fun TextView.formatDate(date: String) {
 	val subStringDate = date.subSequence(0, 10).toString()
 
-	val formattedDate: String = if (android.os.Build.VERSION.SDK_INT >= 26) {
+	val formattedDate: String = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 		val parsedDate = LocalDate.parse(subStringDate)
 		val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
 		parsedDate.format(formatter)
@@ -68,7 +71,7 @@ fun TextView.formatMediaType(mediaType: String, numEpisodes: Int) {
 		mangaMediaType[6] -> _mediaType = context.getString(R.string.one_shot)
 	}
 	if (animeMediaType.contains(mediaType))
-		this.text = if (numEpisodes > 0) this.context.getString(R.string.episodes,
+		this.text = if (numEpisodes > 0) this.context.getString(R.string.media_type_episodes,
 			_mediaType,
 			numEpisodes) else "$_mediaType (??)"
 	else
@@ -122,4 +125,34 @@ fun TextView.formatSeason(season: String?, year: Int?) {
 fun View.hideKeyboard() {
 	val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 	imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
+@SuppressLint("SimpleDateFormat")
+fun TextView.startTime(startTime: String?) {
+	if (startTime == null) {
+		this.text = "??"
+		return
+	}
+
+	val jpTime = Calendar.currentJapanHour
+	val currentJpWeekDay = Calendar.currentJapanWeekday
+	val currentWeekDay = Calendar.currentWeekday
+	val time: Int
+
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+		time = LocalTime.parse(startTime, DateTimeFormatter.ISO_TIME).hour
+	} else {
+		val sdf = SimpleDateFormat("HH:mm:ss")
+		val date = sdf.parse(startTime)
+		val calendar = java.util.Calendar.getInstance()
+		calendar.time = date
+		val hour = calendar.get(java.util.Calendar.HOUR_OF_DAY)
+		time = hour
+	}
+
+	val remaining = time - jpTime
+
+	if (currentJpWeekDay == currentWeekDay && remaining > 0)
+		this.text = context.getString(R.string.airing_in, remaining)
+	else this.text = context.getString(R.string.airing_in, remaining.absoluteValue)
 }

@@ -2,10 +2,43 @@ package com.farukaygun.yorozuyalist.util
 
 import java.time.LocalDate
 import android.icu.util.Calendar
+import android.icu.util.TimeZone
 import android.os.Build
+import java.util.Locale
 
 class Calendar {
 	companion object {
+
+		private val calendar: Calendar by lazy {
+			Calendar.getInstance(Locale.getDefault())
+		}
+
+		private val jpCalendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Tokyo"), Locale.ENGLISH)
+		private val weekDay = calendar.get(Calendar.DAY_OF_WEEK)
+		val currentJapanHour = jpCalendar.get(Calendar.HOUR_OF_DAY)
+
+		val currentWeekday = when(weekDay) {
+			2 -> Constants.MONDAY
+			3 -> Constants.TUESDAY
+			4 -> Constants.WEDNESDAY
+			5 -> Constants.THURSDAY
+			6 -> Constants.FRIDAY
+			7 -> Constants.SATURDAY
+			1 -> Constants.SUNDAY
+			else -> Constants.MONDAY
+		}
+
+		val currentJapanWeekday = when(jpCalendar.get(Calendar.DAY_OF_WEEK)) {
+			2 -> Constants.MONDAY
+			3 -> Constants.TUESDAY
+			4 -> Constants.WEDNESDAY
+			5 -> Constants.THURSDAY
+			6 -> Constants.FRIDAY
+			7 -> Constants.SATURDAY
+			1 -> Constants.SUNDAY
+			else -> Constants.MONDAY
+		}
+
 		fun getYearAndSeason(): Pair<Int, Seasons> {
 			val (year, month) = getYearAndMonth()
 			return when (month) {
@@ -23,7 +56,6 @@ class Calendar {
 				year = date.year
 				date.month.value
 			} else {
-				val calendar = Calendar.getInstance()
 				year = calendar.get(Calendar.YEAR)
 				calendar.get(Calendar.MONTH) + 1
 			}

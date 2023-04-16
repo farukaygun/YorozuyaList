@@ -43,6 +43,11 @@ fun formatSeason(view: TextView, season: String?, year: Int?) {
 	view.formatSeason(season, year)
 }
 
+@BindingAdapter("android:startTime")
+fun startTime(view: TextView, startTime: String?) {
+	view.startTime(startTime)
+}
+
 class InputFilterMinMax(
     private var min: Int,
     private var max: Int,

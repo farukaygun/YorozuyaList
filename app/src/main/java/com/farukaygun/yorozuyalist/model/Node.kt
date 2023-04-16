@@ -1,5 +1,6 @@
 package com.farukaygun.yorozuyalist.model
 
+import com.farukaygun.yorozuyalist.model.anime.Broadcast
 import com.farukaygun.yorozuyalist.model.anime.MainPicture
 import com.farukaygun.yorozuyalist.model.anime.StartSeason
 import com.google.gson.annotations.SerializedName
@@ -11,6 +12,9 @@ data class Node(
 	@SerializedName("title")
 	val title: String,
 
+	@SerializedName("broadcast")
+	val broadcast: Broadcast? = null,
+
 	@SerializedName("main_picture")
 	val mainPicture: MainPicture,
 
@@ -21,7 +25,7 @@ data class Node(
 	val mediaType: String,
 
 	@SerializedName(value = "num_episodes", alternate = ["num_chapters"])
-	val numEpisodes: Int,
+	val numEpisodes: Int? = 0,
 
 	@SerializedName("start_season")
 	val startSeason: StartSeason,

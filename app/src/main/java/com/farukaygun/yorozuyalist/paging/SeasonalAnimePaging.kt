@@ -23,7 +23,7 @@ class SeasonalAnimePaging(
 			val nextPage = params.key
 			val response =
 				if (nextPage != null) api.getSeasonalAnimePaging(nextPage)
-				else api.getSeasonalAnime(year, season)
+				else api.getSeasonalAnime(year, season, 15)
 
 			LoadResult.Page(
 				data = response.data?.data!!,

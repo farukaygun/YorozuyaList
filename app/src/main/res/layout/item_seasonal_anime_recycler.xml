@@ -35,6 +35,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="110dp"
                 android:layout_height="150dp"
+                android:contentDescription="@string/anime_picture"
                 android:downloadUrl="@{animeData.mainPicture.medium}"
                 android:scaleType="centerCrop"
                 android:src="@drawable/overflow"
@@ -77,7 +78,7 @@
                     android:layout_marginBottom="8dp"
                     android:drawablePadding="4dp"
                     android:gravity="center"
-                    android:text="@{animeData.mean}"
+                    android:text='@{animeData.mean == null ? "??" : animeData.mean}'
                     android:textSize="14sp"
                     app:drawableLeftCompat="@drawable/ic_round_thumb_up_alt_24" />
 

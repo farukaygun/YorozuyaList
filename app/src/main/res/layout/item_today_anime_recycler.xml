@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--    <data>-->
-    <!--        <variable-->
-    <!--            name="suggestedAnimeData"-->
-    <!--            type="com.farukaygun.yorozuyalist.model.anime.AnimeNode" />-->
-    <!--        <variable-->
-    <!--            name="listener"-->
-    <!--            type="com.farukaygun.yorozuyalist.adapter.ISuggestedAnimeClickListener" />-->
-    <!--    </data>-->
+    <data>
+        <variable
+            name="animeData"
+            type="com.farukaygun.yorozuyalist.model.Node" />
+
+        <variable
+            name="listener"
+            type="com.farukaygun.yorozuyalist.adapter.IItemClickListener" />
+    </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
@@ -18,6 +18,7 @@
         android:layout_marginEnd="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="@{(view) -> listener.onItemClicked(view, animeData)}"
         android:outlineProvider="none"
         app:strokeWidth="0dp">
 
@@ -25,36 +26,95 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:outlineProvider="none"
             android:padding="4dp">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageViewPicture"
+                android:id="@+id/imageView"
                 android:layout_width="110dp"
                 android:layout_height="150dp"
-                android:layout_marginBottom="4dp"
                 android:contentDescription="@string/anime_picture"
-                android:scaleType="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:downloadUrl="@{animeData.mainPicture.medium}"
+                android:scaleType="centerCrop"
+                android:src="@drawable/overflow"
                 app:shapeAppearanceOverlay="@style/roundedImageView" />
 
-            <TextView
-                android:id="@+id/textViewName"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:ellipsize="end"
-                android:focusable="true"
-                android:gravity="center"
-                android:maxWidth="110dp"
-                android:maxLines="1"
-                android:text="@{}"
-                android:textSize="16sp"
-                tools:ignore="HardcodedText" />
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:orientation="vertical"
+                android:outlineProvider="none"
+                android:padding="4dp"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:contentDescription="@string/title"
+                    android:gravity="start"
+                    android:width="220dp"
+                    android:maxLines="2"
+                    android:text="@{animeData.title}"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textViewScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:contentDescription="@string/score"
+                    android:gravity="center_vertical"
+                    android:width="150dp"
+                    android:maxLines="1"
+                    android:text='@{animeData.mean == null ? "??" : animeData.mean}'
+                    android:drawablePadding="8dp"
+                    app:drawableLeftCompat="@drawable/ic_round_thumb_up_alt_24" />
+
+                <TextView
+                    android:id="@+id/textViewEpisodes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:contentDescription="@string/score"
+                    android:gravity="center_vertical"
+                    android:width="150dp"
+                    android:maxLines="1"
+                    android:text='@{animeData.numEpisodes == 0 || animeData.numEpisodes == null ? "??" : String.format(@string/episodes, animeData.numEpisodes)}'
+                    android:drawablePadding="8dp"
+                    app:drawableLeftCompat="@drawable/ic_round_tv_24" />
+
+                <TextView
+                    android:id="@+id/textViewHour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:contentDescription="@string/time_to_broadcast"
+                    android:startTime="@{animeData.broadcast.startTime}"
+                    android:gravity="center_vertical"
+                    android:width="180dp"
+                    android:maxLines="1"
+                    android:drawablePadding="8dp"
+                    app:drawableLeftCompat="@drawable/ic_round_date_range_24" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </com.google.android.material.card.MaterialCardView>

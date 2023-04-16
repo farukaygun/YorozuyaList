@@ -18,4 +18,13 @@ object Constants {
 	const val PTW = "plan_to_watch"
 	const val PTR = "plan_to_read"
 	const val READING = "reading"
+
+	//Weekdays
+	const val MONDAY = "monday"
+	const val TUESDAY = "tuesday"
+	const val WEDNESDAY = "wednesday"
+	const val THURSDAY = "thursday"
+	const val FRIDAY = "friday"
+	const val SATURDAY = "saturday"
+	const val SUNDAY = "sunday"
 }
