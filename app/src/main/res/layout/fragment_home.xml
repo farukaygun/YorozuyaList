@@ -62,7 +62,6 @@
                 android:id="@+id/recyclerViewTodayAnime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="186dp"
                 android:layout_below="@id/textViewSeasonal"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
