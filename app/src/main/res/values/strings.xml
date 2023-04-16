@@ -67,4 +67,5 @@
     <string name="time_to_broadcast">Time to broadcast</string>
     <string name="title">Title</string>
     <string name="episodes">%1$d Episodes</string>
+    <string name="aired_ago">Aired %1$d hours ago</string>
 </resources>
