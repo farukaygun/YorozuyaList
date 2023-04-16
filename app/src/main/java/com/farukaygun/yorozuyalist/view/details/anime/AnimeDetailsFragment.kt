@@ -108,7 +108,7 @@ class AnimeDetailsFragment : BaseFragment<FragmentAnimeDetailsBinding>() {
 		binding.shapeableImageView.downloadFromUrl(details.mainPicture.large)
 		binding.textViewName.text = details.title
 		binding.textViewEpisodes.formatMediaType(details.mediaType, details.numEpisodes)
-		binding.textViewScore.text = details.mean.toString()
+		binding.textViewScore.text = if (details.mean == 0.0) "??" else details.mean.toString()
 		binding.textViewScoringUsers.formatInt(details.numScoringUsers)
 		binding.textViewStatus.formatStatus(details.status)
 
