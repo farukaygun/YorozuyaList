@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SeasonalAnime(
 	@SerializedName("data")
-	val data: List<Data>,
+	var data: List<Data>,
 
 	@SerializedName("paging")
 	val paging: Paging,

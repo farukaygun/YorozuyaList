@@ -49,16 +49,16 @@ class Api : BaseResponseHandler() {
 		}
 	}
 
-	suspend fun getSeasonalAnime(year: Int, season: String): ResponseHandler<SeasonalAnime> {
+	suspend fun getSeasonalAnime(year: Int, season: String, limit: Int): ResponseHandler<SeasonalAnime> {
 		return safeApiCall {
 			createRetrofit(BASE_API_URL).getSeasonalAnime(
 				header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
 				year,
 				season,
 				sort = "anime_score",
-				limit = 10,
+				limit,
 				offset = 0,
-				fields = "mean,media_type,num_episodes,num_list_users"
+				fields = "mean,media_type,num_episodes,num_list_users,broadcast,start_season,status"
 			)
 		}
 	}
