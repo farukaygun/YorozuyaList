@@ -2,6 +2,10 @@
 
 ### Early Access.
 
+For translation:
+
+[![Crowdin](https://badges.crowdin.net/yorozuya-list/localized.svg)](https://crowdin.com/project/yorozuya-list)
+
 Yorozuya List is an android application that unofficial MyAnimeList client.
 
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250"/>](https://play.google.com/store/apps/details?id=com.farukaygun.yorozuyalist&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
