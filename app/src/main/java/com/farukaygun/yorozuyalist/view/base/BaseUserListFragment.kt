@@ -22,6 +22,7 @@ class BaseUserListFragment : BaseFragment<FragmentBaseUserListBinding>() {
 		when (type) {
 			0 -> binding.viewPager.adapter =
 				UserAnimeListViewPagerAdapter(childFragmentManager, lifecycle)
+
 			1 -> binding.viewPager.adapter =
 				UserMangaListViewPagerAdapter(childFragmentManager, lifecycle)
 		}

@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import okhttp3.ResponseBody
 
 class MangaDetailsViewModel(
-    application: Application,
-    savedStateHandle: SavedStateHandle,
+	application: Application,
+	savedStateHandle: SavedStateHandle,
 ) : BaseViewModel(application) {
 	private val api = Api()
 

@@ -14,14 +14,19 @@ import com.farukaygun.yorozuyalist.databinding.ItemRankingRecyclerBinding
 import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.model.Node
 
-class RankingAdapter(val type: Int)
-	: PagingDataAdapter<Data, RankingAdapter.ViewHolder>(RankingComparator), IItemClickListener {
+class RankingAdapter(val type: Int) :
+	PagingDataAdapter<Data, RankingAdapter.ViewHolder>(RankingComparator), IItemClickListener {
 
-	class ViewHolder(val binding: ItemRankingRecyclerBinding)
-		: RecyclerView.ViewHolder(binding.root)
+	class ViewHolder(val binding: ItemRankingRecyclerBinding) :
+		RecyclerView.ViewHolder(binding.root)
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-		val binding = DataBindingUtil.inflate<ItemRankingRecyclerBinding>(LayoutInflater.from(parent.context), R.layout.item_ranking_recycler, parent, false)
+		val binding = DataBindingUtil.inflate<ItemRankingRecyclerBinding>(
+			LayoutInflater.from(parent.context),
+			R.layout.item_ranking_recycler,
+			parent,
+			false
+		)
 		return ViewHolder(binding)
 	}
 
@@ -35,13 +40,16 @@ class RankingAdapter(val type: Int)
 	override fun onItemClicked(view: View, data: Node) {
 		val bundle = Bundle()
 		bundle.putInt("id", data.id)
-		when(type) {
-			0 -> Navigation.findNavController(view).navigate(R.id.action_animeRankingFragment_to_detailsFragment, bundle)
-			1 -> Navigation.findNavController(view).navigate(R.id.action_mangaRankingFragment_to_mangaDetailsFragment, bundle)
+		when (type) {
+			0 -> Navigation.findNavController(view)
+				.navigate(R.id.action_animeRankingFragment_to_detailsFragment, bundle)
+
+			1 -> Navigation.findNavController(view)
+				.navigate(R.id.action_mangaRankingFragment_to_mangaDetailsFragment, bundle)
 		}
 	}
 
-	object RankingComparator: DiffUtil.ItemCallback<Data>() {
+	object RankingComparator : DiffUtil.ItemCallback<Data>() {
 		override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
 			return oldItem.node.id == newItem.node.id
 		}

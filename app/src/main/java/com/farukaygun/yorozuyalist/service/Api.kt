@@ -3,11 +3,10 @@ package com.farukaygun.yorozuyalist.service
 import com.farukaygun.yorozuyalist.model.AccessToken
 import com.farukaygun.yorozuyalist.model.MyListStatus
 import com.farukaygun.yorozuyalist.model.anime.AnimeDetails
-import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.model.anime.SeasonalAnime
 import com.farukaygun.yorozuyalist.model.anime.SuggestedAnime
 import com.farukaygun.yorozuyalist.model.manga.MangaDetails
-import com.farukaygun.yorozuyalist.model.Response as ResponseApi
+import com.farukaygun.yorozuyalist.model.user.User
 import com.farukaygun.yorozuyalist.util.Constants.BASE_API_URL
 import com.farukaygun.yorozuyalist.util.Constants.OAUTH2_URL
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
@@ -16,6 +15,7 @@ import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.farukaygun.yorozuyalist.model.Response as ResponseApi
 
 class Api : BaseResponseHandler() {
 	private fun createRetrofit(baseUrl: String): IApi {
@@ -34,11 +34,11 @@ class Api : BaseResponseHandler() {
 	}
 
 	suspend fun getAccessToken(
-        clientId: String,
-        code: String,
-        codeVerifier: String,
-        grantType: String,
-    ): ResponseHandler<AccessToken> {
+		clientId: String,
+		code: String,
+		codeVerifier: String,
+		grantType: String,
+	): ResponseHandler<AccessToken> {
 		return safeApiCall {
 			createRetrofit(OAUTH2_URL).getAccessToken(
 				clientId,
@@ -49,7 +49,11 @@ class Api : BaseResponseHandler() {
 		}
 	}
 
-	suspend fun getSeasonalAnime(year: Int, season: String, limit: Int): ResponseHandler<SeasonalAnime> {
+	suspend fun getSeasonalAnime(
+		year: Int,
+		season: String,
+		limit: Int
+	): ResponseHandler<SeasonalAnime> {
 		return safeApiCall {
 			createRetrofit(BASE_API_URL).getSeasonalAnime(
 				header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
@@ -145,7 +149,7 @@ class Api : BaseResponseHandler() {
 
 	suspend fun getUserAnimeListPaging(url: String): ResponseHandler<ResponseApi> {
 		return safeApiCall {
-			createRetrofit(BASE_API_URL).getUserMangaList(
+			createRetrofit(BASE_API_URL).getUserAnimeList(
 				url = url,
 				header = "Bearer " + SharedPrefsHelper().getString("accessToken")
 			)
@@ -197,11 +201,11 @@ class Api : BaseResponseHandler() {
 	}
 
 	suspend fun updateUserAnimeList(
-        animeId: Int,
-        status: String,
-        score: Int?,
-        numWatchedEpisodes: Int,
-    ): ResponseHandler<MyListStatus> {
+		animeId: Int,
+		status: String,
+		score: Int?,
+		numWatchedEpisodes: Int,
+	): ResponseHandler<MyListStatus> {
 		return safeApiCall {
 			createRetrofit(BASE_API_URL).updateUserAnimeList(
 				header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
@@ -217,16 +221,17 @@ class Api : BaseResponseHandler() {
 		return safeApiCall {
 			createRetrofit(BASE_API_URL).deleteUserAnimeList(
 				header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
-				animeId = animeId)
+				animeId = animeId
+			)
 		}
 	}
 
 	suspend fun updateUserMangaList(
-        mangaId: Int,
-        status: String,
-        score: Int?,
-        numReadedChapters: Int,
-    ): ResponseHandler<MyListStatus> {
+		mangaId: Int,
+		status: String,
+		score: Int?,
+		numReadedChapters: Int,
+	): ResponseHandler<MyListStatus> {
 		return safeApiCall {
 			createRetrofit(BASE_API_URL).updateUserMangaList(
 				header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
@@ -242,7 +247,8 @@ class Api : BaseResponseHandler() {
 		return safeApiCall {
 			createRetrofit(BASE_API_URL).deleteUserMangaList(
 				header = "Bearer " + SharedPrefsHelper().getString("accessToken"),
-				mangaId = mangaId)
+				mangaId = mangaId
+			)
 		}
 	}
 

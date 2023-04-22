@@ -1,9 +1,9 @@
 package com.farukaygun.yorozuyalist.util
 
-import java.time.LocalDate
 import android.icu.util.Calendar
 import android.icu.util.TimeZone
 import android.os.Build
+import java.time.LocalDate
 import java.util.Locale
 
 class Calendar {
@@ -13,11 +13,12 @@ class Calendar {
 			Calendar.getInstance(Locale.getDefault())
 		}
 
-		private val jpCalendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Tokyo"), Locale.ENGLISH)
+		private val jpCalendar =
+			Calendar.getInstance(TimeZone.getTimeZone("Asia/Tokyo"), Locale.ENGLISH)
 		private val weekDay = calendar.get(Calendar.DAY_OF_WEEK)
 		val currentJapanHour = jpCalendar.get(Calendar.HOUR_OF_DAY)
 
-		val currentWeekday = when(weekDay) {
+		val currentWeekday = when (weekDay) {
 			2 -> Constants.MONDAY
 			3 -> Constants.TUESDAY
 			4 -> Constants.WEDNESDAY
@@ -28,7 +29,7 @@ class Calendar {
 			else -> Constants.MONDAY
 		}
 
-		val currentJapanWeekday = when(jpCalendar.get(Calendar.DAY_OF_WEEK)) {
+		val currentJapanWeekday = when (jpCalendar.get(Calendar.DAY_OF_WEEK)) {
 			2 -> Constants.MONDAY
 			3 -> Constants.TUESDAY
 			4 -> Constants.WEDNESDAY

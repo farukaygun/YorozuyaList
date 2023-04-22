@@ -7,8 +7,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.farukaygun.yorozuyalist.paging.SeasonalAnimePaging
 import com.farukaygun.yorozuyalist.service.Api
-import com.farukaygun.yorozuyalist.util.Calendar as CalendarUtil
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
+import com.farukaygun.yorozuyalist.util.Calendar as CalendarUtil
 
 class SeasonalViewModel(application: Application) : BaseViewModel(application) {
 	private val api = Api()

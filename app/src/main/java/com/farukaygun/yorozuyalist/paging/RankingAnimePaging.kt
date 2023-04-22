@@ -27,7 +27,8 @@ class RankingAnimePaging(
 			LoadResult.Page(
 				data = response.data?.data!!,
 				prevKey = response.data.paging.previous,
-				nextKey = response.data.paging.next)
+				nextKey = response.data.paging.next
+			)
 		} catch (e: Exception) {
 			LoadResult.Error(e)
 		}

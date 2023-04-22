@@ -16,18 +16,20 @@ import com.farukaygun.yorozuyalist.view.home.HomeFragmentDirections
 /**
  * Suggested and seasonal anime adapter in home fragment
  */
-class HomeAnimeAdapter(private var animeList: List<Data>)
-	: RecyclerView.Adapter<HomeAnimeAdapter.ViewHolder>(), IItemClickListener {
+class HomeAnimeAdapter(private var animeList: List<Data>) :
+	RecyclerView.Adapter<HomeAnimeAdapter.ViewHolder>(), IItemClickListener {
 
 	class ViewHolder(val binding: ItemHomeAnimeRecyclerBinding) :
 		RecyclerView.ViewHolder(binding.root)
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val binding =
-			DataBindingUtil.inflate<ItemHomeAnimeRecyclerBinding>(LayoutInflater.from(parent.context),
+			DataBindingUtil.inflate<ItemHomeAnimeRecyclerBinding>(
+				LayoutInflater.from(parent.context),
 				R.layout.item_home_anime_recycler,
 				parent,
-				false)
+				false
+			)
 		return ViewHolder(binding)
 	}
 
@@ -43,6 +45,7 @@ class HomeAnimeAdapter(private var animeList: List<Data>)
 	override fun onItemClicked(view: View, data: Node) {
 		val bundle = Bundle()
 		bundle.putInt("id", data.id)
-		Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment().actionId, bundle)
+		Navigation.findNavController(view)
+			.navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment().actionId, bundle)
 	}
 }

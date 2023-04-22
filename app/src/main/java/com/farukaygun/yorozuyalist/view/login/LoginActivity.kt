@@ -12,8 +12,10 @@ import com.farukaygun.yorozuyalist.databinding.ActivityLoginBinding
 import com.farukaygun.yorozuyalist.service.ResponseHandler
 import com.farukaygun.yorozuyalist.util.SharedPrefsHelper
 import com.farukaygun.yorozuyalist.view.main.MainActivity
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 	private lateinit var binding: ActivityLoginBinding
@@ -56,9 +58,13 @@ class LoginActivity : AppCompatActivity() {
 							}
 						}
 					}
-					is ResponseHandler.Error -> Toast.makeText(this@LoginActivity,
+
+					is ResponseHandler.Error -> Toast.makeText(
+						this@LoginActivity,
 						"${it.message}",
-						Toast.LENGTH_LONG).show()
+						Toast.LENGTH_LONG
+					).show()
+
 					else -> {}
 				}
 			}

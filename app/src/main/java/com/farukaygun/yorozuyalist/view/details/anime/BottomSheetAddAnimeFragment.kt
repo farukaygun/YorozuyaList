@@ -80,9 +80,13 @@ class BottomSheetAddAnimeFragment(
 						}
 						dismiss()
 					}
-					is ResponseHandler.Error -> Toast.makeText(context,
+
+					is ResponseHandler.Error -> Toast.makeText(
+						context,
 						"${it.message}",
-						Toast.LENGTH_SHORT).show()
+						Toast.LENGTH_SHORT
+					).show()
+
 					else -> {}
 				}
 			}
@@ -93,9 +97,12 @@ class BottomSheetAddAnimeFragment(
 			viewModelAnimeDetails.deleteUserList.collectLatest {
 				when (it) {
 					is ResponseHandler.Success -> dismiss()
-					is ResponseHandler.Error -> Toast.makeText(context,
+					is ResponseHandler.Error -> Toast.makeText(
+						context,
 						"${it.message}",
-						Toast.LENGTH_SHORT).show()
+						Toast.LENGTH_SHORT
+					).show()
+
 					else -> {}
 				}
 			}
@@ -109,12 +116,14 @@ class BottomSheetAddAnimeFragment(
 			getString(R.string.plan_to_watch)
 		)
 		(binding.autoCompleteTextViewStatus as MaterialAutoCompleteTextView).setSimpleItems(
-			statusArray)
+			statusArray
+		)
 
 
 		scoreArray = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
 		(binding.autoCompleteTextViewScore as MaterialAutoCompleteTextView).setSimpleItems(
-			scoreArray)
+			scoreArray
+		)
 
 		// editTextEpisodes min max value filter
 		binding.editTextEpisode.filters = arrayOf(InputFilterMinMax(0, Int.MAX_VALUE))
@@ -135,16 +144,30 @@ class BottomSheetAddAnimeFragment(
 
 	private fun initEditUi() {
 		when (myListStatus?.status) {
-			WATCHING -> binding.autoCompleteTextViewStatus.setText(getString(R.string.watching),
-				false)
-			COMPLETED -> binding.autoCompleteTextViewStatus.setText(getString(R.string.completed),
-				false)
-			ON_HOLD -> binding.autoCompleteTextViewStatus.setText(getString(R.string.on_hold),
-				false)
-			DROPPED -> binding.autoCompleteTextViewStatus.setText(getString(R.string.dropped),
-				false)
-			PTW -> binding.autoCompleteTextViewStatus.setText(getString(R.string.plan_to_watch),
-				false)
+			WATCHING -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.watching),
+				false
+			)
+
+			COMPLETED -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.completed),
+				false
+			)
+
+			ON_HOLD -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.on_hold),
+				false
+			)
+
+			DROPPED -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.dropped),
+				false
+			)
+
+			PTW -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.plan_to_watch),
+				false
+			)
 		}
 		binding.autoCompleteTextViewScore.setText(myListStatus?.score.toString(), false)
 		binding.textInputLayoutEpisodes.suffixText = "/ $numEpisodes"

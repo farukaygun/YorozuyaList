@@ -17,11 +17,16 @@ import com.farukaygun.yorozuyalist.model.Node
 class SeasonalAdapter
 	: PagingDataAdapter<Data, SeasonalAdapter.ViewHolder>(SeasonalComparator), IItemClickListener {
 
-	class ViewHolder(val binding: ItemSeasonalAnimeRecyclerBinding)
-		: RecyclerView.ViewHolder(binding.root)
+	class ViewHolder(val binding: ItemSeasonalAnimeRecyclerBinding) :
+		RecyclerView.ViewHolder(binding.root)
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-		val binding = DataBindingUtil.inflate<ItemSeasonalAnimeRecyclerBinding>(LayoutInflater.from(parent.context), R.layout.item_seasonal_anime_recycler, parent, false)
+		val binding = DataBindingUtil.inflate<ItemSeasonalAnimeRecyclerBinding>(
+			LayoutInflater.from(parent.context),
+			R.layout.item_seasonal_anime_recycler,
+			parent,
+			false
+		)
 		return ViewHolder(binding)
 	}
 
@@ -35,10 +40,11 @@ class SeasonalAdapter
 	override fun onItemClicked(view: View, data: Node) {
 		val bundle = Bundle()
 		bundle.putInt("id", data.id)
-		Navigation.findNavController(view).navigate(R.id.action_seasonalFragment_to_detailsFragment, bundle)
+		Navigation.findNavController(view)
+			.navigate(R.id.action_seasonalFragment_to_detailsFragment, bundle)
 	}
 
-	object SeasonalComparator: DiffUtil.ItemCallback<Data>() {
+	object SeasonalComparator : DiffUtil.ItemCallback<Data>() {
 		override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
 			return oldItem.node.id == newItem.node.id
 		}

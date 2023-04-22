@@ -23,6 +23,7 @@ class BaseRankingFragment : BaseFragment<FragmentBaseRankingBinding>() {
 		when (type) {
 			0 -> binding.viewPager.adapter =
 				AnimeRankingViewPagerAdapter(childFragmentManager, lifecycle)
+
 			1 -> binding.viewPager.adapter =
 				MangaRankingViewPagerAdapter(childFragmentManager, lifecycle)
 		}

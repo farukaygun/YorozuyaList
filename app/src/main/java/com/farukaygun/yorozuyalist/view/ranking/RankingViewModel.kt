@@ -12,8 +12,8 @@ import com.farukaygun.yorozuyalist.service.Api
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
 
 class RankingViewModel(
-    application: Application,
-    savedStateHandle: SavedStateHandle,
+	application: Application,
+	savedStateHandle: SavedStateHandle,
 ) : BaseViewModel(application) {
 	private val api = Api()
 	private val rankingType = savedStateHandle.get<String>("ranking_type") ?: "all"
