@@ -6,8 +6,8 @@ import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.service.Api
 
 class RankingMangaPaging(
-    private val api: Api,
-    private val rankingType: String,
+	private val api: Api,
+	private val rankingType: String,
 ) : PagingSource<String, Data>() {
 	override fun getRefreshKey(state: PagingState<String, Data>): String? {
 		return state.anchorPosition?.let { anchorPosition ->

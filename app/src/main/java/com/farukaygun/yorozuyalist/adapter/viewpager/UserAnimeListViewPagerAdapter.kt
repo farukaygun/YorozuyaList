@@ -7,8 +7,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.farukaygun.yorozuyalist.view.user_list.UserListFragment
 
-class UserAnimeListViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
-	: FragmentStateAdapter(fragmentManager, lifecycle) {
+class UserAnimeListViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+	FragmentStateAdapter(fragmentManager, lifecycle) {
 	override fun getItemCount(): Int = 5
 
 	override fun createFragment(position: Int): Fragment {

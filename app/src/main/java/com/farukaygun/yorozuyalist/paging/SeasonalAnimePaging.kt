@@ -6,9 +6,9 @@ import com.farukaygun.yorozuyalist.model.Data
 import com.farukaygun.yorozuyalist.service.Api
 
 class SeasonalAnimePaging(
-    private val api: Api,
-    private val year: Int,
-    private val season: String,
+	private val api: Api,
+	private val year: Int,
+	private val season: String,
 ) : PagingSource<String, Data>() {
 	override fun getRefreshKey(state: PagingState<String, Data>): String? {
 		return state.anchorPosition?.let { anchorPosition ->

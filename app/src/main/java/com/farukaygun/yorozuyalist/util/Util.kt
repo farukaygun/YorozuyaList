@@ -49,8 +49,8 @@ fun startTime(view: TextView, startTime: String?) {
 }
 
 class InputFilterMinMax(
-    private var min: Int,
-    private var max: Int,
+	private var min: Int,
+	private var max: Int,
 ) : InputFilter {
 
 	override fun filter(

@@ -11,7 +11,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScrollTargetViewId="@id/constraintLayout">
+        app:liftOnScrollTargetViewId="@id/viewPager">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolBar"

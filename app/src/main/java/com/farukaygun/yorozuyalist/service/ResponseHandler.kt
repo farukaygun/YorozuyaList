@@ -1,8 +1,8 @@
 package com.farukaygun.yorozuyalist.service
 
 sealed class ResponseHandler<T>(
-    val data: T? = null,
-    val message: String? = null,
+	val data: T? = null,
+	val message: String? = null,
 ) {
 	class Success<T>(data: T) : ResponseHandler<T>(data = data)
 

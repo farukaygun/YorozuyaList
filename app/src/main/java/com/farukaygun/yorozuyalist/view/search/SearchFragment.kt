@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.collectLatest
 class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 	private val viewModelSearch: SearchViewModel by viewModels()
 	override val isAppbarVisible: Boolean = false
-	override fun getViewBinding(): FragmentSearchBinding = FragmentSearchBinding.inflate(layoutInflater)
+	override fun getViewBinding(): FragmentSearchBinding =
+		FragmentSearchBinding.inflate(layoutInflater)
 
 	private lateinit var searchAnimeAdapter: SearchAdapter
 	private lateinit var searchMangaAdapter: SearchAdapter
@@ -86,7 +87,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 	}
 
 	fun search(query: String) {
-		if (query.isNotBlank()) {
+		if (query.isNotBlank() && query != viewModelSearch.query.value) {
 			viewModelSearch.setQuery(query)
 			when (type) {
 				0 -> searchAnimeAdapter.refresh()

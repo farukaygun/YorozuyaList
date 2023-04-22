@@ -60,9 +60,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 							binding.recyclerViewSeasonalAnime.adapter = homeAnimeAdapter
 						}
 					}
-					is ResponseHandler.Error -> Toast.makeText(context,
+
+					is ResponseHandler.Error -> Toast.makeText(
+						context,
 						"${it.message}",
-						Toast.LENGTH_SHORT).show()
+						Toast.LENGTH_SHORT
+					).show()
+
 					else -> {}
 				}
 			}
@@ -79,9 +83,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 							binding.recyclerViewSuggestedAnime.adapter = homeAnimeAdapter
 						}
 					}
-					is ResponseHandler.Error -> Toast.makeText(context,
+
+					is ResponseHandler.Error -> Toast.makeText(
+						context,
 						"${it.message}",
-						Toast.LENGTH_SHORT).show()
+						Toast.LENGTH_SHORT
+					).show()
+
 					else -> {}
 				}
 			}

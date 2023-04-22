@@ -22,10 +22,12 @@ class UserListAdapter(val type: Int) :
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val binding =
-			DataBindingUtil.inflate<ItemUserListRecyclerBinding>(LayoutInflater.from(parent.context),
+			DataBindingUtil.inflate<ItemUserListRecyclerBinding>(
+				LayoutInflater.from(parent.context),
 				R.layout.item_user_list_recycler,
 				parent,
-				false)
+				false
+			)
 		return ViewHolder(binding)
 	}
 
@@ -42,6 +44,7 @@ class UserListAdapter(val type: Int) :
 		when (type) {
 			0 -> Navigation.findNavController(view)
 				.navigate(R.id.action_animeFragment_to_animeDetailsFragment, bundle)
+
 			1 -> Navigation.findNavController(view)
 				.navigate(R.id.action_mangaFragment_to_mangaDetailsFragment, bundle)
 		}

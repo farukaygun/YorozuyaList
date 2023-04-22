@@ -11,7 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.farukaygun.yorozuyalist.view.main.MainActivity
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.launch
 
 abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
 	protected lateinit var binding: VBinding
@@ -36,10 +37,10 @@ abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
 	}
 
 	override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?,
+	): View? {
 		binding = getViewBinding()
 		return binding.root
 	}

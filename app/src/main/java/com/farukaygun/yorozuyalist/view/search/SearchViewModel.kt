@@ -11,28 +11,30 @@ import com.farukaygun.yorozuyalist.service.Api
 import com.farukaygun.yorozuyalist.view.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class SearchViewModel(application: Application): BaseViewModel(application) {
+class SearchViewModel(application: Application) : BaseViewModel(application) {
 	private val api = Api()
 
 	private val queryFlow = MutableStateFlow("")
 	val query = queryFlow
 
+	var isNewSearch: Boolean = false
 
 	fun setQuery(value: String) {
 		queryFlow.value = value
+		isNewSearch = true
 	}
 
 	private val animeSearchListFlow = Pager(
 		PagingConfig(pageSize = 50, prefetchDistance = 50)
 	) {
-		SearchAnimePaging(api, queryFlow.value)
+		SearchAnimePaging(api, queryFlow.value, isNewSearch)
 	}.flow.cachedIn(viewModelScope)
 	val animeSearchList = animeSearchListFlow
 
 	private val mangaSearchListFlow = Pager(
 		PagingConfig(pageSize = 50, prefetchDistance = 50)
 	) {
-		SearchMangaPaging(api, queryFlow.value)
+		SearchMangaPaging(api, queryFlow.value, isNewSearch)
 	}.flow.cachedIn(viewModelScope)
 	val mangaSearchList = mangaSearchListFlow
 }

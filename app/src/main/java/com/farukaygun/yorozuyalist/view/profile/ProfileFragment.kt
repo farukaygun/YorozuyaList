@@ -43,9 +43,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 							viewModelProfile.drawChart(binding.donutProgressView, statistics)
 						}
 					}
-					is ResponseHandler.Error -> Toast.makeText(context,
+
+					is ResponseHandler.Error -> Toast.makeText(
+						context,
 						"${it.message}",
-						Toast.LENGTH_SHORT).show()
+						Toast.LENGTH_SHORT
+					).show()
+
 					else -> {}
 				}
 			}

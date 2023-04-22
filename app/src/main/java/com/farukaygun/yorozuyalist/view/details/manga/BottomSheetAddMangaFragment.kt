@@ -76,9 +76,13 @@ class BottomSheetAddMangaFragment(
 						}
 						dismiss()
 					}
-					is ResponseHandler.Error -> Toast.makeText(context,
+
+					is ResponseHandler.Error -> Toast.makeText(
+						context,
 						"${it.message}",
-						Toast.LENGTH_SHORT).show()
+						Toast.LENGTH_SHORT
+					).show()
+
 					else -> {}
 				}
 			}
@@ -89,9 +93,12 @@ class BottomSheetAddMangaFragment(
 			viewModelMangaDetails.deleteUserList.collectLatest {
 				when (it) {
 					is ResponseHandler.Success -> dismiss()
-					is ResponseHandler.Error -> Toast.makeText(context,
+					is ResponseHandler.Error -> Toast.makeText(
+						context,
 						"${it.message}",
-						Toast.LENGTH_SHORT).show()
+						Toast.LENGTH_SHORT
+					).show()
+
 					else -> {}
 				}
 			}
@@ -105,11 +112,13 @@ class BottomSheetAddMangaFragment(
 			getString(R.string.plan_to_read)
 		)
 		(binding.autoCompleteTextViewStatus as MaterialAutoCompleteTextView).setSimpleItems(
-			statusArray)
+			statusArray
+		)
 
 		scoreArray = arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
 		(binding.autoCompleteTextViewScore as MaterialAutoCompleteTextView).setSimpleItems(
-			scoreArray)
+			scoreArray
+		)
 
 		// editTextEpisodes min max value filter
 		binding.editTextChapter.filters = arrayOf(InputFilterMinMax(0, Int.MAX_VALUE))
@@ -130,16 +139,30 @@ class BottomSheetAddMangaFragment(
 
 	private fun initEditUi() {
 		when (myListStatus?.status) {
-			Constants.READING -> binding.autoCompleteTextViewStatus.setText(getString(R.string.reading),
-				false)
-			Constants.COMPLETED -> binding.autoCompleteTextViewStatus.setText(getString(R.string.completed),
-				false)
-			Constants.ON_HOLD -> binding.autoCompleteTextViewStatus.setText(getString(R.string.on_hold),
-				false)
-			Constants.DROPPED -> binding.autoCompleteTextViewStatus.setText(getString(R.string.dropped),
-				false)
-			Constants.PTR -> binding.autoCompleteTextViewStatus.setText(getString(R.string.plan_to_read),
-				false)
+			Constants.READING -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.reading),
+				false
+			)
+
+			Constants.COMPLETED -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.completed),
+				false
+			)
+
+			Constants.ON_HOLD -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.on_hold),
+				false
+			)
+
+			Constants.DROPPED -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.dropped),
+				false
+			)
+
+			Constants.PTR -> binding.autoCompleteTextViewStatus.setText(
+				getString(R.string.plan_to_read),
+				false
+			)
 		}
 		binding.autoCompleteTextViewScore.setText(myListStatus?.score.toString(), false)
 		binding.textInputLayoutEpisodes.suffixText = "/ $numChapters"

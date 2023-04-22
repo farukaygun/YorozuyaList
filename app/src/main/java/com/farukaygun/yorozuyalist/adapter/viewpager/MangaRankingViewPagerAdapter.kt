@@ -7,8 +7,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.farukaygun.yorozuyalist.view.ranking.RankingFragment
 
-class MangaRankingViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
-	: FragmentStateAdapter(fragmentManager, lifecycle) {
+class MangaRankingViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+	FragmentStateAdapter(fragmentManager, lifecycle) {
 	override fun getItemCount(): Int = 3
 
 	override fun createFragment(position: Int): Fragment {

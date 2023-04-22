@@ -19,9 +19,10 @@ import java.util.*
 import kotlin.math.absoluteValue
 
 fun ImageView.downloadFromUrl(
-    url: String?,
-    progressDrawable: CircularProgressDrawable = placeholderProgressBar(
-        this.context),
+	url: String?,
+	progressDrawable: CircularProgressDrawable = placeholderProgressBar(
+		this.context
+	),
 ) {
 
 	val options = RequestOptions()
@@ -71,24 +72,28 @@ fun TextView.formatMediaType(mediaType: String, numEpisodes: Int) {
 		mangaMediaType[6] -> _mediaType = context.getString(R.string.one_shot)
 	}
 	if (animeMediaType.contains(mediaType))
-		this.text = if (numEpisodes > 0) this.context.getString(R.string.media_type_episodes,
+		this.text = if (numEpisodes > 0) this.context.getString(
+			R.string.media_type_episodes,
 			_mediaType,
-			numEpisodes) else "$_mediaType (??)"
+			numEpisodes
+		) else "$_mediaType (??)"
 	else
-		this.text = if (numEpisodes > 0) this.context.getString(R.string.chapters,
+		this.text = if (numEpisodes > 0) this.context.getString(
+			R.string.chapters,
 			_mediaType,
-			numEpisodes) else "$_mediaType (??)"
+			numEpisodes
+		) else "$_mediaType (??)"
 }
 
 fun TextView.formatStatus(status: String) {
-	var status = status
+	var _status = status
 	when (status) {
-		"currently_airing" -> status = context.getString(R.string.airing)
-		"finished_airing", "finished" -> status = context.getString(R.string.finished)
-		"currently_publishing" -> status = context.getString(R.string.publishing)
-		"not_yet_aired" -> status = context.getString(R.string.not_yet_aired)
+		"currently_airing" -> _status = context.getString(R.string.airing)
+		"finished_airing", "finished" -> _status = context.getString(R.string.finished)
+		"currently_publishing" -> _status = context.getString(R.string.publishing)
+		"not_yet_aired" -> _status = context.getString(R.string.not_yet_aired)
 	}
-	this.text = status
+	this.text = _status
 }
 
 @SuppressLint("SetTextI18n")
@@ -97,29 +102,29 @@ fun TextView.formatInt(value: Int) {
 }
 
 fun TextView.formatSource(source: String) {
-	var source = source
+	var _source = source
 	when (source) {
-		"original" -> source = this.context.getString(R.string.original)
-		"manga" -> source = this.context.getString(R.string.manga)
-		"light_novel" -> source = this.context.getString(R.string.light_novel)
-		"novel" -> source = this.context.getString(R.string.novel)
-		"web_novel" -> source = this.context.getString(R.string.web_novel)
+		"original" -> _source = this.context.getString(R.string.original)
+		"manga" -> _source = this.context.getString(R.string.manga)
+		"light_novel" -> _source = this.context.getString(R.string.light_novel)
+		"novel" -> _source = this.context.getString(R.string.novel)
+		"web_novel" -> _source = this.context.getString(R.string.web_novel)
 	}
-	this.text = source
+	this.text = _source
 }
 
 @SuppressLint("SetTextI18n")
 fun TextView.formatSeason(season: String?, year: Int?) {
-	var season = if (season.isNullOrEmpty()) "??" else season
-	val year = if (year == 0) "" else year
-	
+	var _season = if (season.isNullOrEmpty()) "??" else season
+	val _year = if (year == 0) "" else year
+
 	when (season) {
-		"fall" -> season = context.getString(R.string.fall)
-		"winter" -> season = context.getString(R.string.winter)
-		"spring" -> season = context.getString(R.string.spring)
-		"summer" -> season = context.getString(R.string.summer)
+		"fall" -> _season = context.getString(R.string.fall)
+		"winter" -> _season = context.getString(R.string.winter)
+		"spring" -> _season = context.getString(R.string.spring)
+		"summer" -> _season = context.getString(R.string.summer)
 	}
-	this.text = "$season $year"
+	this.text = "$_season $_year"
 }
 
 fun View.hideKeyboard() {
@@ -154,5 +159,5 @@ fun TextView.startTime(startTime: String?) {
 
 	if (currentJpWeekDay == currentWeekDay && remaining > 0)
 		this.text = context.getString(R.string.airing_in, remaining)
-	else this.text = context.getString(R.string.airing_in, remaining.absoluteValue)
+	else this.text = context.getString(R.string.aired_ago, remaining.absoluteValue)
 }

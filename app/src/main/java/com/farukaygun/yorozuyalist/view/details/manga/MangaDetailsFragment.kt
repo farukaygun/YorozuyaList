@@ -9,7 +9,11 @@ import com.farukaygun.yorozuyalist.databinding.FragmentMangaDetailsBinding
 import com.farukaygun.yorozuyalist.model.MyListStatus
 import com.farukaygun.yorozuyalist.model.manga.MangaDetails
 import com.farukaygun.yorozuyalist.service.ResponseHandler
-import com.farukaygun.yorozuyalist.util.*
+import com.farukaygun.yorozuyalist.util.downloadFromUrl
+import com.farukaygun.yorozuyalist.util.formatDate
+import com.farukaygun.yorozuyalist.util.formatInt
+import com.farukaygun.yorozuyalist.util.formatMediaType
+import com.farukaygun.yorozuyalist.util.formatStatus
 import com.farukaygun.yorozuyalist.view.base.BaseFragment
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.flow.collectLatest
@@ -48,16 +52,19 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
 						0,
 						0,
 						0,
-						R.drawable.ic_round_arrow_drop_up_36)
+						R.drawable.ic_round_arrow_drop_up_36
+					)
 					binding.textViewSynopsis.maxLines = Int.MAX_VALUE
 				}
+
 				false -> {
 					binding.textViewMore.text = getString(R.string.more)
 					binding.textViewMore.setCompoundDrawablesWithIntrinsicBounds(
 						0,
 						0,
 						0,
-						R.drawable.ic_round_arrow_drop_down_36)
+						R.drawable.ic_round_arrow_drop_down_36
+					)
 					binding.textViewSynopsis.maxLines = 6
 				}
 			}
@@ -73,9 +80,13 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
 							updateUI(details)
 						}
 					}
-					is ResponseHandler.Error -> Toast.makeText(context,
+
+					is ResponseHandler.Error -> Toast.makeText(
+						context,
 						"${it.message}",
-						Toast.LENGTH_SHORT).show()
+						Toast.LENGTH_SHORT
+					).show()
+
 					else -> {}
 				}
 			}
@@ -92,13 +103,21 @@ class MangaDetailsFragment : BaseFragment<FragmentMangaDetailsBinding>() {
 
 		lifecycleLaunch {
 			if (myListStatus?.status.isNullOrEmpty())
-				binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources,
-					R.drawable.ic_round_add_24,
-					context?.theme))
+				binding.fabAdd.setImageDrawable(
+					ResourcesCompat.getDrawable(
+						resources,
+						R.drawable.ic_round_add_24,
+						context?.theme
+					)
+				)
 			else
-				binding.fabAdd.setImageDrawable(ResourcesCompat.getDrawable(resources,
-					R.drawable.ic_baseline_edit_24,
-					context?.theme))
+				binding.fabAdd.setImageDrawable(
+					ResourcesCompat.getDrawable(
+						resources,
+						R.drawable.ic_baseline_edit_24,
+						context?.theme
+					)
+				)
 
 			binding.textViewStartDate.formatDate(details.startDate)
 			binding.textViewEndDate.formatDate(details.endDate)

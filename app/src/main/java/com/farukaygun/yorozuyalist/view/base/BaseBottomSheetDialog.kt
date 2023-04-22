@@ -25,10 +25,10 @@ abstract class BaseBottomSheetDialog<VBinding : ViewBinding> : BottomSheetDialog
 	abstract fun start()
 
 	override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?,
+	): View? {
 		binding = getViewBinding()
 		return binding.root
 	}

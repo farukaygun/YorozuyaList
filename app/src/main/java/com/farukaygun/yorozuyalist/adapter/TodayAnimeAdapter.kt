@@ -16,8 +16,8 @@ import com.farukaygun.yorozuyalist.view.home.HomeFragmentDirections
 /**
  * Today anime adapter in home fragment
  */
-class TodayAnimeAdapter(private var animeList: List<Data>)
-	: RecyclerView.Adapter<TodayAnimeAdapter.ViewHolder>(), IItemClickListener {
+class TodayAnimeAdapter(private var animeList: List<Data>) :
+	RecyclerView.Adapter<TodayAnimeAdapter.ViewHolder>(), IItemClickListener {
 
 	class ViewHolder(val binding: ItemTodayAnimeRecyclerBinding) :
 		RecyclerView.ViewHolder(binding.root)
@@ -27,10 +27,12 @@ class TodayAnimeAdapter(private var animeList: List<Data>)
 		viewType: Int
 	): ViewHolder {
 		val binding =
-			DataBindingUtil.inflate<ItemTodayAnimeRecyclerBinding>(LayoutInflater.from(parent.context),
+			DataBindingUtil.inflate<ItemTodayAnimeRecyclerBinding>(
+				LayoutInflater.from(parent.context),
 				R.layout.item_today_anime_recycler,
 				parent,
-				false)
+				false
+			)
 		return ViewHolder(binding)
 	}
 
@@ -46,6 +48,7 @@ class TodayAnimeAdapter(private var animeList: List<Data>)
 	override fun onItemClicked(view: View, data: Node) {
 		val bundle = Bundle()
 		bundle.putInt("id", data.id)
-		Navigation.findNavController(view).navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment().actionId, bundle)
+		Navigation.findNavController(view)
+			.navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment().actionId, bundle)
 	}
 }
