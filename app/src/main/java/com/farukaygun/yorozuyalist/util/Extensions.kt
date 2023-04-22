@@ -133,7 +133,7 @@ fun View.hideKeyboard() {
 }
 
 @SuppressLint("SimpleDateFormat")
-fun TextView.startTime(startTime: String?) {
+fun TextView.startTime(startTime: String?, weekDay: String?) {
 	if (startTime == null) {
 		this.text = "??"
 		return
@@ -141,7 +141,6 @@ fun TextView.startTime(startTime: String?) {
 
 	val jpTime = Calendar.currentJapanHour
 	val currentJpWeekDay = Calendar.currentJapanWeekday
-	val currentWeekDay = Calendar.currentWeekday
 	val time: Int
 
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -157,7 +156,7 @@ fun TextView.startTime(startTime: String?) {
 
 	val remaining = time - jpTime
 
-	if (currentJpWeekDay == currentWeekDay && remaining > 0)
+	if (currentJpWeekDay == weekDay && remaining > 0)
 		this.text = context.getString(R.string.airing_in, remaining)
 	else this.text = context.getString(R.string.aired_ago, remaining.absoluteValue)
 }

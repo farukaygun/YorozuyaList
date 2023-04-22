@@ -106,6 +106,7 @@
                     android:focusable="true"
                     android:contentDescription="@string/time_to_broadcast"
                     android:startTime="@{animeData.broadcast.startTime}"
+                    android:weekDay="@{animeData.broadcast.dayOfTheWeek}"
                     android:gravity="center_vertical"
                     android:width="180dp"
                     android:maxLines="1"

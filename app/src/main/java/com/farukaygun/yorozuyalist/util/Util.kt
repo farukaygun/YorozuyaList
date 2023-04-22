@@ -43,9 +43,9 @@ fun formatSeason(view: TextView, season: String?, year: Int?) {
 	view.formatSeason(season, year)
 }
 
-@BindingAdapter("android:startTime")
-fun startTime(view: TextView, startTime: String?) {
-	view.startTime(startTime)
+@BindingAdapter("android:startTime", "android:weekDay")
+fun startTime(view: TextView, startTime: String?, weekDay: String?) {
+	view.startTime(startTime, weekDay)
 }
 
 class InputFilterMinMax(
