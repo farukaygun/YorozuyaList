@@ -146,7 +146,7 @@ fun TextView.startTime(startTime: String?, weekDay: String?) {
 	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 		time = LocalTime.parse(startTime, DateTimeFormatter.ISO_TIME).hour
 	} else {
-		val sdf = SimpleDateFormat("HH:mm:ss")
+		val sdf = SimpleDateFormat("HH:mm")
 		val date = sdf.parse(startTime)
 		val calendar = java.util.Calendar.getInstance()
 		calendar.time = date
