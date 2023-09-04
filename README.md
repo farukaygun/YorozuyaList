@@ -1,5 +1,7 @@
 ## Yorozuya List
 
+## This repository is archived now. I am going to rewrite app with Jetpack Compose. New repo is [here](https://github.com/farukaygun/YorozuyaList-Compose)
+
 ### Early Access.
 
 For translation:
