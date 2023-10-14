@@ -30,11 +30,9 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:scheme="yorozuyalist"
-                    android:host="yorozuyalist1.page.link"
-                    android:pathPattern="/.*"
-                    android:pathPrefix="/.*" />
+
+                <data android:scheme="app" android:host="com.farukaygun.yorozuyalist" />
+
             </intent-filter>
             <meta-data
                 android:name="android.app.lib_name"
